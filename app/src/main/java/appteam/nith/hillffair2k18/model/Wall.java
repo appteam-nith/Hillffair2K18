@@ -12,10 +12,12 @@ public class Wall {
     String likes;
     String share;
 
-    Wall(String name,String profile,String image,String likes,String share){
+    public Wall(String name, String profile, String image, String likes, String share) {
         this.name = name;
         this.profile = profile;
         this.image = image;
+        this.likes = likes;
+        this.share = share;
     }
 
     public String getName() {

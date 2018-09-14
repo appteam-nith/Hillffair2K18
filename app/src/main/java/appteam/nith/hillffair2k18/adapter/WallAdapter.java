@@ -1,8 +1,10 @@
 package appteam.nith.hillffair2k18.adapter;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,8 +27,10 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
 
     List<Wall> wallList;
     Activity activity;
+    int likes;
+    private boolean check = true;
 
-    WallAdapter(List<Wall> wallList, Activity activity) {
+    public WallAdapter(List<Wall> wallList, Activity activity) {
         this.activity = activity;
         this.wallList = wallList;
     }
@@ -45,6 +49,41 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
         holder.title.setText(wall.getName());
         Picasso.get().load(wall.getProfile()).into(holder.profile);
         Picasso.get().load(wall.getImage()).into(holder.image);
+        likes = Integer.parseInt(wall.getLikes());
+
+        holder.like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (check) {
+                    ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+                    valueAnimator.setDuration(1000);
+                    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            holder.like.setProgress(animation.getAnimatedFraction());
+                        }
+                    });
+                    valueAnimator.start();
+                    likes += 1;
+                    holder.like_count.setText(String.valueOf(likes));
+                    check = false;
+                } else {
+                    ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+                    valueAnimator.setDuration(1000);
+                    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            holder.like.setProgress(1 - animation.getAnimatedFraction());
+                        }
+                    });
+                    likes -= 1;
+                    holder.like_count.setText(String.valueOf(likes));
+                    valueAnimator.start();
+                    check = true;
+                }
+            }
+
+        });
     }
 
     @Override
