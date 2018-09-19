@@ -38,11 +38,11 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ps"
                     android:gravity="end"
-                    android:text="Get"
+                    android:text="NITH"
                     android:layout_marginBottom="6dp"
                     android:textColor="@color/black"
-                    android:layout_marginTop="3dp"
-                    android:textSize="37sp" />
+                    android:layout_marginTop="10dp"
+                    android:textSize="30sp" />
 
                 <TextView
                     android:id="@+id/intoText"
@@ -52,7 +52,7 @@
                     android:layout_marginTop="-24dp"
                     android:fontFamily="@font/ps"
                     android:gravity="end"
-                    android:text="Into"
+                    android:text="Hillffair"
                     android:textColor="@color/black"
                     android:textSize="40sp" />
 
@@ -64,7 +64,7 @@
                     android:layout_marginTop="-4dp"
                     android:layout_toRightOf="@id/intoText"
                     android:fontFamily="@font/psb"
-                    android:text="Club"
+                    android:text="2K18"
                     android:textColor="@color/black"
                     android:textSize="70sp" />
 

@@ -38,7 +38,6 @@ public class Login extends AppCompatActivity {
         findViews();
         FirebaseApp.initializeApp(this);
         StartFirebaseLogin();
-
     }
     private void findViews() {
         btnGenerateOTP=findViewById(R.id.btn_generate_otp);
@@ -48,15 +47,7 @@ public class Login extends AppCompatActivity {
         etOTP=findViewById(R.id.et_otp);
         setupdata();
     }
-    private BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equalsIgnoreCase("otp")) {
-                final String message = intent.getStringExtra("message");
-                etOTP.setText(message);
-            }
-        }
-    };
+
     public void setupdata()
     {
         phoneNumber = String.valueOf(etPhoneNumber.getText());
@@ -120,16 +111,4 @@ public class Login extends AppCompatActivity {
             }
         };
     }
-    @Override
-    public void onResume() {
-        LocalBroadcastManager.getInstance(this).registerReceiver(receiver, new IntentFilter("otp"));
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
-    }
-
 }
