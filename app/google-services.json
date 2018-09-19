@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "464544775582",
+    "firebase_url": "https://hillffair2k18.firebaseio.com",
+    "project_id": "hillffair2k18",
+    "storage_bucket": "hillffair2k18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464544775582:android:b46077974bbb283a",
+        "android_client_info": {
+          "package_name": "appteam.nith.hillffair2k18"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464544775582-7hv0tgpd1qfubmeo7o28j543722g40pg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "appteam.nith.hillffair2k18",
+            "certificate_hash": "f41996ad3e46772ad7d2ca87b4a0f04c82e8aaea"
+          }
+        },
+        {
+          "client_id": "464544775582-fhhpm2mh19g3l5gc928qhn5fs1p0dmlp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7wB-lzt4qq_6-1AilyjNvW3FAK6fvSII"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464544775582-fhhpm2mh19g3l5gc928qhn5fs1p0dmlp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
