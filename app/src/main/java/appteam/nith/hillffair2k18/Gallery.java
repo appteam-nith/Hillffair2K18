@@ -19,8 +19,9 @@ import java.io.IOException;
 
 public class Gallery extends Activity {
 
-    private static int PICK_PHOTO_CODE = 1046;
-    byte[] Byte;
+    public static int PICK_PHOTO_CODE = 1046;
+    public byte[] Byte;
+    public Bitmap bitmap;
 
 
     @Override
@@ -54,11 +55,18 @@ public class Gallery extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            ImageView ivPreview = (ImageView) findViewById(R.id.img);
-            ivPreview.setImageBitmap(selectedImage);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            Byte = baos.toByteArray();
+//            ImageView ivPreview = (ImageView) findViewById(R.id.img);
+//            ivPreview.setImageBitmap(selectedImage);
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//            Byte = baos.toByteArray();
+
+            Intent i = new Intent(this,ImageUI.class);
+            ByteArrayOutputStream bs = new ByteArrayOutputStream();
+            selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
+            byte[] byteArray = bs.toByteArray();
+            i.putExtra("byteArray", byteArray);
+            startActivity(i);
         }
     }
 
