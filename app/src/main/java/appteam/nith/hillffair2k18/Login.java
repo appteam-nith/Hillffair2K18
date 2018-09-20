@@ -1,5 +1,6 @@
 package appteam.nith.hillffair2k18;
 
+import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,12 +25,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+
+import org.w3c.dom.Text;
+
 import java.util.concurrent.TimeUnit;
 
+import appteam.nith.hillffair2k18.activity.MainActivity;
+
 public class Login extends AppCompatActivity {
-    CardView btnGenerateOTP, btnSignIn;
+    TextView btnGenerateOTP, btnSignIn;
     String phoneNumber, otp;
     EditText etPhoneNumber, etOTP;
+    RelativeLayout mobile,verify;
     FirebaseAuth auth;
     public static String phone;
     private String verificationCode;
@@ -42,9 +52,10 @@ public class Login extends AppCompatActivity {
     private void findViews() {
         btnGenerateOTP=findViewById(R.id.btn_generate_otp);
         btnSignIn=findViewById(R.id.btn_sign_in);
-
         etPhoneNumber=findViewById(R.id.et_phone_number);
         etOTP=findViewById(R.id.et_otp);
+        mobile = findViewById(R.id.mobile);
+        verify = findViewById(R.id.verify);
         setupdata();
     }
 
@@ -54,22 +65,36 @@ public class Login extends AppCompatActivity {
         btnGenerateOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phoneNumber=String.valueOf(etPhoneNumber.getText());
+                phoneNumber = String.valueOf(etPhoneNumber.getText());
                 phone = phoneNumber;
-                PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                        phoneNumber,                     // Phone number to verify
-                        60,                           // Timeout duration
-                        TimeUnit.SECONDS,                // Unit of timeout
-                        Login.this,        // Activity (for callback binding)
-                        mCallback);                      // OnVerificationStateChangedCallbacks
+                if (phoneNumber.length()== 0)
+                    Toast.makeText(Login.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+                else {
+                    btnSignIn.setVisibility(View.VISIBLE);
+                    btnGenerateOTP.setVisibility(View.GONE);
+                    mobile.setVisibility(View.GONE);
+                    verify.setVisibility(View.VISIBLE);
+                    PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                            phoneNumber,                     // Phone number to verify
+                            60,                           // Timeout duration
+                            TimeUnit.SECONDS,                // Unit of timeout
+                            Login.this,        // Activity (for callback binding)
+                            mCallback);// OnVerificationStateChangedCallbacks
+                }
             }
         });
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 otp=etOTP.getText().toString();
-                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);
-                SigninWithPhone(credential);
+                if (otp.length() == 0)
+                {
+                    Toast.makeText(Login.this, "Enter OTP", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);
+                    SigninWithPhone(credential);
+                }
             }
         });
     }
