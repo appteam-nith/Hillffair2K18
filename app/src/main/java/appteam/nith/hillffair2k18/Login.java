@@ -33,7 +33,7 @@ import java.util.concurrent.TimeUnit;
 import appteam.nith.hillffair2k18.activity.MainActivity;
 
 public class Login extends AppCompatActivity {
-    TextView btnGenerateOTP, btnSignIn;
+    TextView btnGenerateOTP, btnSignIn,skip;
     String phoneNumber, otp;
     EditText etPhoneNumber, etOTP;
     RelativeLayout mobile,verify;
@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity {
         etOTP=findViewById(R.id.et_otp);
         mobile = findViewById(R.id.mobile);
         verify = findViewById(R.id.verify);
+        skip = findViewById(R.id.skip);
         setupdata();
     }
 
@@ -97,6 +98,12 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+        skip.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(Login.this,Profile.class));
+        }
+    });
     }
     private void SigninWithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
