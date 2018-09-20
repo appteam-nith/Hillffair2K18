@@ -5,9 +5,7 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="black">#000000</color>
     <color name="dark_grey">#222222</color>
-    <color name="white">#ffffff</color>
     <color name="redDark">#FC2142</color>
     <color name="blueLight">#2DFAE5</color>
     <color name="greenLight">#D1FC21</color>
@@ -15,4 +13,7 @@
     <color name="redLight">#F72B53</color>
     <color name="blueDark">#05D8C2</color>
     <color name="textColor">#292929</color>
+    <color name="signin">#FF5722</color>
+    <color name="user">#212121</color>
+    <color name="hint">#BDBDBD</color>
 </resources>
