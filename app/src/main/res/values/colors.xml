@@ -8,6 +8,8 @@
     <color name="dark_grey">#222222</color>
     <color name="redDark">#FC2142</color>
     <color name="blueLight">#2DFAE5</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="greenLight">#D1FC21</color>
     <color name="greenDark">#A0C603</color>
     <color name="redLight">#F72B53</color>
