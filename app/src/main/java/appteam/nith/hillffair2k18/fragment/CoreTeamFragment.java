@@ -1,15 +1,22 @@
 package appteam.nith.hillffair2k18.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.adapter.ClubAdapter;
+import appteam.nith.hillffair2k18.adapter.TeamAdapter;
+import appteam.nith.hillffair2k18.model.Team;
 
 
 /**
@@ -29,9 +36,12 @@ public class CoreTeamFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private RecyclerView recyclerView3;
+    private RecyclerView.LayoutManager recylerViewLayoutManager3;
+    private TeamAdapter recyclerViewAdapter3;
+    private List<Team> teamList;
+    Context context;
     private OnFragmentInteractionListener mListener;
-
     public CoreTeamFragment() {
         // Required empty public constructor
     }
@@ -68,6 +78,12 @@ public class CoreTeamFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         thirdRec = getView().findViewById(R.id.thirdRec);
+        context = getContext();
+        recyclerView3 = thirdRec;
+        recylerViewLayoutManager3 = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recyclerView3.setLayoutManager(recylerViewLayoutManager3);
+        recyclerViewAdapter3 = new TeamAdapter(teamList, (Activity) context);
+        recyclerView3.setAdapter(recyclerViewAdapter3);
         return inflater.inflate(R.layout.fragment_core_team, container, false);
     }
 

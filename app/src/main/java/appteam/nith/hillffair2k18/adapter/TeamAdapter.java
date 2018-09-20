@@ -24,7 +24,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.MyViewHolder> 
     List<Team> teamList;
     Activity activity;
 
-    TeamAdapter(List<Team> teamList, Activity activity) {
+    public TeamAdapter(List<Team> teamList, Activity activity) {
         this.activity = activity;
         this.teamList = teamList;
     }

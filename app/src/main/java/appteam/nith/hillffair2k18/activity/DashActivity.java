@@ -1,11 +1,7 @@
 package appteam.nith.hillffair2k18.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,15 +14,14 @@ import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 
 import java.util.List;
 
-import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.RecyclerViewAdapter;
-import appteam.nith.hillffair2k18.fragment.ScheduleFragment;
+import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.fragment.WallFragment;
 
-public class DashActivity extends AppCompatActivity implements ScheduleFragment.OnFragmentInteractionListener {
+public class DashActivity extends AppCompatActivity {
 
     ScrollView scrollView;
     Context context;
-//    public static String[] subjects;
     RecyclerView recyclerView;
     RelativeLayout relativeLayout;
     RecyclerView.Adapter recyclerViewAdapter;
@@ -38,7 +33,7 @@ public class DashActivity extends AppCompatActivity implements ScheduleFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, new ScheduleFragment());
+        ft.replace(R.id.frame, new WallFragment(DashActivity.this));
         ft.commit();
         setupdata();
     }
@@ -58,4 +53,5 @@ public class DashActivity extends AppCompatActivity implements ScheduleFragment.
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }
