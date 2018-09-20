@@ -42,5 +42,11 @@
         android:textColor="@color/dark_grey"
         android:textSize="15sp" />
 
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_name">
 
+    </FrameLayout>
 </RelativeLayout>
