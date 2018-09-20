@@ -41,26 +41,12 @@
         android:text="HILL'FFAIR 2018"
         android:textColor="@color/dark_grey"
         android:textSize="15sp" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/relativelayout1"
-        android:layout_below="@id/title_name">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview1"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:clipToPadding="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none" />
-    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/relativelayout1">
+        android:layout_below="@id/title_name">
 
     </FrameLayout>
 </RelativeLayout>
