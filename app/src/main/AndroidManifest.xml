@@ -18,20 +18,21 @@
 
       
       <activity android:name=".Login">
-          <intent-filter>
-              <action android:name="android.intent.action.MAIN" />
-              <category android:name="android.intent.category.LAUNCHER" />
-          </intent-filter>
+
   </activity>
 
           <activity android:name=".Housie" >
         </activity>
         <activity android:name=".Gallery">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
           </activity>
         <activity android:name=".Profile">
-
         </activity>
-        <activity android:name=".ImageUI"/>
+        <activity android:name=".ImageUI">
+        </activity>
 
     </application>
 </manifest>

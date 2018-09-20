@@ -13,6 +13,6 @@ public class WallAdapter extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.adapter_main);
+        setContentView(R.layout.adapter_wall);
     }
 }

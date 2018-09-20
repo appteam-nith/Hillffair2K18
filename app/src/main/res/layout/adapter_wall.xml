@@ -58,8 +58,8 @@
                 android:id="@+id/upload"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
                 android:background="@drawable/hack" />
 
             <RelativeLayout
@@ -73,6 +73,7 @@
                     android:layout_height="80dp"
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginLeft="24dp"
                     app:lottie_rawRes="@raw/heart" />
 
@@ -81,6 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginTop="8dp"
                     android:layout_marginRight="-32dp"
                     android:layout_toLeftOf="@id/like"
                     android:fontFamily="@font/psb"
@@ -88,16 +90,17 @@
                     android:textColor="@color/dark_grey"
                     android:textSize="15sp" />
 
-                <Button
+                <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"
-                    android:fontFamily="@font/psb"
-                    android:text="Share"
-                    android:textAllCaps="false" />
+                    android:layout_marginTop="8dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="16dp"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/share"/>
             </RelativeLayout>
         </RelativeLayout>
     </LinearLayout>
