@@ -13,11 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.DashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+      <activity android:name=".MainActivity"></activity>
+      
+      <activity android:name=".Login">
+  </activity>
         <activity android:name="activity.MainActivity"></activity>
         <activity android:name=".Login">
 
@@ -26,6 +27,12 @@
         </activity>
         <activity android:name=".Gallery">
           </activity>
+        <activity android:name=".Profile">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ImageUI"/>
     </application>
 </manifest>
