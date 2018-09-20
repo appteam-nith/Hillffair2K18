@@ -14,8 +14,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.DashActivity">
         </activity>
+        <activity android:name=".activity.MainActivity"></activity>
 
-      <activity android:name=".MainActivity"></activity>
       
       <activity android:name=".Login">
           <intent-filter>
@@ -23,7 +23,6 @@
               <category android:name="android.intent.category.LAUNCHER" />
           </intent-filter>
   </activity>
-        <activity android:name="activity.MainActivity"></activity>
 
           <activity android:name=".Housie" >
         </activity>
@@ -33,5 +32,6 @@
 
         </activity>
         <activity android:name=".ImageUI"/>
+
     </application>
 </manifest>
