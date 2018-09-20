@@ -1,43 +1,38 @@
 package appteam.nith.hillffair2k18;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-/**
- * Created by naman on 19-09-2018.
- */
+public class Profile extends AppCompatActivity {
 
-public class Gallery extends Activity {
-    public static int PICK_PHOTO_CODE = 1046;
-    public byte[] Byte;
-    public Bitmap bitmap;
-
-
+    EditText studentName,rollNumber,branch,contactNumber;
+    String Name,RollNumber,Branch,ContactNumber;
+    ImageView profilePicture;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gallery_image);
-
-        Button buttonLoadImage = (Button) findViewById(R.id.gallery);
+        setContentView(R.layout.activity_profile);
+        Button buttonLoadImage = findViewById(R.id.galleryView);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(intent, PICK_PHOTO_CODE);
+                    startActivityForResult(intent, Gallery.PICK_PHOTO_CODE);
                 }
             }
         });
@@ -58,10 +53,28 @@ public class Gallery extends Activity {
             ByteArrayOutputStream bs = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();
-            i.putExtra("byteArray", byteArray);
-            startActivity(i);
+            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            profilePicture = findViewById(R.id.profilePicture);
+            profilePicture.setImageBitmap(bmp);
         }
+
+    initUI();
     }
 
+    public void initUI()
+    {
+        studentName = findViewById(R.id.studentName);
+        rollNumber = findViewById(R.id.rollNumber);
+        branch = findViewById(R.id.branch);
+        contactNumber = findViewById(R.id.contactNumber);
+        setdata();
+    }
 
+    public void setdata()
+    {
+        Name =  (studentName.getText()).toString();
+        RollNumber = rollNumber.getText().toString();
+        Branch = branch.getText().toString();
+        ContactNumber = contactNumber.getText().toString();
+    }
 }

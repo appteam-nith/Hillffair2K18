@@ -15,20 +15,26 @@
         <activity android:name=".activity.DashActivity">
         </activity>
         <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".Login">
+
+      
+      <activity android:name=".Login">
+  </activity>
+
+      
+      <activity android:name=".Login">
 
         </activity>
           <activity android:name=".Housie" >
         </activity>
         <activity android:name=".Gallery">
           </activity>
-        <activity android:name=".ImageUI"/>
-        <activity android:name=".adapter.WallAdapter">
+        <activity android:name=".Profile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ImageUI"/>
 
     </application>
 </manifest>
