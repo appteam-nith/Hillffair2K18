@@ -1,15 +1,24 @@
 package appteam.nith.hillffair2k18.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.adapter.ClubAdapter;
+import appteam.nith.hillffair2k18.adapter.ScheduleAdapter;
+import appteam.nith.hillffair2k18.adapter.TeamAdapter;
+import appteam.nith.hillffair2k18.model.Club;
+import appteam.nith.hillffair2k18.model.Team;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,9 +37,12 @@ public class SponsersFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    TeamAdapter recyclerViewAdapter4;
+    RecyclerView.LayoutManager recylerViewLayoutManager4;
+    RecyclerView recyclerView4;
+    Context context;
+    private List<Team> teamList;
     private OnFragmentInteractionListener mListener;
-
     public SponsersFragment() {
         // Required empty public constructor
     }
@@ -67,6 +79,13 @@ public class SponsersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         fourthRec = getView().findViewById(R.id.fourthRec);
+//        firstRec = getView().findViewById(R.id.firstRec);
+        context = getContext();
+        recyclerView4 = fourthRec;
+        recylerViewLayoutManager4 = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recyclerView4.setLayoutManager(recylerViewLayoutManager4);
+        recyclerViewAdapter4 = new TeamAdapter(teamList, (Activity) context);
+        recyclerView4.setAdapter(recyclerViewAdapter4);
         return inflater.inflate(R.layout.fragment_sponsers, container, false);
     }
 

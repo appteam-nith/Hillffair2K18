@@ -1,15 +1,24 @@
 package appteam.nith.hillffair2k18.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.adapter.ClubAdapter;
+import appteam.nith.hillffair2k18.model.Club;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 
 public class ClubsFragment extends Fragment {
@@ -21,9 +30,12 @@ public class ClubsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    ClubAdapter recyclerViewAdapter2;
+    RecyclerView.LayoutManager recylerViewLayoutManager2;
+    RecyclerView recyclerView2;
     private OnFragmentInteractionListener mListener;
-
+    Context context;
+    private List<Club> clubList;
     public ClubsFragment() {
         // Required empty public constructor
     }
@@ -49,6 +61,7 @@ public class ClubsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -59,7 +72,13 @@ public class ClubsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        context = getContext();
         secondRec = getView().findViewById(R.id.secondRec);
+        recyclerView2 = secondRec;
+        recylerViewLayoutManager2 = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recyclerView2.setLayoutManager(recylerViewLayoutManager2);
+        recyclerViewAdapter2 = new ClubAdapter(clubList, (Activity) context);
+        recyclerView2.setAdapter(recyclerViewAdapter2);
         return inflater.inflate(R.layout.fragment_clubs, container, false);
     }
 

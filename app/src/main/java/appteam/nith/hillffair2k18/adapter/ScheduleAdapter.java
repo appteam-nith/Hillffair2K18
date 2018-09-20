@@ -29,7 +29,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
     int likes;
     private boolean check = true;
 
-    ScheduleAdapter(List<Schedule> scheduleList, Activity activity) {
+    public ScheduleAdapter(List<Schedule> scheduleList, Activity activity) {
         this.activity = activity;
         this.scheduleList = scheduleList;
     }
