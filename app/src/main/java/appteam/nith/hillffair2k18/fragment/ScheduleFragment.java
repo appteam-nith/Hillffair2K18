@@ -1,14 +1,24 @@
 package appteam.nith.hillffair2k18.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.adapter.ClubAdapter;
+import appteam.nith.hillffair2k18.adapter.ScheduleAdapter;
+import appteam.nith.hillffair2k18.adapter.TeamAdapter;
+import appteam.nith.hillffair2k18.model.Club;
+import appteam.nith.hillffair2k18.model.Schedule;
 
 
 /**
@@ -24,7 +34,12 @@ public class ScheduleFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    ScheduleAdapter recyclerViewAdapter1;
+    RecyclerView.LayoutManager recylerViewLayoutManager1;
+    RecyclerView recyclerView1;
+    Context context;
+    RecyclerView firstRec;
+    private List<Schedule> scheduleList;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -67,6 +82,13 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        firstRec = getView().findViewById(R.id.firstRec);
+        context = getContext();
+        recyclerView1 = firstRec;
+        recylerViewLayoutManager1 = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        recyclerView1.setLayoutManager(recylerViewLayoutManager1);
+        recyclerViewAdapter1 = new ScheduleAdapter(scheduleList, (Activity) context);
+        recyclerView1.setAdapter(recyclerViewAdapter1);
         return inflater.inflate(R.layout.fragment_schedule, container, false);
     }
 
