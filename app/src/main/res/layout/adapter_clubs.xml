@@ -36,43 +36,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/psb"
-                android:text="Nishant"
+                android:text="Clubs"
                 android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/subtitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ps"
-                android:text="Nishant"
-                android:textColor="@color/dark_grey"
-                android:textSize="14sp" />
-
         </LinearLayout>
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/like"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="16dp"
-            app:lottie_rawRes="@raw/heart" />
-
-        <TextView
-            android:id="@+id/like_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="-16dp"
-            android:layout_toLeftOf="@id/like"
-            android:fontFamily="@font/psb"
-            android:text="0"
-            android:textColor="@color/dark_grey"
-            android:textSize="15sp" />
-
+            android:layout_marginRight="32dp"
+            android:src="@drawable/arrow" />
     </RelativeLayout>
-
-
 </android.support.v7.widget.CardView>
