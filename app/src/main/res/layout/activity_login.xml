@@ -55,7 +55,6 @@
                     android:text="Hillffair"
                     android:textColor="@color/black"
                     android:textSize="40sp" />
-
                 <TextView
                     android:id="@+id/usText"
                     android:layout_width="wrap_content"

@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(Login.this,MainActivity.class));
+                            startActivity(new Intent(Login.this,Housie.class));
                             finish();
                         } else {
                             Toast.makeText(Login.this,"Incorrect OTP",Toast.LENGTH_SHORT).show();
