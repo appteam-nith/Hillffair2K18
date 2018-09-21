@@ -23,6 +23,10 @@ import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScrollAdapter;
+import appteam.nith.hillffair2k18.fragment.ClubsFragment;
+import appteam.nith.hillffair2k18.fragment.CoreTeamFragment;
+import appteam.nith.hillffair2k18.fragment.ScheduleFragment;
+import appteam.nith.hillffair2k18.fragment.SponsersFragment;
 import appteam.nith.hillffair2k18.fragment.WallFragment;
 import appteam.nith.hillffair2k18.listener.RecyclerItemClickListener;
 import appteam.nith.hillffair2k18.model.Scroll;
@@ -46,7 +50,7 @@ public class DashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, new WallFragment(DashActivity.this));
+        ft.replace(R.id.frame, new ClubsFragment(DashActivity.this));
         ft.commit();
         setupdata();
     }

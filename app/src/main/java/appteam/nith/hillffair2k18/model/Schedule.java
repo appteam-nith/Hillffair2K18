@@ -9,13 +9,13 @@ public class Schedule {
     String title;
     String subtitle;
     String img;
-    String likes;
+    String time;
 
-    Schedule(String title, String subtitle, String img, String likes) {
+    public Schedule(String title, String subtitle, String img, String time) {
         this.title = title;
         this.subtitle = subtitle;
         this.img = img;
-        this.likes = likes;
+        this.time = time;
     }
 
     public String getTitle() {
@@ -42,11 +42,11 @@ public class Schedule {
         this.img = img;
     }
 
-    public String getLikes() {
-        return likes;
+    public String getTime() {
+        return time;
     }
 
-    public void setLikes(String likes) {
-        this.likes = likes;
+    public void setTime(String time) {
+        this.time = time;
     }
 }

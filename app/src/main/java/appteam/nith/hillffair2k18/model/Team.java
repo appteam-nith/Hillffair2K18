@@ -10,7 +10,7 @@ public class Team {
     String image;
     String position;
 
-    Team(String name, String image, String position) {
+    public Team(String name, String image, String position) {
         this.name = name;
         this.image = image;
         this.position = position;
