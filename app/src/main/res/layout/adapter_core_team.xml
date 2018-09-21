@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="16dp"
     app:cardElevation="8dp"
@@ -39,6 +40,7 @@
                 android:text="Core Team"
                 android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/position"
                 android:layout_width="wrap_content"

@@ -1,17 +1,18 @@
-package appteam.nith.hillffair2k18;
+package appteam.nith.hillffair2k18.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import appteam.nith.hillffair2k18.R;
+
 /**
  * Created by naman on 19-09-2018.
  */
 
-public class ImageUI extends Activity{
+public class ImageUI extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

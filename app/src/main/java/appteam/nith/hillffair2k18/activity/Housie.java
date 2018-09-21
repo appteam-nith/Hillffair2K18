@@ -1,26 +1,25 @@
-package appteam.nith.hillffair2k18;
+package appteam.nith.hillffair2k18.activity;
 
 import android.annotation.SuppressLint;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
-public class Housie extends AppCompatActivity implements View.OnClickListener{
+import appteam.nith.hillffair2k18.R;
+
+public class Housie extends AppCompatActivity implements View.OnClickListener {
 
     ArrayList<Integer> list = new ArrayList<Integer>();
     ArrayList<TextView> numb = new ArrayList<TextView>();
     int total = 15, i, count = 0;
     int[] checked = new int[15];
     TextView number_1, number_2, number_3, number_4, number_5, number_6, number_7, number_8, number_9, number_10, number_11, number_12, number_13, number_14, number_15;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +46,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
         setdata();
     }
 
-    public void setdata()
-    {
+    public void setdata() {
         number_1.setOnClickListener(this);
         number_2.setOnClickListener(this);
         number_3.setOnClickListener(this);
@@ -91,7 +89,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
 
 
     public void array() {
-        for  (i=0;i<15;i++) {
+        for (i = 0; i < 15; i++) {
             String nu = list.get(i).toString();
             numb.get(i).setText(nu);
             checked[i] = 0;
@@ -101,15 +99,13 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
     @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.number_1:
                 number_1.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[0] == 0) {
                     checked[0] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -119,10 +115,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_2.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[1] == 0) {
                     checked[1] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -132,10 +126,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_3.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[2] == 0) {
                     checked[2] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -145,10 +137,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_4.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[3] == 0) {
                     checked[3] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -158,10 +148,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_5.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[4] == 0) {
                     checked[4] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -171,10 +159,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_6.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[5] == 0) {
                     checked[5] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -184,10 +170,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_7.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[6] == 0) {
                     checked[6] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -197,10 +181,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_8.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[7] == 0) {
                     checked[7] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -210,10 +192,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_9.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[8] == 0) {
                     checked[8] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
 
@@ -224,9 +204,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_10.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[9] == 0) {
                     checked[9] = 1;
-                    count ++ ;
-                }
-                else {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -236,10 +215,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_11.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[10] == 0) {
                     checked[10] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -249,10 +226,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_12.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[11] == 0) {
                     checked[11] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
                 if (count == 15)
@@ -262,10 +237,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_13.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[12] == 0) {
                     checked[12] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
 
@@ -276,10 +249,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_14.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[13] == 0) {
                     checked[0] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
 
@@ -290,10 +261,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 number_15.setBackgroundColor(R.color.colorPrimaryDark);
                 if (checked[14] == 0) {
                     checked[14] = 1;
-                    count ++ ;
-                }
-                else
-                {
+                    count++;
+                } else {
                     Toast.makeText(this, "Number is already checked", Toast.LENGTH_SHORT).show();
                 }
 
@@ -302,8 +271,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
     }
-    public void win()
-    {
+
+    public void win() {
         Toast.makeText(this, "You WIN!", Toast.LENGTH_SHORT).show();
     }
 }

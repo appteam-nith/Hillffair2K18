@@ -1,17 +1,18 @@
-package appteam.nith.hillffair2k18;
+package appteam.nith.hillffair2k18.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import appteam.nith.hillffair2k18.R;
 
 /**
  * Created by naman on 19-09-2018.
@@ -54,7 +55,7 @@ public class Gallery extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Intent i = new Intent(this,ImageUI.class);
+            Intent i = new Intent(this, ImageUI.class);
             ByteArrayOutputStream bs = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();

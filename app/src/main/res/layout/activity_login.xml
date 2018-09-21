@@ -36,15 +36,14 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/mobile"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="24dp"
         android:background="@color/user"
-        android:visibility="visible"
-        android:id="@+id/mobile"
-        >
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/et_phone_number"
@@ -54,9 +53,8 @@
             android:layout_marginLeft="8dp"
             android:background="@null"
             android:hint="Phone"
-            android:textColorHint="@color/hint"
             android:textColor="@color/white"
-            />
+            android:textColorHint="@color/hint" />
 
         <ImageView
             android:layout_width="32dp"
@@ -70,15 +68,14 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/verify"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="24dp"
         android:background="@color/user"
-        android:id="@+id/verify"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
         <EditText
             android:id="@+id/et_otp"
@@ -135,14 +132,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:gravity="center_horizontal"
         android:layout_marginTop="24dp"
         android:background="@color/black"
-        android:orientation="vertical"
-        >
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/forgot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot password?"
@@ -154,12 +149,13 @@
             android:layout_marginTop="8dp"
             android:text="Create an account"
             android:textColor="@color/signin" />
+
         <TextView
+            android:id="@+id/skip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Skip>>"
-            android:id="@+id/skip"
             android:textColor="@color/signin" />
     </LinearLayout>
 </LinearLayout>

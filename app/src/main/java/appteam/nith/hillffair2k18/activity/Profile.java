@@ -1,12 +1,12 @@
-package appteam.nith.hillffair2k18;
+package appteam.nith.hillffair2k18.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +15,14 @@ import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import appteam.nith.hillffair2k18.R;
+
 public class Profile extends AppCompatActivity {
 
-    EditText studentName,rollNumber,branch,contactNumber;
-    String Name,RollNumber,Branch,ContactNumber;
+    EditText studentName, rollNumber, branch, contactNumber;
+    String Name, RollNumber, Branch, ContactNumber;
     ImageView profilePicture;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +52,7 @@ public class Profile extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Intent i = new Intent(this,ImageUI.class);
+            Intent i = new Intent(this, ImageUI.class);
             ByteArrayOutputStream bs = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();
@@ -58,11 +61,10 @@ public class Profile extends AppCompatActivity {
             profilePicture.setImageBitmap(bmp);
         }
 
-    initUI();
+        initUI();
     }
 
-    public void initUI()
-    {
+    public void initUI() {
         studentName = findViewById(R.id.studentName);
         rollNumber = findViewById(R.id.rollNumber);
         branch = findViewById(R.id.branch);
@@ -70,9 +72,8 @@ public class Profile extends AppCompatActivity {
         setdata();
     }
 
-    public void setdata()
-    {
-        Name =  (studentName.getText()).toString();
+    public void setdata() {
+        Name = (studentName.getText()).toString();
         RollNumber = rollNumber.getText().toString();
         Branch = branch.getText().toString();
         ContactNumber = contactNumber.getText().toString();

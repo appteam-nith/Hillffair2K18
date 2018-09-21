@@ -1,4 +1,4 @@
-package appteam.nith.hillffair2k18;
+package appteam.nith.hillffair2k18.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,6 +9,8 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import appteam.nith.hillffair2k18.R;
 
 /**
  * Created by naman on 20-09-2018.

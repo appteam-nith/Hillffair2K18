@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -44,12 +43,12 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        Wall wall = wallList.get(position);
+        final Wall wall = wallList.get(position);
         holder.like_count.setText(wall.getLikes());
+        holder.desc.setText(wall.getDesc());
         holder.title.setText(wall.getName());
-        Picasso.get().load(wall.getProfile()).into(holder.profile);
-        Picasso.get().load(wall.getImage()).into(holder.image);
-        likes = Integer.parseInt(wall.getLikes());
+        Picasso.get().load(wall.getProfile()).resize(80, 80).into(holder.profile);
+        Picasso.get().load(wall.getImage()).resize(300, 300).centerCrop().into(holder.image);
 
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,20 +63,18 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                         }
                     });
                     valueAnimator.start();
-                    likes += 1;
-                    holder.like_count.setText(String.valueOf(likes));
+                    holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes())+1));
                     check = false;
                 } else {
                     ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
-                    valueAnimator.setDuration(1000);
+                    valueAnimator.setDuration(100);
                     valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator animation) {
                             holder.like.setProgress(1 - animation.getAnimatedFraction());
                         }
                     });
-                    likes -= 1;
-                    holder.like_count.setText(String.valueOf(likes));
+                    holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes())-1));
                     valueAnimator.start();
                     check = true;
                 }
@@ -93,9 +90,10 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView profile;
-        TextView title, like_count;
-        ImageView image;
-        LottieAnimationView like, share;
+        TextView title, desc, like_count;
+        ImageView image,share;
+        LottieAnimationView like;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -103,6 +101,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
             share = itemView.findViewById(R.id.share);
             image = itemView.findViewById(R.id.upload);
             like_count = itemView.findViewById(R.id.like_count);
+            desc = itemView.findViewById(R.id.desc);
             title = itemView.findViewById(R.id.title);
             profile = itemView.findViewById(R.id.image);
         }

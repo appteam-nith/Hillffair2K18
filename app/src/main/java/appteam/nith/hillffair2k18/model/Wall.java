@@ -11,13 +11,23 @@ public class Wall {
     String image;
     String likes;
     String share;
+    String desc;
 
-    public Wall(String name, String profile, String image, String likes, String share) {
+    public Wall(String name, String desc, String profile, String image, String likes, String share) {
         this.name = name;
+        this.desc = desc;
         this.profile = profile;
         this.image = image;
         this.likes = likes;
         this.share = share;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
     public String getName() {

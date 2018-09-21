@@ -21,18 +21,18 @@
         <activity android:name=".activity.MainActivity"></activity>
 
       
-      <activity android:name=".Login">
+      <activity android:name=".activity.Login">
 
   </activity>
 
-          <activity android:name=".Housie" >
+          <activity android:name=".activity.Housie" >
         </activity>
-        <activity android:name=".Gallery">
+        <activity android:name=".activity.Gallery">
 
           </activity>
-        <activity android:name=".Profile">
+        <activity android:name=".activity.Profile">
         </activity>
-        <activity android:name=".ImageUI">
+        <activity android:name=".activity.ImageUI">
         </activity>
 
     </application>
