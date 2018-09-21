@@ -1,18 +1,11 @@
-package appteam.nith.hillffair2k18;
+package appteam.nith.hillffair2k18.activity;
 
-import android.annotation.SuppressLint;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,21 +19,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import org.w3c.dom.Text;
-
 import java.util.concurrent.TimeUnit;
 
-import appteam.nith.hillffair2k18.activity.MainActivity;
+import appteam.nith.hillffair2k18.R;
 
 public class Login extends AppCompatActivity {
-    TextView btnGenerateOTP, btnSignIn,skip;
+    public static String phone;
+    TextView btnGenerateOTP, btnSignIn, skip;
     String phoneNumber, otp;
     EditText etPhoneNumber, etOTP;
-    RelativeLayout mobile,verify;
+    RelativeLayout mobile, verify;
     FirebaseAuth auth;
-    public static String phone;
-    private String verificationCode;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+    private String verificationCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,26 +41,26 @@ public class Login extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         StartFirebaseLogin();
     }
+
     private void findViews() {
-        btnGenerateOTP=findViewById(R.id.btn_generate_otp);
-        btnSignIn=findViewById(R.id.btn_sign_in);
-        etPhoneNumber=findViewById(R.id.et_phone_number);
-        etOTP=findViewById(R.id.et_otp);
+        btnGenerateOTP = findViewById(R.id.btn_generate_otp);
+        btnSignIn = findViewById(R.id.btn_sign_in);
+        etPhoneNumber = findViewById(R.id.et_phone_number);
+        etOTP = findViewById(R.id.et_otp);
         mobile = findViewById(R.id.mobile);
         verify = findViewById(R.id.verify);
         skip = findViewById(R.id.skip);
         setupdata();
     }
 
-    public void setupdata()
-    {
+    public void setupdata() {
         phoneNumber = String.valueOf(etPhoneNumber.getText());
         btnGenerateOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 phoneNumber = String.valueOf(etPhoneNumber.getText());
                 phone = phoneNumber;
-                if (phoneNumber.length()== 0)
+                if (phoneNumber.length() == 0)
                     Toast.makeText(Login.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
                 else {
                     btnSignIn.setVisibility(View.VISIBLE);
@@ -87,24 +79,23 @@ public class Login extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                otp=etOTP.getText().toString();
-                if (otp.length() == 0)
-                {
+                otp = etOTP.getText().toString();
+                if (otp.length() == 0) {
                     Toast.makeText(Login.this, "Enter OTP", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationCode, otp);
                     SigninWithPhone(credential);
                 }
             }
         });
         skip.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(Login.this,Profile.class));
-        }
-    });
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, Profile.class));
+            }
+        });
     }
+
     private void SigninWithPhone(PhoneAuthCredential credential) {
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -112,14 +103,15 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(Login.this,Housie.class));
+                            startActivity(new Intent(Login.this, Housie.class));
                             finish();
                         } else {
-                            Toast.makeText(Login.this,"Incorrect OTP",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Incorrect OTP", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
+
     private void StartFirebaseLogin() {
 
         auth = FirebaseAuth.getInstance();
@@ -127,19 +119,19 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                Toast.makeText(Login.this,"verification completed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "verification completed", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
-                Toast.makeText(Login.this,"verification failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "verification failed", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 verificationCode = s;
-                Toast.makeText(Login.this,"Code sent",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, "Code sent", Toast.LENGTH_SHORT).show();
             }
         };
     }

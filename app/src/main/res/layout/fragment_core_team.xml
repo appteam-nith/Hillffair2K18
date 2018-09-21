@@ -1,19 +1,5 @@
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/thirdRec"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".fragment.CoreTeamFragment">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/thirdRec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp" />
-
-    </LinearLayout>
-</ScrollView>
+    android:layout_height="match_parent"
+    android:scrollbars="none" />
