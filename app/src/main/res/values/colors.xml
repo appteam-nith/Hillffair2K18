@@ -2,5 +2,12 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="dark_grey">#222222</color>
+    <color name="blueDark">#05D8C2</color>
+    <color name="signin">#FF5722</color>
+    <color name="user">#212121</color>
+    <color name="hint">#BDBDBD</color>
 </resources>
