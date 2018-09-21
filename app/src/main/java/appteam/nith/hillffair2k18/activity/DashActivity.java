@@ -4,6 +4,8 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -64,6 +66,11 @@ public class DashActivity extends AppCompatActivity {
         nav = findViewById(R.id.nav);
         navAnim = findViewById(R.id.navAnim);
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,9 +128,15 @@ public class DashActivity extends AppCompatActivity {
                     }
                 })
         );
-        SnapHelper snapHelperStart = new GravitySnapHelper(Gravity.START);
-        snapHelperStart.attachToRecyclerView(recyclerView);
-
+//        SnapHelper snapHelperStart = new GravitySnapHelper(Gravity.START);
+//        snapHelperStart.attachToRecyclerView(recyclerView);
+        viewPager.setOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        recyclerView.smoothScrollToPosition(position);
+                    }
+                });
     }
 
     public void animateViewsOfRecyclerView(int position) {
@@ -156,6 +169,7 @@ public class DashActivity extends AppCompatActivity {
     public void getData() {
         scrollList.add(new Scroll("Live Feed", R.drawable.live));
         scrollList.add(new Scroll("Quiz & Games", R.drawable.games));
+        scrollList.add(new Scroll("Schedule", R.drawable.schedule));
         scrollList.add(new Scroll("Leaderboard", R.drawable.leaderboard));
         scrollList.add(new Scroll("Clubs", R.drawable.club));
         scrollList.add(new Scroll("Core Members", R.drawable.core));
