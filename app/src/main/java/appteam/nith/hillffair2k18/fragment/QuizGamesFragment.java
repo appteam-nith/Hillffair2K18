@@ -1,8 +1,8 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,18 +16,24 @@ import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ClubAdapter;
 import appteam.nith.hillffair2k18.model.Club;
 
-public class ClubsFragment extends Fragment {
+/**
+ * Created by com on 21-09-2018.
+ */
 
+public class QuizGamesFragment extends Fragment {
     private ClubAdapter clubAdapter;
     private RecyclerView recyclerView;
     private Activity activity;
     private List<Club> clubList = new ArrayList<>();
 
-    public ClubsFragment() {
+    public QuizGamesFragment(){
+
     }
-    public ClubsFragment(Activity activity) {
+
+    public QuizGamesFragment(Activity activity) {
         this.activity = activity;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +54,6 @@ public class ClubsFragment extends Fragment {
     }
 
     public void getData() {
-        clubList.add(new Club("Captain Marvel","https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg","Comming Soon"));
-        clubList.add(new Club("Thanos","https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg","Destiny Arrives"));
-        clubList.add(new Club("Iron Man","https://wallpapersite.com/images/pages/ico_n/15263.jpg","I love money"));
-        clubAdapter.notifyDataSetChanged();
 
     }
 }

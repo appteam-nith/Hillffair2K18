@@ -11,7 +11,7 @@ public class Club {
     String info;
 
 
-    Club(String name, String image, String info) {
+    public Club(String name, String image, String info) {
         this.name = name;
         this.image = image;
         this.info = info;

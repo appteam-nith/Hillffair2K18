@@ -50,7 +50,10 @@ public class ScheduleFragment extends Fragment {
     }
 
     public void getData() {
-
+        scheduleList.add(new Schedule("Captain Marvel","Her to Hero","https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg","05:00 Pm"));
+        scheduleList.add(new Schedule("Thanos","Infinity Stones","https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg","06:00 PM"));
+        scheduleList.add(new Schedule("Iron Man","Attitude and talent","https://wallpapersite.com/images/pages/ico_n/15263.jpg","07:00 PM"));
+        scheduleAdapter.notifyDataSetChanged();
     }
 
 }
