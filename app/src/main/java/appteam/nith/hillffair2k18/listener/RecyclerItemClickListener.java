@@ -1,4 +1,4 @@
-package appteam.nith.hillffair2k18;
+package appteam.nith.hillffair2k18.listener;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
