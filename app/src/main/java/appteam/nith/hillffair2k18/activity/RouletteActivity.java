@@ -28,6 +28,8 @@ public class RouletteActivity extends AppCompatActivity {
     Random r;
     int num;
     int score=0;
+    TextView syntax1;
+    TextView syntax2;
     private static final float angle = 9.72f;
 
     public void MakeToast(String string) {
@@ -47,6 +49,8 @@ public class RouletteActivity extends AppCompatActivity {
         wheel = (ImageView) findViewById(R.id.imageView);
         textView = (TextView) findViewById(R.id.textView);
         entry = (EditText) findViewById(R.id.editText);
+        syntax1=(TextView)findViewById(R.id.textView2);
+        syntax2=(TextView)findViewById(R.id.textView3);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +97,8 @@ public class RouletteActivity extends AppCompatActivity {
                     wheel.startAnimation(rotate);
 
                     button.setVisibility(View.GONE);
+                    syntax1.setVisibility(View.GONE);
+                    syntax2.setVisibility(View.GONE);
 
 
                 }

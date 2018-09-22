@@ -16,14 +16,14 @@ tools:context=".activity.RouletteActivity">
     android:layout_marginEnd="43dp"
     android:text="Spin" />
 
-<TextView
-    android:id="@+id/textView"
-    android:layout_width="315dp"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:layout_centerHorizontal="true"
-    android:textColor="#000"
-    android:textSize="25sp" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="349dp"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -58,7 +58,8 @@ tools:context=".activity.RouletteActivity">
         android:layout_centerHorizontal="true"
         android:layout_marginTop="158dp"
         android:text="PUT MY"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        android:color="#2979ff"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -68,6 +69,7 @@ tools:context=".activity.RouletteActivity">
         android:layout_centerHorizontal="true"
         android:layout_marginTop="213dp"
         android:text="BET"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        android:color="#2979ff"/>
 
 </RelativeLayout>
