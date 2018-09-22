@@ -113,147 +113,150 @@ public class RouletteActivity extends AppCompatActivity {
 
         String text = " ";
 
-        if (degrees >= angle * 1 && degrees <= angle * 3 && num == 32) {
+        if (degrees >= angle * 1 && degrees <= angle * 2 && num == 32) {
 
             text = "Congratulations you have won 25 points";
             score=score+25;
 
         }
-        else if (degrees >= angle * 1 && degrees <= angle * 3 && num != 32) {
+        else if (degrees >= angle * 1 && degrees <= angle * 2 && num != 32) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees>=angle*3 && degree<=angle*5 && num==15){
+        }else if(degrees>=angle*2 && degree<=angle*3 && num==15){
             text = "Congratulations you have won 25 points";
             score=score+25;
         }
-        else if(degrees >= angle *3 && degrees <= angle *5 && num != 15) {
+        else if(degrees >= angle *2 && degrees <= angle *3 && num != 15) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *5 && degrees <= angle * 7 && num ==19) {
+        }else if(degrees >= angle *3 && degrees <= angle * 4 && num ==19) {
             text = "Congratulations you have won 25 points";
             score=score+25;
-        }else if(degrees >= angle *5 && degrees <= angle *7 && num != 19) {
+        }else if(degrees >= angle *3 && degrees <= angle *4&& num != 19) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *7 && degrees <= angle * 9 && num ==4) {
+        }else if(degrees >= angle *4 && degrees <= angle * 5 && num ==4) {
             text = "Congratulations you have won 25 points";
             score=score+25;
-        }else if(degrees >= angle *7 && degrees <= angle *9 && num != 4) {
+        }else if(degrees >= angle *4 && degrees <= angle *5&& num != 4) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *9 && degrees <= angle * 11 && num ==21) {
+        }else if(degrees >= angle *5 && degrees <= angle * 6 && num ==21) {
 
 
-        }else if(degrees >= angle *9 && degrees <= angle *11 && num != 21) {
+        }else if(degrees >= angle *5 && degrees <= angle *6 && num != 21) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *9 && degrees <= angle * 11 && num ==2) {
+        }else if(degrees >= angle *6 && degrees <= angle * 7 && num ==2) {
             text = "Congratulations you have won 25 points";
             score=score+25;
-        }else if(degrees >= angle *9 && degrees <= angle *11 && num != 2) {
+        }else if(degrees >= angle *6 && degrees <= angle *7 && num != 2) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *11 && degrees <= angle * 13 && num ==25) {
+        }else if(degrees >= angle *7 && degrees <= angle * 8 && num ==25) {
             text = "Congratulations you have won 25 points";
             score=score+25;
-        }else if(degrees >= angle *11 && degrees <= angle *13 && num != 25) {
+        }else if(degrees >= angle *7 && degrees <= angle *8 && num != 25) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *13 && degrees <= angle * 15 && num ==17) {
+        }else if(degrees >= angle *8 && degrees <= angle * 9 && num ==17) {
             text = "Congratulations you have won 25 points";
             score=score+25;
-        }else if(degrees >= angle *13 && degrees <= angle *15 && num != 17) {
+        }else if(degrees >= angle *8 && degrees <= angle *9 && num != 17) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *15 && degrees <= angle * 17 && num ==34) {
+        }else if(degrees >= angle *9 && degrees <= angle * 10 && num ==34) {
             text = "Congratulations you have won 25 points";
             score=score+25;
-        }else if(degrees >= angle *15 && degrees <= angle *17 && num !=34) {
+        }else if(degrees >= angle *9&& degrees <= angle *10&& num !=34) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle *17 && degrees <= angle * 19 && num ==6) {
+        }else if(degrees >= angle *10 && degrees <= angle * 11 && num ==6) {
             text = "Congratulations you have won 25 points";
             score=score+25;
-        }else if(degrees >= angle *17 && degrees <= angle *19 && num !=6) {
+        }else if(degrees >= angle *10&& degrees <= angle *11&& num !=6) {
             text = "Sorry Better Luck Next Time";
-        }else if(degrees >= angle*21 && degrees<= angle*23 && num==27){
+        }else if(degrees >= angle*11&& degrees<= angle*12 && num==27){
             text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*21 && degrees<= angle*23 && num!=27)
+        else if(degrees >= angle*11&& degrees<= angle*12&& num!=27)
 
         {
             text= "Sorry Better Luck next Time"; }
-        else if(degrees >= angle*23 && degrees<= angle*25 && num==13){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*12 && degrees<= angle*13 && num==13){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*23 && degrees<= angle*25 && num!=13){  text= "Sorry Better Luck next Time";
+        else if(degrees >= angle*12 && degrees<= angle*13 && num!=13){  text= "Sorry Better Luck next Time";
         }
-        else if(degrees >= angle*25 && degrees<= angle*27 && num==36){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*13 && degrees<= angle*14 && num==36){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*25 && degrees<= angle*27 && num!=36){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*27 && degrees<= angle*29 && num==11){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*13 && degrees<= angle*14 && num!=36){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*14 && degrees<= angle*15 && num==11){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*27 && degrees<= angle*29 && num!=11){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*29 && degrees<= angle*31 && num==30){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*14 && degrees<= angle*15 && num!=11){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*15 && degrees<= angle*16 && num==30){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*29 && degrees<= angle*31 && num!=30){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*31 && degrees<= angle*33 && num==8){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*15 && degrees<= angle*16 && num!=30){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*16 && degrees<= angle*17 && num==8){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*31 && degrees<= angle*33 && num!=8){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*33 && degrees<= angle*35 && num==23){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*16 && degrees<= angle*17 && num!=8){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*17 && degrees<= angle*18 && num==23){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*33 && degrees<= angle*35 && num!=23){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*35 && degrees<= angle*37 && num==10){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*17 && degrees<= angle*18 && num!=23){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*18 && degrees<= angle*19 && num==10){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*35 && degrees<= angle*37 && num!=10){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*37 && degrees<= angle*39 && num==5){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*18 && degrees<= angle*19 && num!=10){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*19 && degrees<= angle*20 && num==5){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*37 && degrees<= angle*39 && num!=5){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*39 && degrees<= angle*41 && num==24){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*19 && degrees<= angle*20 && num!=5){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*20 && degrees<= angle*21 && num==24){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*39 && degrees<= angle*41 && num!=24){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*41 && degrees<= angle*43 && num==16){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*20 && degrees<= angle*21 && num!=24){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*21 && degrees<= angle*22 && num==16){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*41 && degrees<= angle*43 && num!=16){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*43 && degrees<= angle*45 && num==33){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*21 && degrees<= angle*22 && num!=16){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*22 && degrees<= angle*23 && num==33){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*43 && degrees<= angle*45 && num!=33){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*45 && degrees<= angle*47 && num==1){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*22 && degrees<= angle*23 && num!=33){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*23 && degrees<= angle*24 && num==1){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*45 && degrees<= angle*47 && num!=1){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*47 && degrees<= angle*49 && num==20){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*23 && degrees<= angle*24 && num!=1){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*24 && degrees<= angle*25 && num==20){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*47 && degrees<= angle*49 && num!=20){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*49 && degrees<= angle*51 && num==14){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*24 && degrees<= angle*25 && num!=20){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*25 && degrees<= angle*26 && num==14){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*49 && degrees<= angle*51 && num!=14){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*51 && degrees<= angle*53 && num==31){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*25 && degrees<= angle*26 && num!=14){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*26 && degrees<= angle*27 && num==31){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*51 && degrees<= angle*53 && num!=31){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*53 && degrees<= angle*55 && num==9){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*26 && degrees<= angle*27 && num!=31){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*27 && degrees<= angle*28 && num==9){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*53 && degrees<= angle*55 && num!=9){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*55 && degrees<= angle*57 && num==22){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*27 && degrees<= angle*28 && num!=9){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle *28&& degrees<= angle*29 && num==22){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*55 && degrees<= angle*57 && num!=22){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*57 && degrees<= angle*59 && num==18){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*28&& degrees<= angle*29&& num!=22){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*29 && degrees<= angle*30 && num==18){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*57 && degrees<= angle*59 && num!=18){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*59 && degrees<= angle*61 && num==29){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*29 && degrees<= angle*30 && num!=18){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*30 && degrees<= angle*31 && num==29){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*59 && degrees<= angle*61 && num!=29){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*61 && degrees<= angle*63 && num==7){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*30 && degrees<= angle*31 && num!=29){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*31 && degrees<= angle*32 && num==7){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*61 && degrees<= angle*63 && num!=7){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*63 && degrees<= angle*65 && num==28){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*31 && degrees<= angle*32 && num!=7){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*32 && degrees<= angle*33 && num==28){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*63 && degrees<= angle*65 && num!=28){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*65 && degrees<= angle*67 && num==12){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*32 && degrees<= angle*33 && num!=28){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*33 && degrees<= angle*34 && num==12){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*65 && degrees<= angle*67 && num!=12){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*67 && degrees<= angle*69 && num==35){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*33 && degrees<= angle*34 && num!=12){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*34 && degrees<= angle*35 && num==35){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*67 && degrees<= angle*69 && num!=35){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*69 && degrees<= angle*71 && num==3){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*34 && degrees<= angle*35 && num!=35){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*35 && degrees<= angle*36 && num==3){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*69 && degrees<= angle*71 && num!=3){  text= "Sorry Better Luck next Time";}
-        else if(degrees >= angle*71 && degrees<= angle*73 && num==26){  text= "Congratulations you have won 25 points";
+        else if(degrees >= angle*35 && degrees<= angle*36 && num!=3){  text= "Sorry Better Luck next Time";}
+        else if(degrees >= angle*36 && degrees<= angle*37&& num==26){  text= "Congratulations you have won 25 points";
             score=score+25;}
-        else if(degrees >= angle*71 && degrees<= angle*73 && num!=26){  text= "Sorry Better Luck next Time";}
-        else if ((degrees >= angle*73 && degrees <360 && num==0)||(degrees >=0 && degrees <(angle*1) &&num==0)){ text="Congratulations you have won 25 points";
-            score=score+25;}
-        else if ((degrees >= angle*73 && degrees <360 && num!=0)||(degrees >=0 && degrees <(angle*1) &&num!=0)){ text="Sorry Better Luck next Time";}
+        else if(degrees >= angle*36 && degrees<= angle*37 && num!=26){  text= "Sorry Better Luck next Time";}
+        else if((degrees>=0) && (degrees<=angle*1) && num==1){
+            text="Congratulations you have won 25 points";
+            score=score+25;
+        }else if((degree>=0) && (degree<=angle*1) && num!=1){
 
+            text="Sorry Better Luck next Time";
+        }
 
 
         return text;
