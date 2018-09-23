@@ -17,6 +17,10 @@ import appteam.nith.hillffair2k18.dialog.InfoDialog;
 import appteam.nith.hillffair2k18.model.Club;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * Coded by ThisIsNSH on Someday.
+ */
+
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> {
     List<Club> clubList;
     Activity activity;

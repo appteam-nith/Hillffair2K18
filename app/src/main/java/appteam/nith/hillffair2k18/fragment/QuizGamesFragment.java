@@ -1,33 +1,25 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
+import android.widget.TextView;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.adapter.ClubAdapter;
-import appteam.nith.hillffair2k18.model.Club;
 
 /**
- * Created by com on 21-09-2018.
+ * Coded by ThisIsNSH on Someday.
  */
 
-public class QuizGamesFragment extends Fragment {
-    private ClubAdapter clubAdapter;
-    private RecyclerView recyclerView;
+public class QuizGamesFragment extends Fragment implements View.OnClickListener {
+
     private Activity activity;
-    private List<Club> clubList = new ArrayList<>();
+    private TextView quiz, tambola, roulette;
 
-    public QuizGamesFragment(){
-
+    public QuizGamesFragment() {
     }
 
     public QuizGamesFragment(Activity activity) {
@@ -42,18 +34,31 @@ public class QuizGamesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_clubs, container, false);
-        recyclerView = view.findViewById(R.id.secondRec);
-        recyclerView.setNestedScrollingEnabled(false);
-        clubAdapter = new ClubAdapter(clubList, activity);
+        View view = inflater.inflate(R.layout.fragment_quiz, container, false);
         getData();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(clubAdapter);
+        quiz = view.findViewById(R.id.quiz);
+        roulette = view.findViewById(R.id.roulette);
+        tambola = view.findViewById(R.id.tambola);
+        quiz.setOnClickListener(this);
+        roulette.setOnClickListener(this);
+        tambola.setOnClickListener(this);
         return view;
     }
 
     public void getData() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.quiz:
+                break;
+            case R.id.tambola:
+                break;
+            case R.id.roulette:
+                break;
+        }
 
     }
 }

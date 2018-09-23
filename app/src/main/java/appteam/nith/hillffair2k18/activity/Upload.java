@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.RelativeLayout;
+
 import appteam.nith.hillffair2k18.R;
 
 /**
@@ -24,12 +25,12 @@ public class Upload extends AppCompatActivity {
     }
 
     public void setupdata() {
-        relativeLayout1=findViewById(R.id.rel1);
+        relativeLayout1 = findViewById(R.id.rel1);
         cardView = findViewById(R.id.upload1);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             relativeLayout1.setVisibility(View.VISIBLE);
+                relativeLayout1.setVisibility(View.VISIBLE);
             }
         });
     }

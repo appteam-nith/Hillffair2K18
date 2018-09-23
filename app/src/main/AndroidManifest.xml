@@ -15,7 +15,7 @@
         <activity
             android:name=".activity.DashActivity"
             android:screenOrientation="portrait">
-<intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -26,7 +26,7 @@
         <activity android:name=".activity.Gallery" />
         <activity android:name=".activity.Profile" />
         <activity android:name=".activity.ImageUI" />
-        <activity android:name=".activity.Upload"/>
+        <activity android:name=".activity.Upload" />
         <activity android:name=".activity.Profile" />
         <activity android:name=".activity.ImageUI" />
 

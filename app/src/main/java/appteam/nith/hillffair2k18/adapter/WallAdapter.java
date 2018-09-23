@@ -19,7 +19,7 @@ import appteam.nith.hillffair2k18.model.Wall;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by ThisIsNSH on 9/20/2018.
+ * Coded by ThisIsNSH on 9/20/2018.
  */
 
 public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> {
@@ -63,7 +63,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                         }
                     });
                     valueAnimator.start();
-                    holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes())+1));
+                    holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes()) + 1));
                     check = false;
                 } else {
                     ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
@@ -74,7 +74,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                             holder.like.setProgress(1 - animation.getAnimatedFraction());
                         }
                     });
-                    holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes())-1));
+                    holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes()) - 1));
                     valueAnimator.start();
                     check = true;
                 }
@@ -91,7 +91,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView profile;
         TextView title, desc, like_count;
-        ImageView image,share;
+        ImageView image, share;
         LottieAnimationView like;
 
 
