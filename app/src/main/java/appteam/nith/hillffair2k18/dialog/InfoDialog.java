@@ -13,7 +13,7 @@ import android.widget.TextView;
 import appteam.nith.hillffair2k18.R;
 
 /**
- * Created by naman on 20-09-2018.
+ * Code by ThisIsNSH on Someday.
  */
 
 public class InfoDialog extends Dialog {
@@ -37,6 +37,6 @@ public class InfoDialog extends Dialog {
         textView.setText(info);
         setCanceledOnTouchOutside(true);
         getWindow().setGravity(Gravity.CENTER);
-        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 }
