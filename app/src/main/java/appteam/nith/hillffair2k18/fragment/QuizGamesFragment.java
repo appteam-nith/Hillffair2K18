@@ -3,6 +3,7 @@ package appteam.nith.hillffair2k18.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
         quiz.setOnClickListener(this);
         roulette.setOnClickListener(this);
         tambola.setOnClickListener(this);
+        Log.e("GamesFragment", "onCreateView: ");
         return view;
     }
 

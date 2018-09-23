@@ -41,7 +41,7 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final Club club = clubList.get(position);
         holder.title.setText(club.getName());
-        Picasso.get().load(club.getImage()).into(holder.image);
+        Picasso.get().load(club.getImage()).resize(80,80).centerCrop().into(holder.image);
         holder.arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView image;
         TextView title;
-        ImageView arrow;
+        TextView arrow;
 
         public MyViewHolder(View itemView) {
             super(itemView);

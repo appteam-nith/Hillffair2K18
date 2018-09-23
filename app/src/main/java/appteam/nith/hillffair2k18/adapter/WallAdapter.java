@@ -47,7 +47,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
         holder.like_count.setText(wall.getLikes());
         holder.desc.setText(wall.getDesc());
         holder.title.setText(wall.getName());
-        Picasso.get().load(wall.getProfile()).resize(80, 80).into(holder.profile);
+        Picasso.get().load(wall.getProfile()).resize(80,80).centerCrop().into(holder.profile);
         Picasso.get().load(wall.getImage()).resize(300, 300).centerCrop().into(holder.image);
 
         holder.like.setOnClickListener(new View.OnClickListener() {

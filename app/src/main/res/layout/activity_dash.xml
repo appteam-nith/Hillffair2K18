@@ -7,17 +7,97 @@
     android:background="#fff"
     tools:context=".activity.DashActivity">
 
+
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:visibility="gone"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navDrawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none">
+        android:background="#d0ffffff"
+        android:elevation="3dp"
+        android:visibility="gone"
+        tools:context=".activity.DashActivity">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/white" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/white_gradient" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profileNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/psb"
+                android:text="Profile"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/aboutNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/psb"
+                android:text="About Us"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/settingNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/psb"
+                android:text="Settings"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/sponsorNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/psb"
+                android:text="Sponsors"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:visibility="gone">
 
 
         <FrameLayout
@@ -34,6 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="-8dp"
+        android:elevation="4dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -61,11 +142,11 @@
 
         <View
             android:id="@+id/nav"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="0dp"
             android:background="?attr/selectableItemBackgroundBorderless" />
 
         <de.hdodenhof.circleimageview.CircleImageView

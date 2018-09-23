@@ -41,7 +41,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.MyViewHolder> 
         Team team = teamList.get(position);
         holder.title.setText(team.getName());
         holder.position.setText(team.getPosition());
-        Picasso.get().load(team.getImage()).into(holder.image);
+        Picasso.get().load(team.getImage()).resize(80,80).centerCrop().into(holder.image);
     }
 
     @Override
