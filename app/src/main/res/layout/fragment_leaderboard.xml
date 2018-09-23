@@ -67,4 +67,5 @@
             android:layout_height="8dp"
             android:background="@drawable/red_magenta" />
     </LinearLayout>
+
 </RelativeLayout>

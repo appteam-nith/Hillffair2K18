@@ -51,6 +51,7 @@ public class WallFragment extends Fragment {
         fifthRec.setAdapter(wallAdapter);
         getData();
         Log.e("WallFragment", "onCreateView: ");
+
         return view;
     }
 

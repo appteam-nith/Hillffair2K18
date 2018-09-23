@@ -46,6 +46,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.MyView
         holder.position.setText(schedule.getSubtitle());
         Picasso.get().load(schedule.getImg()).resize(80,80).centerCrop().into(holder.image);
 
+
     }
 
     @Override

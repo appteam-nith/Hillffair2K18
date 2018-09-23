@@ -51,7 +51,6 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
-
         date1 = view.findViewById(R.id.date1);
         date2 = view.findViewById(R.id.date2);
         date3 = view.findViewById(R.id.date3);
@@ -77,12 +76,10 @@ public class ScheduleFragment extends Fragment {
         recyclerView3.setAdapter(scheduleAdapter3);
         getData();
         Log.e("ScheduleFragment", "onCreateView: ");
-
         return view;
     }
 
     public void getData() {
-
         date1.setText("3 October");
         date2.setText("4 October");
         date3.setText("5 October");
@@ -103,5 +100,4 @@ public class ScheduleFragment extends Fragment {
         scheduleAdapter2.notifyDataSetChanged();
         scheduleAdapter3.notifyDataSetChanged();
     }
-
 }

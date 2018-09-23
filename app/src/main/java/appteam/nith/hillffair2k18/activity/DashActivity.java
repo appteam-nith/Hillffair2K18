@@ -67,6 +67,7 @@ public class DashActivity extends AppCompatActivity {
         aboutNav = findViewById(R.id.aboutNav);
         settingNav = findViewById(R.id.settingNav);
         sponsorNav = findViewById(R.id.sponsorNav);
+
         viewPager = findViewById(R.id.viewpager);
 
         final SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), DashActivity.this);

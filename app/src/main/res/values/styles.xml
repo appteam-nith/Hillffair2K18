@@ -16,7 +16,6 @@
     <style name="RedHighlight" parent="AppTheme">
         <item name="android:colorControlHighlight">#bf021c</item>
     </style>
-
     <style name="GreenHighlight" parent="AppTheme">
         <item name="android:colorControlHighlight">#AAF719</item>
     </style>

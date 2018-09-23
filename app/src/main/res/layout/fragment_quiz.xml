@@ -39,6 +39,7 @@
             android:textSize="18sp"
             android:theme="@style/GreenHighlight" />
 
+
         <TextView
             android:id="@+id/tambola"
             android:layout_width="wrap_content"
@@ -52,6 +53,7 @@
             android:textColor="@color/hint"
             android:textSize="18sp"
             android:theme="@style/GreenHighlight" />
+
 
     </LinearLayout>
 
