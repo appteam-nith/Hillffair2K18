@@ -12,12 +12,21 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScheduleAdapter;
 import appteam.nith.hillffair2k18.model.Schedule;
+import appteam.nith.hillffair2k18.model.Wall;
 
 /**
  * Coded by ThisIsNSH on Someday.
@@ -50,6 +59,7 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        AndroidNetworking.initialize(getActivity().getApplicationContext());
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
         date1 = view.findViewById(R.id.date1);
         date2 = view.findViewById(R.id.date2);
@@ -80,9 +90,40 @@ public class ScheduleFragment extends Fragment {
     }
 
     public void getData() {
+//         AndroidNetworking.get("http://192.168.43.52:5000/getschedule")
+//                 .build()
+//                 .getAsJSONArray(new JSONArrayRequestListener() {
+//                     @Override
+//                     public void onResponse(JSONArray response) {
+//                         // do anything with response
+//                         try {
+//                             int users = response.length();
+//                             for (int i = 0;i<users;i++) {
+//                                 JSONObject json = response.getJSONObject(i);
+//                                 String clubname = json.getString("club_id");
+//                                 String event_name = json.getString("event_name");
+//                                 String event_time = json.getString("event_time");
+//                                 scheduleList.add(new Schedule(clubname, event_name, "1", event_time));
+//                             }
+//                             scheduleAdapter.notifyDataSetChanged();
+
+//                         } catch (JSONException e) {
+//                             e.printStackTrace();
+//                         }
+//                     }
+//                     @Override
+//                     public void onError(ANError error) {
+//                         // handle error
+//                     }
+//                 });
+
+//         scheduleAdapter.notifyDataSetChanged();
+//     }
+  
         date1.setText("3 October");
         date2.setText("4 October");
         date3.setText("5 October");
+
 
         scheduleList1.add(new Schedule("Captain Marvel", "Her to Hero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "05:00 Pm"));
         scheduleList1.add(new Schedule("Thanos", "Infinity Stones", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "06:00 PM"));
