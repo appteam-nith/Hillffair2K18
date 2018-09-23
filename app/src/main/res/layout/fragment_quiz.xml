@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/greenBottom"
+        android:background="@color/white"
         android:elevation="8dp"
         android:gravity="center">
 
@@ -15,34 +16,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:fontFamily="@font/ps"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="Quiz"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:theme="@style/GreenHighlight" />
 
         <TextView
             android:id="@+id/roulette"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:fontFamily="@font/ps"
+            android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="Roulette"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/hint"
+            android:textSize="18sp"
+            android:theme="@style/GreenHighlight" />
 
         <TextView
             android:id="@+id/tambola"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:fontFamily="@font/ps"
+            android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="Tambola"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/hint"
+            android:textSize="18sp"
+            android:theme="@style/GreenHighlight" />
 
     </LinearLayout>
 

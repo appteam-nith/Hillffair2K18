@@ -6,57 +6,65 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/greenBottom"
-        android:elevation="8dp"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:fontFamily="@font/ps"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="Points"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:theme="@style/RedHighlight" />
-
-        <TextView
-            android:id="@+id/referral"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:fontFamily="@font/ps"
-            android:paddingRight="16dp"
-            android:text="Refferal"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:theme="@style/RedHighlight" />
-
-        <TextView
-            android:id="@+id/popular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:fontFamily="@font/ps"
-            android:paddingRight="16dp"
-            android:text="Popular"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:theme="@style/RedHighlight" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/greenBottom"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/red_magenta"
-        android:elevation="8dp" />
+        android:elevation="8dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/greenBottom"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/ps"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Points"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:theme="@style/RedHighlight" />
+
+            <TextView
+                android:id="@+id/referral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/ps"
+                android:paddingLeft="16sp"
+                android:paddingRight="16dp"
+                android:text="Refferal"
+                android:textColor="@color/hint"
+                android:textSize="18sp"
+                android:theme="@style/RedHighlight" />
+
+            <TextView
+                android:id="@+id/popular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/ps"
+                android:paddingLeft="16sp"
+                android:paddingRight="16dp"
+                android:text="Popular"
+                android:textColor="@color/hint"
+                android:textSize="18sp"
+                android:theme="@style/RedHighlight" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/greenBottom"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@drawable/red_magenta" />
+    </LinearLayout>
 </RelativeLayout>
