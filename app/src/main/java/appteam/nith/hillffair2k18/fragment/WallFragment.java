@@ -16,6 +16,10 @@ import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.WallAdapter;
 import appteam.nith.hillffair2k18.model.Wall;
 
+/**
+ * Coded by ThisIsNSH on Someday.
+ */
+
 public class WallFragment extends Fragment {
 
     private WallAdapter wallAdapter;
@@ -42,10 +46,9 @@ public class WallFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_wall, container, false);
         fifthRec = view.findViewById(R.id.fifthRec);
         wallAdapter = new WallAdapter(wallList, activity);
-        getData();
         fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         fifthRec.setAdapter(wallAdapter);
-        wallAdapter.notifyDataSetChanged();
+        getData();
         return view;
     }
 

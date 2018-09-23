@@ -4,13 +4,10 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
-import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.RelativeLayout;
@@ -18,24 +15,24 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScrollAdapter;
-import appteam.nith.hillffair2k18.fragment.ClubsFragment;
-import appteam.nith.hillffair2k18.fragment.CoreTeamFragment;
-import appteam.nith.hillffair2k18.fragment.ScheduleFragment;
-import appteam.nith.hillffair2k18.fragment.SponsersFragment;
-import appteam.nith.hillffair2k18.fragment.WallFragment;
 import appteam.nith.hillffair2k18.listener.RecyclerItemClickListener;
 import appteam.nith.hillffair2k18.model.Scroll;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/**
+ * Coded by ThisIsNSH on Someday.
+ */
+
 public class DashActivity extends AppCompatActivity {
 
+    private LinearLayoutManager linearLayoutManager;
+    private ViewPager viewPager;
     private CircleImageView profile;
     private View nav;
     private LottieAnimationView navAnim;
@@ -51,9 +48,6 @@ public class DashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash);
-        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame, new ClubsFragment(DashActivity.this));
-        ft.commit();
         setupdata();
     }
 
@@ -65,11 +59,10 @@ public class DashActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         nav = findViewById(R.id.nav);
         navAnim = findViewById(R.id.navAnim);
+        viewPager = findViewById(R.id.viewpager);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager());
+        final SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), DashActivity.this);
         viewPager.setAdapter(adapter);
-
 
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +104,8 @@ public class DashActivity extends AppCompatActivity {
                 }
             });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(DashActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        linearLayoutManager = new LinearLayoutManager(DashActivity.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
         getData();
         scrollAdapter = new ScrollAdapter(scrollList, DashActivity.this);
         recyclerView.setAdapter(scrollAdapter);
@@ -120,6 +114,10 @@ public class DashActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         animateViewsOfRecyclerView(position);
+                        linearLayoutManager.setSmoothScrollbarEnabled(true);
+                        linearLayoutManager.smoothScrollToPosition(recyclerView, null, position);
+//                        linearLayoutManager.scrollToPositionWithOffset(position, 100);
+                        viewPager.setCurrentItem(position, true);
                     }
 
                     @Override
@@ -130,14 +128,27 @@ public class DashActivity extends AppCompatActivity {
         );
 //        SnapHelper snapHelperStart = new GravitySnapHelper(Gravity.START);
 //        snapHelperStart.attachToRecyclerView(recyclerView);
-        viewPager.setOnPageChangeListener(
-                new ViewPager.SimpleOnPageChangeListener() {
-                    @Override
-                    public void onPageSelected(int position) {
-                        recyclerView.smoothScrollToPosition(position);
-                    }
-                });
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+//              linearLayoutManager.scrollToPositionWithOffset(position, 100);
+                linearLayoutManager.setSmoothScrollbarEnabled(true);
+                linearLayoutManager.smoothScrollToPosition(recyclerView, null, position);
+//              animateViewsOfRecyclerView(position);
+            }
+        });
     }
+
 
     public void animateViewsOfRecyclerView(int position) {
         for (int i = 0; i < scrollAdapter.getItemCount(); ++i) {

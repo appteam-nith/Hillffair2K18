@@ -1,7 +1,7 @@
 package appteam.nith.hillffair2k18.model;
 
 /**
- * Created by ThisIsNSH on 9/21/2018.
+ * Coded by ThisIsNSH on 9/21/2018.
  */
 
 public class Scroll {

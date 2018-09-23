@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
@@ -24,7 +22,8 @@ public class Profile extends AppCompatActivity {
     EditText studentName, rollNumber, branch, contactNumber;
     String Name, RollNumber, Branch, ContactNumber;
     CircleImageView profilePicture;
-    TextView buttonLoadImage,save;
+    TextView buttonLoadImage, save;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +43,7 @@ public class Profile extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {

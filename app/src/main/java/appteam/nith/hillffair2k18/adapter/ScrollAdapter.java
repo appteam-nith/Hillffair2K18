@@ -14,6 +14,11 @@ import java.util.List;
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.model.Scroll;
 
+/**
+ * Coded by ThisIsNSH on Someday.
+ */
+
+
 public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHolder> {
 
     private List<Scroll> scrollList;
