@@ -1,6 +1,8 @@
 package appteam.nith.hillffair2k18.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -29,7 +32,6 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         buttonLoadImage = findViewById(R.id.galleryView);
-
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -42,6 +44,7 @@ public class Profile extends AppCompatActivity {
                 }
             }
         });
+        initUI();
     }
 
     @Override
@@ -63,10 +66,18 @@ public class Profile extends AppCompatActivity {
             profilePicture.setImageBitmap(bmp);
         }
 
-        initUI();
+
     }
 
     public void initUI() {
+        SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
+        String check = prefs.getString("name", "gsbs");
+//        studentName.setText(check);
+        if (!check.equals("gsbs"))
+        {
+            startActivity(new Intent(Profile.this, DashActivity.class));
+        }
+
         studentName = findViewById(R.id.studentName);
         rollNumber = findViewById(R.id.rollNumber);
         branch = findViewById(R.id.branch);
@@ -83,9 +94,22 @@ public class Profile extends AppCompatActivity {
     }
 
     public void setdata() {
-        Name = (studentName.getText()).toString();
-        RollNumber = rollNumber.getText().toString();
-        Branch = branch.getText().toString();
-        ContactNumber = contactNumber.getText().toString();
+
+            Name = (studentName.getText()).toString();
+            RollNumber = rollNumber.getText().toString();
+            Branch = branch.getText().toString();
+            ContactNumber = contactNumber.getText().toString();
+            if (Name.length() == 0 || RollNumber.length() == 0 || Branch.length() == 0 || ContactNumber.length() == 0) {
+                Toast.makeText(Profile.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
+            } else {
+                SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("name", Name);
+                editor.putString("roll number", RollNumber);
+                editor.putString("Branch", Branch);
+                editor.putString("Phone", ContactNumber);
+                editor.commit();
+                startActivity(new Intent(Profile.this, DashActivity.class));
+            }
     }
 }
