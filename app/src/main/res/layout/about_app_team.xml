@@ -3,11 +3,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-8dp"
+        android:elevation="2dp"
+        android:background="#fff"
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/psb"
+            android:text="ABOUT  US"
+            android:textColor="@color/dark_grey"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/back_icon" />
+
+    </RelativeLayout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="56dp"
         android:scrollbars="none">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,13 +52,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#fff">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center">
+                android:layout_marginTop="56dp"
+                android:gravity="center"
+                >
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img"
@@ -29,7 +68,7 @@
                     android:layout_height="80dp"
                     android:layout_marginRight="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/logo" />
+                    android:src="@drawable/logo"/>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -144,7 +183,9 @@
                             app:cardBackgroundColor="#f3f3f3"
                             app:cardCornerRadius="16dp"
                             app:cardElevation="0dp"
-                            app:cardPreventCornerOverlap="true">
+                            app:cardPreventCornerOverlap="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:clickable="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -178,7 +219,9 @@
                             app:cardBackgroundColor="#f3f3f3"
                             app:cardCornerRadius="16dp"
                             app:cardElevation="0dp"
-                            app:cardPreventCornerOverlap="true">
+                            app:cardPreventCornerOverlap="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:clickable="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -212,7 +255,9 @@
                             app:cardBackgroundColor="#f3f3f3"
                             app:cardCornerRadius="16dp"
                             app:cardElevation="0dp"
-                            app:cardPreventCornerOverlap="true">
+                            app:cardPreventCornerOverlap="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:clickable="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -246,7 +291,9 @@
                             app:cardBackgroundColor="#f3f3f3"
                             app:cardCornerRadius="16dp"
                             app:cardElevation="0dp"
-                            app:cardPreventCornerOverlap="true">
+                            app:cardPreventCornerOverlap="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:clickable="true">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -279,12 +326,5 @@
         </LinearLayout>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/back_icon" />
 
 </RelativeLayout>
