@@ -1,16 +1,10 @@
 package appteam.nith.hillffair2k18.adapter;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,10 +12,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import appteam.nith.hillffair2k18.InfoDialog;
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.dialog.InfoDialog;
 import appteam.nith.hillffair2k18.model.Club;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+/**
+ * Coded by ThisIsNSH on Someday.
+ */
+
 public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> {
     List<Club> clubList;
     Activity activity;
@@ -42,15 +41,16 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final Club club = clubList.get(position);
         holder.title.setText(club.getName());
-        Picasso.get().load(club.getImage()).into(holder.image);
+        Picasso.get().load(club.getImage()).resize(80,80).centerCrop().into(holder.image);
         holder.arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InfoDialog infoDialog = new InfoDialog(activity,club.getInfo());
+                InfoDialog infoDialog = new InfoDialog(activity, club.getInfo());
                 infoDialog.show();
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return clubList.size();
@@ -59,7 +59,7 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView image;
         TextView title;
-        ImageView arrow;
+        TextView arrow;
 
         public MyViewHolder(View itemView) {
             super(itemView);
