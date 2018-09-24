@@ -55,6 +55,7 @@ public class ClubsFragment extends Fragment {
     }
 
     public void getData() {
+        clubList.clear();
         clubList.add(new Club("Captain Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Comming Soon"));
         clubList.add(new Club("Thanos", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "Destiny Arrives"));
         clubList.add(new Club("Iron Man", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "I love money"));
