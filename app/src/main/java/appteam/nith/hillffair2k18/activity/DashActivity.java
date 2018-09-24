@@ -367,7 +367,6 @@ public class DashActivity extends AppCompatActivity {
                 public void onAnimationCancel(Animator animation) {
 
                 }
-
                 @Override
                 public void onAnimationRepeat(Animator animation) {
 

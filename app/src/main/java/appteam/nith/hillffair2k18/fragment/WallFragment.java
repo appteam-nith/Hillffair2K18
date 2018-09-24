@@ -1,7 +1,9 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,9 +65,9 @@ public class WallFragment extends Fragment {
         wallAdapter = new WallAdapter(wallList, activity);
         fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         fifthRec.setAdapter(wallAdapter);
+
         getData();
         Log.e("WallFragment", "onCreateView: ");
-
         return view;
     }
 
