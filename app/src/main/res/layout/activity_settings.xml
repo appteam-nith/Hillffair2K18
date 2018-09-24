@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="appteam.nith.hillffair2k18.activity.SettingsActivity"
+    android:background="#fff">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-8dp"
+        android:elevation="2dp"
+        android:background="#fff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/psb"
+            android:text="SETTINGS"
+            android:textColor="@color/dark_grey"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/back_icon" />
+
+    </RelativeLayout>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/rel"
+       android:layout_marginTop="80dp">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Notifications"
+           android:textSize="20sp"
+           android:layout_alignParentLeft="true"
+           android:layout_marginLeft="32dp"
+           android:fontFamily="@font/psb"
+           android:textColor="@color/black"/>
+       <Switch
+           android:id="@+id/sw"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="32dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:switchMinWidth="56dp"
+           android:layout_centerInParent="true"
+           android:checked="false"
+           android:theme="@style/SwitchCompatTheme"/>
+   </RelativeLayout>
+</RelativeLayout>

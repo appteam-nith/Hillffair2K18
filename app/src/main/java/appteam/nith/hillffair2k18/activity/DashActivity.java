@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -67,7 +68,7 @@ public class DashActivity extends AppCompatActivity {
         aboutNav = findViewById(R.id.aboutNav);
         settingNav = findViewById(R.id.settingNav);
         sponsorNav = findViewById(R.id.sponsorNav);
-
+//        aboutNav.setOnClickListener(t);
         viewPager = findViewById(R.id.viewpager);
 
         final SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), DashActivity.this);
@@ -96,7 +97,7 @@ public class DashActivity extends AppCompatActivity {
                     sponsorNav.setVisibility(View.VISIBLE);
                     ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(navDrawer, "alpha", 0, 1);
                     ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(recyclerView, "alpha", 1, 0);
-
+                    initUI();
                     ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(aboutNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(profileNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator4 = ObjectAnimator.ofFloat(settingNav, "alpha", 0, 1);
@@ -117,7 +118,6 @@ public class DashActivity extends AppCompatActivity {
                     objectAnimator2.setDuration(700);
                     objectAnimator1.setDuration(500);
                     objectAnimator.setDuration(500);
-
                     objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator4.setInterpolator(new AnticipateOvershootInterpolator());
@@ -194,7 +194,7 @@ public class DashActivity extends AppCompatActivity {
                     objectAnimator8.setDuration(500);
                     objectAnimator9.setDuration(500);
                     objectAnimator2.setDuration(500);
-
+                    initUI();
                     objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator4.setInterpolator(new AnticipateOvershootInterpolator());
@@ -417,5 +417,24 @@ public class DashActivity extends AppCompatActivity {
         scrollList.add(new Scroll("Clubs", R.drawable.club));
         scrollList.add(new Scroll("Core Members", R.drawable.core));
         scrollList.add(new Scroll("Sponsors", R.drawable.sponsor));
+    }
+
+    public void initUI() {
+        aboutNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashActivity.this, AppTeam.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+        settingNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(DashActivity.this,SettingsActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
     }
 }

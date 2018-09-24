@@ -23,14 +23,13 @@
         </activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.Login" />
-        <activity android:name=".activity.Housie">
-
-        </activity>
+        <activity android:name=".activity.Housie"></activity>
         <activity android:name=".activity.Gallery" />
         <activity android:name=".activity.Profile" />
         <activity android:name=".activity.ImageUI" />
-        <activity android:name=".activity.Upload"/>
-
+        <activity android:name=".activity.Upload" />
+        <activity android:name=".activity.AppTeam"></activity>
+        <activity android:name=".activity.SettingsActivity"></activity>
     </application>
 
 </manifest>
