@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginBottom="8dp"
     android:layout_marginTop="8dp"
-
     tools:context=".MainActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
