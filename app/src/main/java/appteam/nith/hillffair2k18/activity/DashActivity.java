@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -254,7 +255,13 @@ public class DashActivity extends AppCompatActivity {
         getData();
         scrollAdapter = new ScrollAdapter(scrollList, DashActivity.this);
         recyclerView.setAdapter(scrollAdapter);
-        animateViewsOfRecyclerView(0);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recyclerView.findViewHolderForAdapterPosition(0).itemView.performClick();
+                animateViewsOfRecyclerView(0);
+            }
+        },100);
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -360,7 +367,6 @@ public class DashActivity extends AppCompatActivity {
                 public void onAnimationCancel(Animator animation) {
 
                 }
-
                 @Override
                 public void onAnimationRepeat(Animator animation) {
 

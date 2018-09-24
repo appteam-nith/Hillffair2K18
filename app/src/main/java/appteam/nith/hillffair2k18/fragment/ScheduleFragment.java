@@ -84,6 +84,9 @@ public class ScheduleFragment extends Fragment {
         recyclerView2.setAdapter(scheduleAdapter2);
         recyclerView3.setLayoutManager(linearLayoutManager3);
         recyclerView3.setAdapter(scheduleAdapter3);
+        recyclerView1.setNestedScrollingEnabled(false);
+        recyclerView2.setNestedScrollingEnabled(false);
+        recyclerView3.setNestedScrollingEnabled(false);
         getData();
         Log.e("ScheduleFragment", "onCreateView: ");
         return view;
@@ -119,7 +122,10 @@ public class ScheduleFragment extends Fragment {
 
 //         scheduleAdapter.notifyDataSetChanged();
 //     }
-  
+
+        scheduleList1.clear();
+        scheduleList2.clear();
+        scheduleList3.clear();
         date1.setText("3 October");
         date2.setText("4 October");
         date3.setText("5 October");

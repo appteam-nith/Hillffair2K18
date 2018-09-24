@@ -1,7 +1,9 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -63,16 +65,17 @@ public class WallFragment extends Fragment {
         wallAdapter = new WallAdapter(wallList, activity);
         fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         fifthRec.setAdapter(wallAdapter);
+
         getData();
         Log.e("WallFragment", "onCreateView: ");
-
         return view;
     }
 
     void getData() {
+        wallList.clear();
        wallList.add(new Wall("Captain Marvel", "Look mom I am a superhero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "9000", ""));
        wallList.add(new Wall("Thanos", "I will kill half of the universe.", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "800", ""));
-       wallList.add(new Wall("Iron Man", "You know who I am. I am the best.", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "100", ""));
+        wallList.add(new Wall("Iron Man", "You know who I am. I am the best.", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "100", ""));
        wallList.add(new Wall("Captain America", "I love to protect universe.", "https://wallpapercave.com/wp/wp1808936.jpg", "https://wallpapercave.com/wp/wp1808936.jpg", "200", ""));
 //         AndroidNetworking.get("http://hillffair.tk/getwall")
 //                 .build()
