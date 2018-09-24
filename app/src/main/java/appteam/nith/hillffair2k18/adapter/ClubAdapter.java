@@ -66,6 +66,6 @@ public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> 
             arrow = itemView.findViewById(R.id.arrow);
             title = itemView.findViewById(R.id.title);
             image = itemView.findViewById(R.id.image);
-        }
+         }
     }
 }
