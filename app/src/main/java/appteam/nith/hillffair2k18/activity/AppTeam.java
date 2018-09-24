@@ -8,7 +8,6 @@ import android.view.WindowManager;
 
 import appteam.nith.hillffair2k18.R;
 
-
 /**
  * Created by naman on 20-09-2018.
  */

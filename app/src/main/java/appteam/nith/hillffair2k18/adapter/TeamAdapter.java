@@ -16,7 +16,7 @@ import appteam.nith.hillffair2k18.model.Team;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Created by ThisIsNSH on 9/20/2018.
+ * Coded by ThisIsNSH on 9/20/2018.
  */
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.MyViewHolder> {
@@ -41,7 +41,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.MyViewHolder> 
         Team team = teamList.get(position);
         holder.title.setText(team.getName());
         holder.position.setText(team.getPosition());
-        Picasso.get().load(team.getImage()).into(holder.image);
+        Picasso.get().load(team.getImage()).resize(80,80).centerCrop().into(holder.image);
     }
 
     @Override

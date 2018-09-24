@@ -3,12 +3,20 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.3</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
 
+    <style name="RedHighlight" parent="AppTheme">
+        <item name="android:colorControlHighlight">#bf021c</item>
+    </style>
+    <style name="GreenHighlight" parent="AppTheme">
+        <item name="android:colorControlHighlight">#AAF719</item>
+    </style>
 </resources>

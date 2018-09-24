@@ -23,12 +23,10 @@ public class Gallery extends Activity {
     public byte[] Byte;
     public Bitmap bitmap;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_image);
-
         Button buttonLoadImage = (Button) findViewById(R.id.gallery);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 

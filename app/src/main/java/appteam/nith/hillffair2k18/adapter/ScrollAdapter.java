@@ -14,6 +14,11 @@ import java.util.List;
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.model.Scroll;
 
+/**
+ * Coded by ThisIsNSH on Someday.
+ */
+
+
 public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHolder> {
 
     private List<Scroll> scrollList;
@@ -55,6 +60,12 @@ public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHold
         return new TextView(activity);
     }
 
+    public View getView1(MyViewHolder viewHolder) {
+        if (viewHolder != null)
+            return viewHolder.line;
+        return new View(activity);
+    }
+
     @Override
     public int getItemCount() {
         return scrollList.size();
@@ -64,9 +75,11 @@ public class ScrollAdapter extends RecyclerView.Adapter<ScrollAdapter.MyViewHold
         ImageView imageView;
         TextView text;
         RelativeLayout backLayout;
+        View line;
 
         public MyViewHolder(View itemView) {
             super(itemView);
+            line = itemView.findViewById(R.id.line);
             backLayout = itemView.findViewById(R.id.backLayout);
             imageView = itemView.findViewById(R.id.image);
             text = itemView.findViewById(R.id.text);
