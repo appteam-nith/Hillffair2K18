@@ -34,6 +34,15 @@ tools:context=".activity.RouletteActivity">
         android:layout_marginTop="44dp"
         android:rotation="180"
         app:srcCompat="@drawable/alisha" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="324dp"
+        android:layout_height="328dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:rotation="180"
+        app:srcCompat="@drawable/alisha" />
 
 <android.support.v7.widget.CardView
     android:layout_width="148dp"

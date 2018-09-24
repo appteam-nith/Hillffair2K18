@@ -17,16 +17,15 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".Login"></activity>
         <activity android:name=".Housie"></activity>
-        <activity android:name=".Gallery">
+        <activity android:name=".Gallery"></activity>
+        <activity android:name=".Profile"></activity>
+        <activity android:name=".ImageUI"></activity>
+        <activity android:name=".activity.RouletteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Profile"></activity>
-        <activity android:name=".ImageUI"></activity>
-        <activity android:name=".activity.RouletteActivity"></activity>
     </application>
 
 </manifest>
