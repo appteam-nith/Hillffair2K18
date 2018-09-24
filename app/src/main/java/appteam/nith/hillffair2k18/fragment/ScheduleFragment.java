@@ -84,6 +84,9 @@ public class ScheduleFragment extends Fragment {
         recyclerView2.setAdapter(scheduleAdapter2);
         recyclerView3.setLayoutManager(linearLayoutManager3);
         recyclerView3.setAdapter(scheduleAdapter3);
+        recyclerView1.setNestedScrollingEnabled(false);
+        recyclerView2.setNestedScrollingEnabled(false);
+        recyclerView3.setNestedScrollingEnabled(false);
         getData();
         Log.e("ScheduleFragment", "onCreateView: ");
         return view;
