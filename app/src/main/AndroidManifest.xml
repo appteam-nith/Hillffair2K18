@@ -21,17 +21,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.RouletteActivity"></activity>
+        </activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.Login" />
-        <activity android:name=".activity.Housie" />
+        <activity android:name=".activity.Housie">
+
+        </activity>
         <activity android:name=".activity.Gallery" />
         <activity android:name=".activity.Profile" />
         <activity android:name=".activity.ImageUI" />
-        <activity android:name=".activity.QuizMap" />
-        <activity android:name=".activity.Quiz"></activity>
-        <activity android:name=".activity.RouletteActivity"></activity>
-        </activity>
-  
         <activity android:name=".activity.Upload"/>
     </application>
 
