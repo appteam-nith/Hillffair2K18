@@ -1,6 +1,7 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.activity.Housie;
+import appteam.nith.hillffair2k18.activity.MainActivity;
 
 /**
  * Coded by ThisIsNSH on Someday.
@@ -50,17 +53,17 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
     public void getData() {
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.quiz:
                 break;
             case R.id.tambola:
+                startActivity(new Intent(getActivity(), Housie.class));
                 break;
             case R.id.roulette:
+//                startActivity(new Intent(getActivity(), .class));
                 break;
         }
-
     }
 }

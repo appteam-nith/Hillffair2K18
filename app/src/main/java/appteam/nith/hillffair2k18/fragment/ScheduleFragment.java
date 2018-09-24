@@ -119,7 +119,10 @@ public class ScheduleFragment extends Fragment {
 
 //         scheduleAdapter.notifyDataSetChanged();
 //     }
-  
+
+        scheduleList1.clear();
+        scheduleList2.clear();
+        scheduleList3.clear();
         date1.setText("3 October");
         date2.setText("4 October");
         date3.setText("5 October");
