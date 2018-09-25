@@ -10,12 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ClubAdapter;
 import appteam.nith.hillffair2k18.model.Club;
+import appteam.nith.hillffair2k18.model.Schedule;
 
 /**
  * Coded by ThisIsNSH on Someday.
@@ -56,10 +65,37 @@ public class ClubsFragment extends Fragment {
 
     public void getData() {
         clubList.clear();
-        clubList.add(new Club("Captain Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Comming Soon"));
-        clubList.add(new Club("Thanos", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "Destiny Arrives"));
-        clubList.add(new Club("Iron Man", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "I love money"));
-        clubAdapter.notifyDataSetChanged();
+                 AndroidNetworking.get("http://hillffair.tk/getclubs")
+                 .build()
+                 .getAsJSONArray(new JSONArrayRequestListener() {
+                     @Override
+                     public void onResponse(JSONArray response) {
+                         try {
+                             int users = response.length();
+                             for (int i = 0;i<users;i++) {
+                                 JSONObject json = response.getJSONObject(i);
+                                 String clubname = json.getString("name");
+                                 String info = json.getString("info");
+                                 String id = json.getString("id");
+                                 clubList.add(new Club(clubname,id, info));
+                             }
+                             clubAdapter.notifyDataSetChanged();
+                         } catch (JSONException e) {
+                             e.printStackTrace();
+                         }
+                     }
+                     @Override
+                     public void onError(ANError error) {
+                     }
+                 });
+
+         clubAdapter.notifyDataSetChanged();
+//     }
+//
+//        clubList.add(new Club("Captain Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Comming Soon"));
+//        clubList.add(new Club("Thanos", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "Destiny Arrives"));
+//        clubList.add(new Club("Iron Man", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "I love money"));
+//        clubAdapter.notifyDataSetChanged();
 
     }
 }

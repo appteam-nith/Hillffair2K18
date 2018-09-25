@@ -47,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:fontFamily="@font/psb"
                 android:text="Profile"
                 android:textColor="@color/black"
@@ -58,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:fontFamily="@font/psb"
                 android:text="About Us"
                 android:textColor="@color/black"
@@ -69,8 +71,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:fontFamily="@font/psb"
                 android:text="Settings"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/callNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/psb"
+                android:text="Emergency Contact"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="gone" />
@@ -80,8 +95,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:fontFamily="@font/psb"
-                android:text="Sponsors"
+                android:text="Logout"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="gone" />
