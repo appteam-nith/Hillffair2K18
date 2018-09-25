@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import appteam.nith.hillffair2k18.R;
@@ -22,6 +23,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
 
     private Activity activity;
     private TextView quiz, tambola, roulette;
+    private RelativeLayout rel1,rel2,rel3;
 
     public QuizGamesFragment() {
     }
@@ -43,6 +45,9 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
         quiz = view.findViewById(R.id.quiz);
         roulette = view.findViewById(R.id.roulette);
         tambola = view.findViewById(R.id.tambola);
+        rel1=view.findViewById(R.id.rel1);
+        rel2=view.findViewById(R.id.rel2);
+        rel3=view.findViewById(R.id.rel3);
         quiz.setOnClickListener(this);
         roulette.setOnClickListener(this);
         tambola.setOnClickListener(this);
@@ -57,12 +62,28 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.quiz:
+                rel1.setVisibility(View.VISIBLE);
+                rel2.setVisibility(View.GONE);
+                rel3.setVisibility(View.GONE);
+                quiz.setTextColor(getResources().getColor(R.color.black));
+                roulette.setTextColor(getResources().getColor(R.color.hint));
+                tambola.setTextColor(getResources().getColor(R.color.hint));
                 break;
             case R.id.tambola:
-                startActivity(new Intent(getActivity(), Housie.class));
+                rel1.setVisibility(View.GONE);
+                rel2.setVisibility(View.GONE);
+                rel3.setVisibility(View.VISIBLE);
+                tambola.setTextColor(getResources().getColor(R.color.black));
+                quiz.setTextColor(getResources().getColor(R.color.hint));
+                roulette.setTextColor(getResources().getColor(R.color.hint));
                 break;
             case R.id.roulette:
-//                startActivity(new Intent(getActivity(), .class));
+                rel1.setVisibility(View.GONE);
+                rel2.setVisibility(View.VISIBLE);
+                rel3.setVisibility(View.GONE);
+                roulette.setTextColor(getResources().getColor(R.color.black));
+                quiz.setTextColor(getResources().getColor(R.color.hint));
+                tambola.setTextColor(getResources().getColor(R.color.hint));
                 break;
         }
     }
