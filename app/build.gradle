@@ -9,6 +9,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [manifestApplicationId          : "appteam.nith.hillffair2k18",
+                                onesignal_app_id               : "bc7ba5e0-7da9-4655-896a-7adcc1b967c5",
+                                onesignal_google_project_number: "1049024080842"]
+        aaptOptions {
+            cruncherEnabled = false
+        }
     }
     buildTypes {
         release {
@@ -41,5 +47,27 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
     implementation 'com.google.firebase:firebase-core:16.0.1'
     compile 'com.amitshekhar.android:android-networking:1.0.2'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.google.code.gson:gson:2.6.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    compile 'com.onesignal:OneSignal:3.+@aar'
+    compile 'com.google.android.gms:play-services-gcm:11.8.0'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
+    compile 'com.android.support:support-v4:27.0.2'
+    compile 'com.cloudinary:cloudinary-android:1.2.2'
+    compile 'com.android.support:palette-v7:27.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    compile 'com.google.android.gms:play-services-location:11.8.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.firebaseui:firebase-ui-auth:3.2.2'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
+    testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
