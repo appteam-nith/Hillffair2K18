@@ -65,16 +65,25 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 rel1.setVisibility(View.VISIBLE);
                 rel2.setVisibility(View.GONE);
                 rel3.setVisibility(View.GONE);
+                quiz.setTextColor(getResources().getColor(R.color.black));
+                roulette.setTextColor(getResources().getColor(R.color.hint));
+                tambola.setTextColor(getResources().getColor(R.color.hint));
                 break;
             case R.id.tambola:
                 rel1.setVisibility(View.GONE);
                 rel2.setVisibility(View.GONE);
                 rel3.setVisibility(View.VISIBLE);
+                tambola.setTextColor(getResources().getColor(R.color.black));
+                quiz.setTextColor(getResources().getColor(R.color.hint));
+                roulette.setTextColor(getResources().getColor(R.color.hint));
                 break;
             case R.id.roulette:
                 rel1.setVisibility(View.GONE);
                 rel2.setVisibility(View.VISIBLE);
                 rel3.setVisibility(View.GONE);
+                roulette.setTextColor(getResources().getColor(R.color.black));
+                quiz.setTextColor(getResources().getColor(R.color.hint));
+                tambola.setTextColor(getResources().getColor(R.color.hint));
                 break;
         }
     }

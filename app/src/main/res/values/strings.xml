@@ -2,8 +2,8 @@
     <string name="app_name">Hillffair2K18</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="bulleted_list">
-        <li> Select a number which is displayed on the screen</li>\n
+    <string name="bulleted_list3">
+        <li>Select a number which is displayed on the screen</li>\n
         <li>Number will not be selected if it vanishes</li>\n
         <li>All the tickets must be crossed in order to win</li>\n
         <li>First three people to win will be awarded points</li>\n
@@ -12,16 +12,16 @@
         <li>Third-15 points</li>
     </string>
     <string name="bulleted_list1">
-        <li> There will be 10 questions in total</li>\n
+        <li>There will be 10 questions in total</li>\n
         <li>One question will appear at a time</li>\n
         <li>Select only one option</li>\n
         <li>There is a time limit for each question</li>\n
         <li>10 marks will be awarded for correct answer</li>
     </string>
     <string name="bulleted_list2">
-        <li> Each person will get 15 spins a day</li>\n
+        <li>Each person will get 15 spins a day</li>\n
         <li>Enter the number that you want to match</li>\n
-        <li>30 points will be awarded for the correct match</li>
+        <li>25 points will be awarded for the correct match</li>
     </string>
 
 
