@@ -51,8 +51,11 @@
         <activity
             android:name=".activity.AppTeam"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.Quiz">
+        </activity>
         <activity
             android:name=".activity.SettingsActivity"
             android:screenOrientation="portrait" />
+
     </application>
 </manifest>

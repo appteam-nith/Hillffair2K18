@@ -28,7 +28,7 @@ public class Profile extends AppCompatActivity {
     String Name, RollNumber, Branch, ContactNumber;
     CircleImageView profilePicture;
     TextView buttonLoadImage, save;
-    Bitmap  bmp;
+    Bitmap  bmp,img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,13 +64,27 @@ public class Profile extends AppCompatActivity {
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            img = getResizedBitmap(bmp,300);
             profilePicture = findViewById(R.id.profilePicture);
-            profilePicture.setImageBitmap(bmp);
+            profilePicture.setImageBitmap(img);
         }
 
 
     }
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
 
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
     public void initUI() {
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
         String check = prefs.getString("name", "gsbs");
@@ -111,7 +125,7 @@ public class Profile extends AppCompatActivity {
                 editor.putString("roll number", RollNumber);
                 editor.putString("Branch", Branch);
                 editor.putString("Phone", ContactNumber);
-                editor.putString("Image",encodeTobase64(bmp));
+                editor.putString("Image",encodeTobase64(img));
                 editor.commit();
                 startActivity(new Intent(Profile.this, DashActivity.class));
                 finish();
@@ -120,7 +134,7 @@ public class Profile extends AppCompatActivity {
     public static String encodeTobase64(Bitmap image) {
         Bitmap immage = image;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.PNG, 50, baos);
+        immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] b = baos.toByteArray();
         String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
 

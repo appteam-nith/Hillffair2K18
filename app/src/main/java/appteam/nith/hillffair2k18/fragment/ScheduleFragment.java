@@ -109,7 +109,7 @@ public class ScheduleFragment extends Fragment {
 //                                 scheduleList.add(new Schedule(clubname, event_name, "1", event_time));
 //                             }
 //                             scheduleAdapter.notifyDataSetChanged();
-
+//
 //                         } catch (JSONException e) {
 //                             e.printStackTrace();
 //                         }
@@ -119,7 +119,7 @@ public class ScheduleFragment extends Fragment {
 //                         // handle error
 //                     }
 //                 });
-
+//
 //         scheduleAdapter.notifyDataSetChanged();
 //     }
 
