@@ -28,7 +28,6 @@ public class Login extends AppCompatActivity {
     TextView btnGenerateOTP, btnSignIn, skip;
     String phoneNumber, otp;
     EditText etPhoneNumber, etOTP;
-    RelativeLayout mobile, verify;
     FirebaseAuth auth;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
     private String verificationCode;
@@ -47,8 +46,6 @@ public class Login extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btn_sign_in);
         etPhoneNumber = findViewById(R.id.et_phone_number);
         etOTP = findViewById(R.id.et_otp);
-        mobile = findViewById(R.id.mobile);
-        verify = findViewById(R.id.verify);
         skip = findViewById(R.id.skip);
         setupdata();
     }
@@ -65,8 +62,6 @@ public class Login extends AppCompatActivity {
                 else {
                     btnSignIn.setVisibility(View.VISIBLE);
                     btnGenerateOTP.setVisibility(View.GONE);
-                    mobile.setVisibility(View.GONE);
-                    verify.setVisibility(View.VISIBLE);
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
                             phoneNumber,                     // Phone number to verify
                             60,                           // Timeout duration
