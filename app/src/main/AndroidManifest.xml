@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="appteam.nith.hillffair2k18">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,19 +12,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.DashActivity"></activity>
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".Login"></activity>
-        <activity android:name=".Housie"></activity>
-        <activity android:name=".Gallery"></activity>
-        <activity android:name=".Profile"></activity>
-        <activity android:name=".ImageUI"></activity>
-        <activity android:name=".activity.RouletteActivity">
+
+        <activity
+            android:name=".activity.DashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        <activity
+            android:name=".activity.ProfileMain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RouletteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Login"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Housie"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Gallery"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Profile"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ImageUI"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Upload"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AppTeam"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.Quiz"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:screenOrientation="portrait" />
 
+    </application>
 </manifest>

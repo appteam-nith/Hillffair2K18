@@ -1,38 +1,23 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.3</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
 
-    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:backgroundDimAmount">0.3</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowSharedElementsUseOverlay">true</item>
+    <style name="RedHighlight" parent="AppTheme">
+        <item name="android:colorControlHighlight">#bf021c</item>
     </style>
-    <style name="Theme.Transparent1" parent="Theme.Transparent">
-        <item name="android:windowTranslucentStatus">false</item>
+    <style name="GreenHighlight" parent="AppTheme">
+        <item name="android:colorControlHighlight">#AAF719</item>
     </style>
-  <style name="AppTheme.RedRipple" parent="Theme.Transparent">
-        <item name="colorControlHighlight">@color/redDark</item>
-    </style>
-  <style name="AppTheme.BlueRipple" parent="Theme.Transparent">
-        <item name="colorControlHighlight">@color/blueLight</item>
-    </style>
-    <style name="AppTheme.GreenRipple" parent="Theme.Transparent">
-        <item name="colorControlHighlight">@color/greenLight</item>
+    <style name="SwitchCompatTheme" >
+        <item name="colorControlActivated">#f3f3f3</item>
     </style>
 </resources>

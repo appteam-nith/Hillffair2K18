@@ -1,123 +1,101 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ClubAdapter;
 import appteam.nith.hillffair2k18.model.Club;
+import appteam.nith.hillffair2k18.model.Schedule;
 
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-
+/**
+ * Coded by ThisIsNSH on Someday.
+ */
 
 public class ClubsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-    private RecyclerView secondRec;
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    ClubAdapter recyclerViewAdapter2;
-    RecyclerView.LayoutManager recylerViewLayoutManager2;
-    RecyclerView recyclerView2;
-    private OnFragmentInteractionListener mListener;
-    Context context;
-    private List<Club> clubList;
+
+    private ClubAdapter clubAdapter;
+    private RecyclerView recyclerView;
+    private Activity activity;
+    private List<Club> clubList = new ArrayList<>();
+
     public ClubsFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Clubs.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ClubsFragment newInstance(String param1, String param2) {
-        ClubsFragment fragment = new ClubsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public ClubsFragment(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        context = getContext();
-        secondRec = getView().findViewById(R.id.secondRec);
-        recyclerView2 = secondRec;
-        recylerViewLayoutManager2 = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
-        recyclerView2.setLayoutManager(recylerViewLayoutManager2);
-        recyclerViewAdapter2 = new ClubAdapter(clubList, (Activity) context);
-        recyclerView2.setAdapter(recyclerViewAdapter2);
-        return inflater.inflate(R.layout.fragment_clubs, container, false);
+        View view = inflater.inflate(R.layout.fragment_clubs, container, false);
+        recyclerView = view.findViewById(R.id.secondRec);
+        clubAdapter = new ClubAdapter(clubList, activity);
+        getData();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(clubAdapter);
+        Log.e("ClubsFragment", "onCreateView: ");
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+    public void getData() {
+        clubList.clear();
+                 AndroidNetworking.get("http://hillffair.tk/getclubs")
+                 .build()
+                 .getAsJSONArray(new JSONArrayRequestListener() {
+                     @Override
+                     public void onResponse(JSONArray response) {
+                         try {
+                             int users = response.length();
+                             for (int i = 0;i<users;i++) {
+                                 JSONObject json = response.getJSONObject(i);
+                                 String clubname = json.getString("name");
+                                 String info = json.getString("info");
+                                 String id = json.getString("id");
+                                 clubList.add(new Club(clubname,id, info));
+                             }
+                             clubAdapter.notifyDataSetChanged();
+                         } catch (JSONException e) {
+                             e.printStackTrace();
+                         }
+                     }
+                     @Override
+                     public void onError(ANError error) {
+                     }
+                 });
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+         clubAdapter.notifyDataSetChanged();
+//     }
+//
+//        clubList.add(new Club("Captain Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Comming Soon"));
+//        clubList.add(new Club("Thanos", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "Destiny Arrives"));
+//        clubList.add(new Club("Iron Man", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "I love money"));
+//        clubAdapter.notifyDataSetChanged();
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }
