@@ -16,8 +16,8 @@
             android:id="@+id/game_quiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:layout_marginTop="32dp"
             android:orientation="vertical">
 
@@ -28,32 +28,34 @@
                 android:fontFamily="@font/psb"
                 android:text="Rules"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/ps"
                 android:text="@string/bulleted_list1"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
+
         <android.support.v7.widget.CardView
             android:id="@+id/play_quiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:layout_centerHorizontal="true"
             app:cardBackgroundColor="#fff"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
-            app:contentPadding="8dp">
+            app:contentPadding="4dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,8 +80,8 @@
             android:id="@+id/game_tambola"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:layout_marginTop="32dp"
             android:orientation="vertical">
 
@@ -90,32 +92,34 @@
                 android:fontFamily="@font/psb"
                 android:text="Rules"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/ps"
                 android:text="@string/bulleted_list3"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
+
         <android.support.v7.widget.CardView
             android:id="@+id/play_tambola"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:layout_centerHorizontal="true"
             app:cardBackgroundColor="#fff"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
-            app:contentPadding="8dp">
+            app:contentPadding="4dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -140,8 +144,8 @@
             android:id="@+id/game_roulette"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:layout_marginTop="32dp"
             android:orientation="vertical">
 
@@ -152,32 +156,34 @@
                 android:fontFamily="@font/psb"
                 android:text="Rules"
                 android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/ps"
                 android:text="@string/bulleted_list2"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
+
         <android.support.v7.widget.CardView
             android:id="@+id/play_roulette"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
-            android:layout_centerHorizontal="true"
             app:cardBackgroundColor="#fff"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
-            app:contentPadding="8dp">
+            app:contentPadding="4dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
