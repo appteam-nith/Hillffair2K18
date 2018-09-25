@@ -2,6 +2,7 @@ package appteam.nith.hillffair2k18.activity;
 /**
  * Created by LENOVO on 24-09-2018.
  */
+import android.os.CountDownTimer;
 import android.view.View;
 import appteam.nith.hillffair2k18.R;
 
@@ -9,106 +10,171 @@ import appteam.nith.hillffair2k18.R;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.View;
+import android.widget.TextView;
 
-        import appteam.nith.hillffair2k18.R;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
-public class Quiz extends AppCompatActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.model.Club;
+
+public class Quiz extends AppCompatActivity implements View.OnClickListener{
+TextView textTimer,q1;
+TextView o1,o2,o3,o4;
+String option1,option2,check,option3,option4,ans,ques1;
+int time,points=0;
+ArrayList<String> optionA = new ArrayList<String>();
+ArrayList<String> optionB = new ArrayList<String>();
+    ArrayList<String> optionC = new ArrayList<String>();
+    ArrayList<String> optionD = new ArrayList<String>();
+    ArrayList<String> answers = new ArrayList<String>();
+    ArrayList<String> question = new ArrayList<String>();
+    public int count = 0,l;
+    JSONArray ques;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-    }
-
-    int QuestionNum = 1;
-
-    public void optionAselected(View view){
-        View ButtonB = this.findViewById(R.id.optionB_button);
-        View ButtonC = this.findViewById(R.id.optionC_button);
-        View ButtonD = this.findViewById(R.id.optionD_button);
-
-        ButtonB.getBackground().setAlpha(0); //Setting alpha to half , alpha has values from 0 to 255
-        ButtonC.getBackground().setAlpha(127);
-        ButtonD.getBackground().setAlpha(127);
-
-        sendOption('A');
-
-        if(QuestionNum <= 10){
-            QuestionNum += 1;
-            nextQuestion();
-        }
-        else{
-            endQuiz();
+        AndroidNetworking.initialize(getApplicationContext());
+            time=15;
+            textTimer = (TextView)findViewById(R.id.timer);
+            setdata();
+//            getdata();
+////            start();
         }
 
-    }
+        public void setdata()
+        {
+            AndroidNetworking.get("http://hillffair.tk/getquiz")
+                    .build()
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try
+                            {
+                                ques = response.getJSONArray("questions");
+                                l = ques.length();
+                                for (int i=0;i<l;i++) {
+                                    JSONObject json = ques.getJSONObject(i);
+//                                    q1setText(o);
+                                    ques1 = json.getString("ques");
+                                    option1= json.getString("option1");
+                                    option2= json.getString("option2");
+                                    option3= json.getString("option3");
+                                    option4= json.getString("option4");
+                                    optionA.add(option1);
+                                    optionB.add(option2);
+                                    optionC.add(option3);
+                                    optionD.add(option4);
+                                    question.add(ques1);
+//
+                                    ans = json.getString("ans");
+                                    answers.add(ans);
+                                }
+                                getdata();
+//                                start();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        @Override
+                        public void onError(ANError error) {
+                        }
+                    });
 
-    public void optionBselected(View view){
-        View ButtonA = this.findViewById(R.id.optionA_button);
-        View ButtonC = this.findViewById(R.id.optionC_button);
-        View ButtonD = this.findViewById(R.id.optionD_button);
-
-        ButtonA.getBackground().setAlpha(127); //Setting alpha to half , alpha has values from 0 to 255
-        ButtonC.getBackground().setAlpha(127);
-        ButtonD.getBackground().setAlpha(127);
-
-        if(QuestionNum <= 10){
-            QuestionNum += 1;
-            nextQuestion();
         }
-        else{
-            endQuiz();
+    int i = 0;
+        public void getdata()
+        {
+            q1 = findViewById(R.id.ques);
+            o1 = findViewById(R.id.optiona);
+            o2 = findViewById(R.id.optionb);
+            o3 = findViewById(R.id.optionc);
+            o4 = findViewById(R.id.optiond);
+            o1.setOnClickListener(this);
+            o2.setOnClickListener(this);
+            o3.setOnClickListener(this);
+            o4.setOnClickListener(this);
+            start();
         }
-    }
+        public void start()
+        {
 
-    public void optionCselected(View view){
-        View ButtonA = this.findViewById(R.id.optionA_button);
-        View ButtonB = this.findViewById(R.id.optionB_button);
-        View ButtonD = this.findViewById(R.id.optionD_button);
+            new CountDownTimer(15000, 1000) {
 
-        ButtonA.getBackground().setAlpha(127); //Setting alpha to half , alpha has values from 0 to 255
-        ButtonB.getBackground().setAlpha(127);
-        ButtonD.getBackground().setAlpha(127);
+                public void onTick(long millisUntilFinished) {
 
-        if(QuestionNum <= 10){
-            QuestionNum += 1;
-            nextQuestion();
+                     check = answers.get(i);
+                    textTimer.setText("0:"+checkDigit(time));
+                    q1.setText(question.get(i));
+                    o1.setText(optionA.get(i));
+                    o2.setText(optionB.get(i));
+                    o3.setText(optionC.get(i));
+                    o4.setText(optionD.get(i));
+                    time--;
+                }
+                public void onFinish() {
+                    time  = 15;
+                    i++;
+                    if (i<10)
+                        start();
+                    else
+                    {
+                        textTimer.setText("FINISHED");
+                    }
+
+                }
+
+            }.start();
+
         }
-        else{
-            endQuiz();
+    public String checkDigit(int number) {
+        return number <= 9 ? "0" + number : String.valueOf(number);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.optiona:
+                if (check.equals("1"))
+                {
+                    points++;
+                }
+                break;
+            case R.id.optionb:
+                if (check.equals("2"))
+                {
+                    points++;
+                    start();
+                }
+                break;
+
+            case R.id.optionc:
+                if (check.equals("3"))
+                {
+                    points++;
+
+                }
+                break;
+            case R.id.optiond:
+                if (check.equals("4"))
+                {
+                    points++;
+                }
+                break;
+
         }
-    }
-
-    public void optionDselected(View view){
-        View ButtonA = this.findViewById(R.id.optionA_button);
-        View ButtonB = this.findViewById(R.id.optionB_button);
-        View ButtonC = this.findViewById(R.id.optionC_button);
-
-        ButtonA.getBackground().setAlpha(127); //Setting alpha to half , alpha has values from 0 to 255
-        ButtonB.getBackground().setAlpha(127);
-        ButtonC.getBackground().setAlpha(127);
-
-        if(QuestionNum <= 10){
-            QuestionNum += 1;
-            nextQuestion();
-        }
-        else{
-            endQuiz();
-        }
-    }
-
-    private void sendOption(char SelectedOption){
-        //Code to send selected option to backend
 
     }
-
-    private void nextQuestion(){
-        //Code to change question on screen to another
-
-    }
-
-    private void endQuiz(){
-        //Either intent to go to quiz summary page or directly go to Quiz Map
-    }
-
 }
