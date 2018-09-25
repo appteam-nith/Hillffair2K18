@@ -4,7 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.RelativeLayout;
@@ -33,7 +38,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Coded by ThisIsNSH on Someday.
  */
 
-public class DashActivity extends AppCompatActivity {
+public class DashActivity extends AppCompatActivity implements View.OnClickListener {
 
     private LinearLayoutManager linearLayoutManager;
     private ViewPager viewPager;
@@ -70,8 +75,16 @@ public class DashActivity extends AppCompatActivity {
         settingNav = findViewById(R.id.settingNav);
         sponsorNav = findViewById(R.id.sponsorNav);
         profile=findViewById(R.id.profile);
-        aboutNav.setOnClickListener(t);
+//        aboutNav.setOnClickListener(t);
         viewPager = findViewById(R.id.viewpager);
+        profile.setOnClickListener(this);
+        SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
+        String check2 = prefs.getString("Image", "gsbs");
+        if (!check2.equals("gsbs"))
+        {
+            Bitmap img = setProfile(check2);
+            profile.setImageBitmap(img);
+        }
 
         final SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), DashActivity.this);
         viewPager.setAdapter(adapter);
@@ -146,7 +159,6 @@ public class DashActivity extends AppCompatActivity {
                             aboutNav.setVisibility(View.VISIBLE);
                             settingNav.setVisibility(View.VISIBLE);
                             sponsorNav.setVisibility(View.VISIBLE);
-
                         }
 
                         @Override
@@ -443,5 +455,20 @@ public class DashActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
+    }
+    public Bitmap setProfile(String image)
+    {
+        byte[] decodedByte = Base64.decode(image, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.profile:
+                startActivity(new Intent(this,ProfileMain.class));
+                break;
+        }
     }
 }

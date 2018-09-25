@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,7 +28,7 @@ public class Profile extends AppCompatActivity {
     String Name, RollNumber, Branch, ContactNumber;
     CircleImageView profilePicture;
     TextView buttonLoadImage, save;
-
+    Bitmap  bmp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,7 @@ public class Profile extends AppCompatActivity {
             ByteArrayOutputStream bs = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();
-            Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             profilePicture = findViewById(R.id.profilePicture);
             profilePicture.setImageBitmap(bmp);
         }
@@ -76,6 +78,7 @@ public class Profile extends AppCompatActivity {
         if (!check.equals("gsbs"))
         {
             startActivity(new Intent(Profile.this, DashActivity.class));
+            finish();
         }
 
         studentName = findViewById(R.id.studentName);
@@ -108,8 +111,20 @@ public class Profile extends AppCompatActivity {
                 editor.putString("roll number", RollNumber);
                 editor.putString("Branch", Branch);
                 editor.putString("Phone", ContactNumber);
+                editor.putString("Image",encodeTobase64(bmp));
                 editor.commit();
                 startActivity(new Intent(Profile.this, DashActivity.class));
+                finish();
             }
+    }
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.PNG, 50, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        Log.d("Image Log:", imageEncoded);
+        return imageEncoded;
     }
 }
