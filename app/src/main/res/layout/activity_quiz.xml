@@ -4,21 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:baselineAligned="true"
+    android:background="#eeeeee"
+
     android:orientation="vertical"
     tools:context=".activity.Quiz">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5">
+        android:layout_weight="4">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/imaa"
+        android:src="@drawable/blue_violet"/>
+ <!--       <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/l1"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/quiz_userprofile_image"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/logo"
             android:layout_marginStart="34dp"
             android:contentDescription="Profile Picture of User" />
 
@@ -26,19 +37,22 @@
             android:id="@+id/quiz_profilename_textview"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_alignTop="@+id/quiz_userprofile_image"
-            android:layout_toEndOf="@+id/quiz_userprofile_image"
+            android:textSize="20sp"
+            android:layout_toRightOf="@id/quiz_userprofile_image"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:text="Profile Name"
             />
-
-    </RelativeLayout>
-
+        </LinearLayout> -->
     <android.support.v7.widget.CardView
         android:id="@+id/quiz_questionbox_cardview"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:layout_weight="3"
+        android:layout_height="400dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#ffffff"
+        android:elevation="8dp"
         android:padding="20dp"
         app:cardCornerRadius="25dp">
 
@@ -52,6 +66,7 @@
             />
 
     </android.support.v7.widget.CardView>
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/quiz_option_linearlayout1"
         android:layout_width="match_parent"
@@ -62,6 +77,8 @@
         <android.support.v7.widget.CardView
             android:id="@+id/quiz_optionA_cardview"
             android:layout_width="0dp"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -80,6 +97,8 @@
         <android.support.v7.widget.CardView
             android:id="@+id/quiz_optionB_cardview"
             android:layout_width="0dp"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
@@ -108,6 +127,8 @@
             android:id="@+id/quiz_optionC_cardview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
             app:cardCornerRadius="15dp"
@@ -128,6 +149,8 @@
             android:id="@+id/quiz_optionD_cardview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
             app:cardCornerRadius="15dp"
@@ -142,6 +165,38 @@
                 />
 
         </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="end"
+        android:layout_weight="1">
+        <android.support.v7.widget.CardView
+            android:id="@+id/moreBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#fff"
+            app:cardCornerRadius="16dp"
+            android:layout_gravity="end"
+            app:cardElevation="4dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:clickable="false"
+                android:fontFamily="@font/ps"
+                android:padding="4dp"
+                android:text="          Next         "
+                android:textColor="#000"
+                android:textSize="12sp" />
+
+        </android.support.v7.widget.CardView>
+
     </LinearLayout>
 
 </LinearLayout>
