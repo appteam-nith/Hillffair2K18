@@ -2,6 +2,8 @@ package appteam.nith.hillffair2k18.activity;
 /**
  * Created by LENOVO on 24-09-2018.
  */
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.CountDownTimer;
 import android.view.View;
 import appteam.nith.hillffair2k18.R;
@@ -10,6 +12,7 @@ import appteam.nith.hillffair2k18.R;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -30,7 +33,7 @@ import appteam.nith.hillffair2k18.model.Club;
 
 public class Quiz extends AppCompatActivity implements View.OnClickListener{
 TextView textTimer,q1;
-TextView o1,o2,o3,o4;
+Button o1,o2,o3,o4;
 String option1,option2,check,option3,option4,ans,ques1;
 int time,points=0;
 ArrayList<String> optionA = new ArrayList<String>();
@@ -40,6 +43,7 @@ ArrayList<String> optionB = new ArrayList<String>();
     ArrayList<String> answers = new ArrayList<String>();
     ArrayList<String> question = new ArrayList<String>();
     public int count = 0,l;
+    int color;
     JSONArray ques;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +105,7 @@ ArrayList<String> optionB = new ArrayList<String>();
             o2 = findViewById(R.id.optionb);
             o3 = findViewById(R.id.optionc);
             o4 = findViewById(R.id.optiond);
+            color = o2.getSolidColor();
             o1.setOnClickListener(this);
             o2.setOnClickListener(this);
             o3.setOnClickListener(this);
@@ -122,8 +127,17 @@ ArrayList<String> optionB = new ArrayList<String>();
                     o3.setText(optionC.get(i));
                     o4.setText(optionD.get(i));
                     time--;
+
                 }
                 public void onFinish() {
+                    o1.setClickable(true);
+                    o2.setClickable(true);
+                    o3.setClickable(true);
+                    o4.setClickable(true);
+                    o1.setBackgroundColor(color);
+                    o2.setBackgroundColor(color);
+                    o3.setBackgroundColor(color);
+                    o4.setBackgroundColor(color);
                     time  = 15;
                     i++;
                     if (i<10)
@@ -141,6 +155,13 @@ ArrayList<String> optionB = new ArrayList<String>();
     public String checkDigit(int number) {
         return number <= 9 ? "0" + number : String.valueOf(number);
     }
+    public void visible(){
+            o1.setClickable(false);
+            o2.setClickable(false);
+            o3.setClickable(false);
+            o4.setClickable(false);
+
+    }
 
     @Override
     public void onClick(View v) {
@@ -151,27 +172,33 @@ ArrayList<String> optionB = new ArrayList<String>();
                 {
                     points++;
                 }
+                visible();
+                o1.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
                 break;
             case R.id.optionb:
                 if (check.equals("2"))
                 {
                     points++;
-                    start();
                 }
+                visible();
+                o2.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
                 break;
 
             case R.id.optionc:
                 if (check.equals("3"))
                 {
                     points++;
-
                 }
+                visible();
+                o3.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
                 break;
             case R.id.optiond:
                 if (check.equals("4"))
                 {
                     points++;
                 }
+                visible();
+                o4.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
                 break;
 
         }
