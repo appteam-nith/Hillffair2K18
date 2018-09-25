@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
@@ -22,9 +21,21 @@ import appteam.nith.hillffair2k18.R;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileMain extends AppCompatActivity {
-    TextView name1,rollNumber1,branch1,mobile1;
-    CircleImageView profilemain,buttonLoadImage;
+    TextView name1, rollNumber1, branch1, mobile1;
+    CircleImageView profilemain, buttonLoadImage;
     Bitmap bmp;
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.PNG, 50, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        Log.d("Image Log:", imageEncoded);
+        return imageEncoded;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +46,11 @@ public class ProfileMain extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileMain.this, DashActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
             }
         });
-initUI();
+        initUI();
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
         String check = prefs.getString("name", "nullaaa");
         if (!check.equals("nullaaa")) {
@@ -55,13 +68,13 @@ initUI();
         if (!check3.equals("nullaaa")) {
             mobile1.setText(check3);
         }
-        String image = prefs.getString("Image","nullaaa");
-     Bitmap img = decodeBase64(image);
-     profilemain.setImageBitmap(img);
-     changeProfile();
+        String image = prefs.getString("Image", "nullaaa");
+        Bitmap img = decodeBase64(image);
+        profilemain.setImageBitmap(img);
+        changeProfile();
     }
-    public void changeProfile()
-    {
+
+    public void changeProfile() {
         buttonLoadImage = findViewById(R.id.profilePicture);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
@@ -75,6 +88,7 @@ initUI();
             }
         });
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data != null) {
@@ -94,30 +108,22 @@ initUI();
             buttonLoadImage.setImageBitmap(bmp);
             SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("Image",encodeTobase64(bmp));
+            editor.putString("Image", encodeTobase64(bmp));
             editor.commit();
         }
     }
-    public static String encodeTobase64(Bitmap image) {
-        Bitmap immage = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.PNG, 50, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
 
-        Log.d("Image Log:", imageEncoded);
-        return imageEncoded;
-    }
     public Bitmap decodeBase64(String input) {
         byte[] decodedByte = Base64.decode(input, 0);
         return BitmapFactory
                 .decodeByteArray(decodedByte, 0, decodedByte.length);
     }
-    public void initUI(){
+
+    public void initUI() {
         name1 = findViewById(R.id.name1);
-        rollNumber1=findViewById(R.id.rollNumber1);
-        branch1=findViewById(R.id.branch1);
-        mobile1=findViewById(R.id.mobile1);
+        rollNumber1 = findViewById(R.id.rollNumber1);
+        branch1 = findViewById(R.id.branch1);
+        mobile1 = findViewById(R.id.mobile1);
         profilemain = findViewById(R.id.profilePicture);
     }
 }
