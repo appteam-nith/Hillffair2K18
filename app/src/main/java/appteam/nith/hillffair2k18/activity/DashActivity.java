@@ -9,13 +9,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.RelativeLayout;
@@ -24,6 +27,8 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +44,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DashActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
+    Bitmap bmp, img;
     private LinearLayoutManager linearLayoutManager;
     private ViewPager viewPager;
     private CircleImageView profile;
@@ -529,4 +535,27 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data != null) {
+            Uri photoUri = data.getData();
+            Bitmap selectedImage = null;
+            try {
+                selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ByteArrayOutputStream bs = new ByteArrayOutputStream();
+            selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
+            byte[] byteArray = bs.toByteArray();
+            Intent i = new Intent(this, Upload.class);
+            i.putExtra("imageUpload", byteArray);
+            startActivity(i);
+        }
+
+
+    }
+
+
 }
