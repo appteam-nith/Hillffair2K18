@@ -48,7 +48,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
     private ScrollAdapter scrollAdapter;
     private List<Scroll> scrollList = new ArrayList<>();
     private ScrollView scrollView;
-    private TextView title, profileNav, aboutNav, settingNav, sponsorNav, callNav;
+    private TextView title, profileNav, aboutNav, settingNav, sponsorNav, callNav, notifNav, mapNav, hillffairNav;
     private RelativeLayout linearLayout;
     private boolean check = true;
     private RelativeLayout navDrawer;
@@ -70,6 +70,9 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         settingNav = findViewById(R.id.settingNav);
         sponsorNav = findViewById(R.id.sponsorNav);
         callNav = findViewById(R.id.callNav);
+        notifNav = findViewById(R.id.notifNav);
+        hillffairNav = findViewById(R.id.hillffairNav);
+        mapNav = findViewById(R.id.mapNav);
         profile = findViewById(R.id.profile);
         viewPager = findViewById(R.id.viewpager);
         setupdata();
@@ -81,8 +84,11 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         profile.setOnClickListener(this);
         aboutNav.setOnClickListener(this);
         callNav.setOnClickListener(this);
+        notifNav.setOnClickListener(this);
+        mapNav.setOnClickListener(this);
         settingNav.setOnClickListener(this);
         nav.setOnClickListener(this);
+        hillffairNav.setOnClickListener(this);
         viewPager.addOnPageChangeListener(this);
 
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
@@ -291,19 +297,32 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     navDrawer.setVisibility(View.VISIBLE);
                     profileNav.setVisibility(View.VISIBLE);
                     aboutNav.setVisibility(View.VISIBLE);
-                    settingNav.setVisibility(View.VISIBLE);
+                    settingNav.setVisibility(View.GONE);
                     sponsorNav.setVisibility(View.VISIBLE);
+                    callNav.setVisibility(View.VISIBLE);
+                    notifNav.setVisibility(View.VISIBLE);
+                    mapNav.setVisibility(View.VISIBLE);
+                    hillffairNav.setVisibility(View.VISIBLE);
+
                     ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(navDrawer, "alpha", 0, 1);
                     ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(recyclerView, "alpha", 1, 0);
                     ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(aboutNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(profileNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator4 = ObjectAnimator.ofFloat(settingNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator5 = ObjectAnimator.ofFloat(sponsorNav, "alpha", 0, 1);
+                    ObjectAnimator objectAnimator1a = ObjectAnimator.ofFloat(mapNav, "alpha", 0, 1);
+                    ObjectAnimator objectAnimator2a = ObjectAnimator.ofFloat(notifNav, "alpha", 0, 1);
+                    ObjectAnimator objectAnimator3a = ObjectAnimator.ofFloat(callNav, "alpha", 0, 1);
+                    ObjectAnimator objectAnimator3aa = ObjectAnimator.ofFloat(hillffairNav, "alpha", 0, 1);
 
                     ObjectAnimator objectAnimator6 = ObjectAnimator.ofFloat(aboutNav, "translationY", 15f, 0f);
                     ObjectAnimator objectAnimator7 = ObjectAnimator.ofFloat(profileNav, "translationY", 15f, 0f);
                     ObjectAnimator objectAnimator8 = ObjectAnimator.ofFloat(settingNav, "translationY", 15f, 0f);
                     ObjectAnimator objectAnimator9 = ObjectAnimator.ofFloat(sponsorNav, "translationY", 15f, 0f);
+                    ObjectAnimator objectAnimator4a = ObjectAnimator.ofFloat(callNav, "translationY", 15f, 0f);
+                    ObjectAnimator objectAnimator5a = ObjectAnimator.ofFloat(mapNav, "translationY", 15f, 0f);
+                    ObjectAnimator objectAnimator6a = ObjectAnimator.ofFloat(notifNav, "translationY", 15f, 0f);
+                    ObjectAnimator objectAnimator6aa = ObjectAnimator.ofFloat(hillffairNav, "translationY", 15f, 0f);
 
                     objectAnimator5.setDuration(500);
                     objectAnimator4.setDuration(500);
@@ -315,6 +334,16 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     objectAnimator2.setDuration(500);
                     objectAnimator1.setDuration(500);
                     objectAnimator.setDuration(500);
+
+                    objectAnimator1a.setDuration(500);
+                    objectAnimator2a.setDuration(500);
+                    objectAnimator3aa.setDuration(500);
+                    objectAnimator3a.setDuration(500);
+                    objectAnimator4a.setDuration(500);
+                    objectAnimator5a.setDuration(500);
+                    objectAnimator6a.setDuration(500);
+                    objectAnimator6aa.setDuration(500);
+
                     objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator4.setInterpolator(new AnticipateOvershootInterpolator());
@@ -324,8 +353,17 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     objectAnimator8.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator9.setInterpolator(new AnticipateOvershootInterpolator());
 
+                    objectAnimator1a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator2a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator3a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator3aa.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator4a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator5a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator6a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator6aa.setInterpolator(new AnticipateOvershootInterpolator());
+
                     AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9);
+                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9, objectAnimator1a, objectAnimator2a, objectAnimator3a, objectAnimator3aa, objectAnimator4a, objectAnimator5a, objectAnimator6a, objectAnimator6aa);
                     animatorSet.start();
                     animatorSet.addListener(new Animator.AnimatorListener() {
                         @Override
@@ -339,8 +377,13 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                             recyclerView.setVisibility(View.GONE);
                             profileNav.setVisibility(View.VISIBLE);
                             aboutNav.setVisibility(View.VISIBLE);
-                            settingNav.setVisibility(View.VISIBLE);
+                            settingNav.setVisibility(View.GONE);
                             sponsorNav.setVisibility(View.VISIBLE);
+                            callNav.setVisibility(View.VISIBLE);
+                            notifNav.setVisibility(View.VISIBLE);
+                            hillffairNav.setVisibility(View.VISIBLE);
+                            mapNav.setVisibility(View.VISIBLE);
+
                         }
 
                         @Override
@@ -380,6 +423,16 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     ObjectAnimator objectAnimator8 = ObjectAnimator.ofFloat(settingNav, "translationY", 0f, 15f);
                     ObjectAnimator objectAnimator9 = ObjectAnimator.ofFloat(sponsorNav, "translationY", 0f, 15f);
 
+                    ObjectAnimator objectAnimator4a = ObjectAnimator.ofFloat(callNav, "translationY", 0f, 15f);
+                    ObjectAnimator objectAnimator5a = ObjectAnimator.ofFloat(mapNav, "translationY", 0f, 15f);
+                    ObjectAnimator objectAnimator6a = ObjectAnimator.ofFloat(notifNav, "translationY", 0f, 15f);
+                    ObjectAnimator objectAnimator6aa = ObjectAnimator.ofFloat(hillffairNav, "translationY", 0f, 15f);
+
+                    ObjectAnimator objectAnimator1a = ObjectAnimator.ofFloat(mapNav, "alpha", 1, 0);
+                    ObjectAnimator objectAnimator2a = ObjectAnimator.ofFloat(notifNav, "alpha", 1, 0);
+                    ObjectAnimator objectAnimator3aa = ObjectAnimator.ofFloat(hillffairNav, "alpha", 1, 0);
+                    ObjectAnimator objectAnimator3a = ObjectAnimator.ofFloat(callNav, "alpha", 1, 0);
+
                     objectAnimator.setDuration(250);
                     objectAnimator5.setDuration(250);
                     objectAnimator1.setDuration(250);
@@ -391,6 +444,23 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     objectAnimator9.setDuration(250);
                     objectAnimator2.setDuration(250);
 
+                    objectAnimator1a.setDuration(250);
+                    objectAnimator2a.setDuration(250);
+                    objectAnimator3a.setDuration(250);
+                    objectAnimator3aa.setDuration(250);
+                    objectAnimator4a.setDuration(250);
+                    objectAnimator5a.setDuration(250);
+                    objectAnimator6a.setDuration(250);
+                    objectAnimator6aa.setDuration(250);
+
+                    objectAnimator1a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator2a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator3a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator3aa.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator4a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator5a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator6a.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator6aa.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator4.setInterpolator(new AnticipateOvershootInterpolator());
@@ -404,7 +474,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     objectAnimator.setStartDelay(0);
 
                     AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9);
+                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9, objectAnimator1a, objectAnimator2a, objectAnimator3a, objectAnimator3aa, objectAnimator4a, objectAnimator5a, objectAnimator6a, objectAnimator6aa);
                     animatorSet.start();
                     animatorSet.addListener(new Animator.AnimatorListener() {
                         @Override
@@ -420,6 +490,10 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                             aboutNav.setVisibility(View.GONE);
                             settingNav.setVisibility(View.GONE);
                             sponsorNav.setVisibility(View.GONE);
+                            callNav.setVisibility(View.GONE);
+                            notifNav.setVisibility(View.GONE);
+                            hillffairNav.setVisibility(View.GONE);
+                            mapNav.setVisibility(View.GONE);
 
                         }
 
