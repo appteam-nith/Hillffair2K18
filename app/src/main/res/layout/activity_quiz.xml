@@ -1,73 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#eeeeee"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
     android:orientation="vertical"
-    tools:context=".activity.Quiz"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    tools:context=".activity.Quiz">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:id="@+id/imaa"
-        android:src="@drawable/blue_violet"/>
+        <ImageView
+            android:id="@+id/imaa"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/blue_violet" />
 
         <LinearLayout
+            android:id="@+id/l1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/l1"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
 
-  <!--      <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/quiz_userprofile_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/logo"
-            android:layout_marginStart="34dp"
-            android:contentDescription="Profile Picture of User" />
--->
-        <TextView
-            android:id="@+id/timer"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:textSize="20sp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:text="Profile Name" />
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="Profile Name"
+                android:textSize="20sp" />
         </LinearLayout>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/quiz_questionbox_cardview"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_below="@id/l1"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#ffffff"
-        android:elevation="8dp"
-        android:padding="20dp"
-        app:cardCornerRadius="25dp">
+        <android.support.v7.widget.CardView
+            android:id="@+id/quiz_questionbox_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/l1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
+            android:padding="20dp"
+            app:cardCornerRadius="25dp">
 
-        <TextView
-            android:id="@+id/ques"
-            android:fontFamily="@font/psb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="TextView"
-            />
+            <TextView
+                android:id="@+id/ques"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:fontFamily="@font/psb"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="TextView" />
 
         </android.support.v7.widget.CardView>
     </RelativeLayout>
@@ -93,11 +82,10 @@
             <Button
                 android:id="@+id/optiona"
                 android:layout_width="match_parent"
-                android:background="#ffffff"
                 android:layout_height="match_parent"
+                android:background="#ffffff"
 
-                android:text="Option A"
-                />
+                android:text="Option A" />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -114,11 +102,10 @@
             <Button
                 android:id="@+id/optionb"
                 android:layout_width="match_parent"
-                android:background="#ffffff"
                 android:layout_height="match_parent"
+                android:background="#ffffff"
 
-                android:text="Option B"
-                />
+                android:text="Option B" />
 
         </android.support.v7.widget.CardView>
     </LinearLayout>
@@ -145,11 +132,10 @@
             <Button
                 android:id="@+id/optionc"
                 android:layout_width="match_parent"
-                android:background="#ffffff"
                 android:layout_height="match_parent"
+                android:background="#ffffff"
 
-                android:text="Option C"
-                />
+                android:text="Option C" />
 
         </android.support.v7.widget.CardView>
 
@@ -167,46 +153,13 @@
             <Button
                 android:id="@+id/optiond"
                 android:layout_width="match_parent"
-                android:background="#ffffff"
                 android:layout_height="match_parent"
+                android:background="#ffffff"
 
-                android:text="Option D"
-                />
+                android:text="Option D" />
 
         </android.support.v7.widget.CardView>
-
 
     </LinearLayout>
 
-<!--    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="end"
-        android:layout_weight="1">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/moreBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            app:cardBackgroundColor="#fff"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            app:contentPadding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/back"
-                android:clickable="false"
-                android:fontFamily="@font/ps"
-                android:padding="4dp"
-                android:text="          Next         "
-                android:textColor="#000"
-                android:textSize="12sp" />
-
-        </android.support.v7.widget.CardView>
-    </LinearLayout>-->
 </LinearLayout>
