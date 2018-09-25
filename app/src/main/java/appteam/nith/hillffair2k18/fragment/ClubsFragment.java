@@ -38,8 +38,8 @@ public class ClubsFragment extends Fragment {
     private List<Club> clubList = new ArrayList<>();
 
     public ClubsFragment() {
-    }
 
+    }
     public ClubsFragment(Activity activity) {
         this.activity = activity;
     }
