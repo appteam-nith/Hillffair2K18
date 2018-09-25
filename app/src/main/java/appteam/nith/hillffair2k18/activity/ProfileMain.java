@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,17 +23,6 @@ public class ProfileMain extends AppCompatActivity {
     TextView name1, rollNumber1, branch1, mobile1;
     CircleImageView profilemain, buttonLoadImage;
     Bitmap bmp;
-
-    public static String encodeTobase64(Bitmap image) {
-        Bitmap immage = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.PNG, 50, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-
-        Log.d("Image Log:", imageEncoded);
-        return imageEncoded;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +58,24 @@ public class ProfileMain extends AppCompatActivity {
         }
         String image = prefs.getString("Image", "nullaaa");
         Bitmap img = decodeBase64(image);
-        profilemain.setImageBitmap(img);
+        Bitmap img1 = getResizedBitmap(img, 300);
+        profilemain.setImageBitmap(img1);
         changeProfile();
+    }
+
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
     public void changeProfile() {
@@ -104,13 +108,22 @@ public class ProfileMain extends AppCompatActivity {
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-
-            buttonLoadImage.setImageBitmap(bmp);
+            Bitmap img1 = getResizedBitmap(bmp, 300);
+            buttonLoadImage.setImageBitmap(img1);
             SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("Image", encodeTobase64(bmp));
+            editor.putString("Image", encodeTobase64(img1));
             editor.commit();
         }
+    }
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+        return imageEncoded;
     }
 
     public Bitmap decodeBase64(String input) {
