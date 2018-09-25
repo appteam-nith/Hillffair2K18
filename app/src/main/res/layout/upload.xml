@@ -5,7 +5,39 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#fff"
+        android:elevation="4dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/backBtn"
+            android:fontFamily="@font/ps"
+            android:text="UPLOAD IMAGE"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back_icon" />
+
+    </RelativeLayout>
+    <RelativeLayout
         android:id="@+id/rel"
+        android:layout_below="@id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,39 +60,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/pic" />
+                    android:background="#f3f3f3" />
             </android.support.v7.widget.CardView>
         </android.support.v7.widget.CardView>
 
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/cardimage"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/white"
-            android:src="@drawable/cross" />
-
         <android.support.v7.widget.CardView
             android:id="@+id/upload1"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/cardimage"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/green_dark"
+            android:layout_marginTop="8dp"
+            android:layout_centerHorizontal="true"
+            app:cardBackgroundColor="#fff"
             app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/green_dark"
-                android:scaleType="centerCrop"
-                android:src="@drawable/upload" />
+            app:cardElevation="4dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="8dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:fontFamily="@font/psb"
+                android:padding="4dp"
+                android:text="   UPLOAD   "
+                android:textColor="#000"
+                android:textSize="12sp" />
         </android.support.v7.widget.CardView>
     </RelativeLayout>
 
