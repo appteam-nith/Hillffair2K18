@@ -23,6 +23,7 @@ public class ProfileMain extends AppCompatActivity {
     TextView name1, rollNumber1, branch1, mobile1;
     CircleImageView profilemain, buttonLoadImage;
     Bitmap bmp;
+    private int PICK_PHOTO_CODE = 1046;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class ProfileMain extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(intent, Gallery.PICK_PHOTO_CODE);
+                    startActivityForResult(intent, PICK_PHOTO_CODE);
                 }
             }
         });
@@ -103,7 +104,6 @@ public class ProfileMain extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Intent i = new Intent(this, ImageUI.class);
             ByteArrayOutputStream bs = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();

@@ -1,9 +1,9 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,35 +14,26 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.WallAdapter;
 import appteam.nith.hillffair2k18.model.Wall;
-import okhttp3.OkHttpClient;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 /**
  * Coded by ThisIsNSH on Someday.
  */
 
-public class WallFragment extends Fragment {
+public class WallFragment extends Fragment implements View.OnClickListener {
 
     private WallAdapter wallAdapter;
+    private FloatingActionButton fab;
     private RecyclerView fifthRec;
     private List<Wall> wallList = new ArrayList<>();
     private Activity activity;
+    private int PICK_PHOTO_CODE = 1046;
 
     public WallFragment() {
     }
@@ -62,6 +53,8 @@ public class WallFragment extends Fragment {
                              Bundle savedInstanceState) {
         AndroidNetworking.initialize(getActivity().getApplicationContext());
         View view = inflater.inflate(R.layout.fragment_wall, container, false);
+        fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(this);
         fifthRec = view.findViewById(R.id.fifthRec);
         wallAdapter = new WallAdapter(wallList, activity);
         fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
@@ -105,5 +98,18 @@ public class WallFragment extends Fragment {
 //                     }
 //                 });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab:
+                Intent intent = new Intent(Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if (intent.resolveActivity(activity.getPackageManager()) != null) {
+                    startActivityForResult(intent, PICK_PHOTO_CODE);
+                }
+                break;
+        }
     }
 }

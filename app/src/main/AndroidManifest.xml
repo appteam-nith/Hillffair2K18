@@ -48,11 +48,8 @@
         <activity
             android:name=".activity.RouletteActivity"
             android:screenOrientation="portrait">
-            
+
         </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait" />
@@ -60,17 +57,12 @@
             android:name=".activity.Housie"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Gallery"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.Profile"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ImageUI"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.Upload"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".activity.AppTeam"

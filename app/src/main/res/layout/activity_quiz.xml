@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4">
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -67,8 +69,9 @@
             android:text="TextView"
             />
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
     </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/quiz_option_linearlayout1"
         android:layout_width="match_parent"
@@ -79,11 +82,11 @@
         <android.support.v7.widget.CardView
             android:id="@+id/quiz_optionA_cardview"
             android:layout_width="0dp"
-            android:backgroundTint="#ffffff"
-            android:elevation="8dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             app:cardCornerRadius="15dp"
             app:contentPadding="10dp">
 
@@ -92,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:background="#ffffff"
                 android:layout_height="match_parent"
+
                 android:text="Option A"
                 />
         </android.support.v7.widget.CardView>
@@ -99,11 +103,11 @@
         <android.support.v7.widget.CardView
             android:id="@+id/quiz_optionB_cardview"
             android:layout_width="0dp"
-            android:backgroundTint="#ffffff"
-            android:elevation="8dp"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             app:cardCornerRadius="15dp"
             app:contentPadding="10dp">
 
@@ -112,11 +116,13 @@
                 android:layout_width="match_parent"
                 android:background="#ffffff"
                 android:layout_height="match_parent"
+
                 android:text="Option B"
                 />
 
         </android.support.v7.widget.CardView>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
 
@@ -129,10 +135,10 @@
             android:id="@+id/quiz_optionC_cardview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:backgroundTint="#ffffff"
-            android:elevation="8dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             app:cardCornerRadius="15dp"
             app:contentPadding="10dp">
 
@@ -141,9 +147,9 @@
                 android:layout_width="match_parent"
                 android:background="#ffffff"
                 android:layout_height="match_parent"
+
                 android:text="Option C"
                 />
-
 
         </android.support.v7.widget.CardView>
 
@@ -151,10 +157,10 @@
             android:id="@+id/quiz_optionD_cardview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:backgroundTint="#ffffff"
-            android:elevation="8dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:backgroundTint="#ffffff"
+            android:elevation="8dp"
             app:cardCornerRadius="15dp"
             app:contentPadding="10dp">
 
@@ -163,6 +169,7 @@
                 android:layout_width="match_parent"
                 android:background="#ffffff"
                 android:layout_height="match_parent"
+
                 android:text="Option D"
                 />
 
@@ -170,22 +177,25 @@
 
 
     </LinearLayout>
+
 <!--    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="end"
         android:layout_weight="1">
+
         <android.support.v7.widget.CardView
             android:id="@+id/moreBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             app:cardBackgroundColor="#fff"
             app:cardCornerRadius="16dp"
-            android:layout_gravity="end"
             app:cardElevation="4dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
             app:contentPadding="8dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
