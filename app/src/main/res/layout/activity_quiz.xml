@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="#eeeeee"
+    android:layout_width="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.Quiz">
+    tools:context=".activity.Quiz"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4">
 
-        <ImageView
-            android:id="@+id/imaa"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:src="@drawable/blue_violet" />
-        <!--       <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:id="@+id/l1"
-                   android:orientation="horizontal"
-                   android:layout_marginTop="16dp">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/imaa"
+        android:src="@drawable/blue_violet"/>
 
-               <de.hdodenhof.circleimageview.CircleImageView
-                   android:id="@+id/quiz_userprofile_image"
-                   android:layout_width="60dp"
-                   android:layout_height="60dp"
-                   android:layout_gravity="center_vertical"
-                   android:src="@drawable/logo"
-                   android:layout_marginStart="34dp"
-                   android:contentDescription="Profile Picture of User" />
-
-               <TextView
-                   android:id="@+id/quiz_profilename_textview"
-                   android:layout_width="wrap_content"
-                   android:layout_height="32dp"
-                   android:textSize="20sp"
-                   android:layout_toRightOf="@id/quiz_userprofile_image"
-                   android:layout_gravity="center_vertical"
-                   android:layout_marginLeft="10dp"
-                   android:text="Profile Name"
-                   />
-               </LinearLayout> -->
-        <android.support.v7.widget.CardView
-            android:id="@+id/quiz_questionbox_cardview"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/l1"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+  <!--      <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/quiz_userprofile_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/logo"
+            android:layout_marginStart="34dp"
+            android:contentDescription="Profile Picture of User" />
+-->
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="#ffffff"
-            android:elevation="8dp"
-            android:padding="20dp"
-            app:cardCornerRadius="25dp">
+            android:text="Profile Name" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/quiz_question_textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="TextView" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/quiz_questionbox_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/l1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#ffffff"
+        android:elevation="8dp"
+        android:padding="20dp"
+        app:cardCornerRadius="25dp">
+
+        <TextView
+            android:id="@+id/ques"
+            android:fontFamily="@font/psb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="TextView"
+            />
 
         </android.support.v7.widget.CardView>
     </RelativeLayout>
@@ -87,11 +91,13 @@
             app:contentPadding="10dp">
 
             <Button
-                android:id="@+id/optionA_button"
+                android:id="@+id/optiona"
                 android:layout_width="match_parent"
+                android:background="#ffffff"
                 android:layout_height="match_parent"
-                android:onClick="optionAselected"
-                android:text="Option A" />
+
+                android:text="Option A"
+                />
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -106,11 +112,13 @@
             app:contentPadding="10dp">
 
             <Button
-                android:id="@+id/optionB_button"
+                android:id="@+id/optionb"
                 android:layout_width="match_parent"
+                android:background="#ffffff"
                 android:layout_height="match_parent"
-                android:onClick="optionBselected"
-                android:text="Option B" />
+
+                android:text="Option B"
+                />
 
         </android.support.v7.widget.CardView>
     </LinearLayout>
@@ -135,12 +143,13 @@
             app:contentPadding="10dp">
 
             <Button
-                android:id="@+id/optionC_button"
+                android:id="@+id/optionc"
                 android:layout_width="match_parent"
+                android:background="#ffffff"
                 android:layout_height="match_parent"
-                android:onClick="optionCselected"
-                android:text="Option C" />
 
+                android:text="Option C"
+                />
 
         </android.support.v7.widget.CardView>
 
@@ -156,18 +165,20 @@
             app:contentPadding="10dp">
 
             <Button
-                android:id="@+id/optionD_button"
+                android:id="@+id/optiond"
                 android:layout_width="match_parent"
+                android:background="#ffffff"
                 android:layout_height="match_parent"
-                android:onClick="optionDselected"
-                android:text="Option D" />
+
+                android:text="Option D"
+                />
 
         </android.support.v7.widget.CardView>
 
 
     </LinearLayout>
 
-    <LinearLayout
+<!--    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="end"
@@ -197,5 +208,5 @@
                 android:textSize="12sp" />
 
         </android.support.v7.widget.CardView>
-    </LinearLayout>
+    </LinearLayout>-->
 </LinearLayout>
