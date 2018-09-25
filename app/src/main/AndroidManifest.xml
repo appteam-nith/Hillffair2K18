@@ -15,6 +15,7 @@
     <permission
         android:name="com.example.mapexdemo.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
+
     <application
 
         android:allowBackup="true"
@@ -35,13 +36,20 @@
             android:value="DISABLE" />
         <activity
             android:name=".activity.DashActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.ProfileMain"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.RouletteActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            
+        </activity>
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
@@ -62,17 +70,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Upload"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name=".activity.AppTeam"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.Quiz">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".activity.Quiz"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SettingsActivity"
             android:screenOrientation="portrait" />
