@@ -1,67 +1,82 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="126dp">
 
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/greenBottom"
-        android:background="@color/white"
-        android:elevation="8dp"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/quiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:fontFamily="@font/ps"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="Quiz"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:theme="@style/GreenHighlight" />
-
-        <TextView
-            android:id="@+id/roulette"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:fontFamily="@font/ps"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="Roulette"
-            android:textColor="@color/hint"
-            android:textSize="18sp"
-            android:theme="@style/GreenHighlight" />
-
-
-        <TextView
-            android:id="@+id/tambola"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:fontFamily="@font/ps"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:text="Tambola"
-            android:textColor="@color/hint"
-            android:textSize="18sp"
-            android:theme="@style/GreenHighlight" />
-
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/greenBottom"
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/green_dark"
-        android:elevation="8dp" />
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/greenBottom"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/quiz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:fontFamily="@font/ps"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Quiz"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:theme="@style/GreenHighlight" />
+
+                <TextView
+                    android:id="@+id/roulette"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:fontFamily="@font/ps"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Roulette"
+                    android:textColor="@color/hint"
+                    android:textSize="18sp"
+                    android:theme="@style/GreenHighlight" />
+
+
+                <TextView
+                    android:id="@+id/tambola"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:fontFamily="@font/ps"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Tambola"
+                    android:textColor="@color/hint"
+                    android:textSize="18sp"
+                    android:theme="@style/GreenHighlight" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/greenBottom"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/green_dark" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
