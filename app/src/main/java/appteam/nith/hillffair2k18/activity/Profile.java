@@ -28,6 +28,7 @@ import org.json.JSONArray;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Map;
 
 import appteam.nith.hillffair2k18.R;
@@ -59,6 +60,10 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         AndroidNetworking.initialize(getApplicationContext());
+
+        Map config = new HashMap();
+        config.put("cloud_name", "appteam");
+        MediaManager.init(this, config);
 
         buttonLoadImage = findViewById(R.id.galleryView);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +98,6 @@ public class Profile extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
             profilePicture = findViewById(R.id.profilePicture);
             profilePicture.setImageBitmap(img);
-
         }
 
 
@@ -170,8 +174,8 @@ public class Profile extends AppCompatActivity {
                         @Override
                         public void onSuccess(String requestId, Map resultData) {
                             System.out.println(resultData.get("url"));
-                            post(ContactNumber);
                             imgUrl = String.valueOf(resultData.get("url"));
+                            post(ContactNumber);
                             startActivity(new Intent(Profile.this, DashActivity.class));
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                             editor.putString("ImageURL", String.valueOf(resultData.get("url")));

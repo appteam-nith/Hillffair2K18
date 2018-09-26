@@ -69,7 +69,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                 if (Cnumber<40)
                     getdata();
             }
-        }, 1000);
+        }, 7000);
 
     }
     public void init() {
@@ -123,13 +123,12 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
         numb.add(number_13);
         numb.add(number_14);
         numb.add(number_15);
-
         for (i = 1; i <= 90; i++) {
             list.add(i);
             checknumber.add(i);
         }
-//        Collections.shuffle(list);
-//        Collections.shuffle(checknumber);
+        Collections.shuffle(list);
+        Collections.shuffle(checknumber);
         array();
     }
 

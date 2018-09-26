@@ -82,11 +82,12 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
                     public void onResponse(JSONArray response) {
                         try {
                             int users = response.length();
+                            System.out.println(response);
                             for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
                                 String clubname = json.getString("name");
                                 String score = json.getString("score");
-                                String id = json.getString("id");
+                                String id = json.getString("profile_pic");
                                 clubList.add(new Leaderboard(clubname, id, score));
                             }
                             clubAdapter.notifyDataSetChanged();

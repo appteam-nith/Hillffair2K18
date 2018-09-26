@@ -67,9 +67,7 @@ public class ProfileMain extends AppCompatActivity {
                 base64a = Base64.encodeToString(data, Base64.DEFAULT);
                 referral.setText(base64a);
             } else {
-                byte[] data = "17mi524".getBytes("UTF-8");
-                base64a = Base64.encodeToString(data, Base64.DEFAULT);
-                referral.setText(base64a);
+                referral.setText("No Referral Generated");
             }
             String check2 = prefs.getString("Branch", "nullaaa");
             if (!check2.equals("nullaaa")) {

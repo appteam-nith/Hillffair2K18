@@ -29,12 +29,15 @@
                 android:paddingTop="126dp"
                 android:text="3 October"
                 android:textColor="@color/dark_grey"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/firstRec1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingTop="126dp"
                 android:scrollbars="none" />
 
             <TextView
@@ -48,13 +51,15 @@
                 android:paddingTop="16dp"
                 android:text="3 October"
                 android:textColor="@color/dark_grey"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/firstRec2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/date3"
@@ -67,13 +72,15 @@
                 android:paddingTop="16dp"
                 android:text="3 October"
                 android:textColor="@color/dark_grey"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/firstRec3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none" />
+                android:scrollbars="none"
+                android:visibility="gone" />
         </LinearLayout>
 
         <TextView
