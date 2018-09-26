@@ -27,6 +27,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import appteam.nith.hillffair2k18.Notification.NotificationActivity;
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScrollAdapter;
 import appteam.nith.hillffair2k18.listener.RecyclerItemClickListener;
@@ -48,7 +49,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
     private ScrollAdapter scrollAdapter;
     private List<Scroll> scrollList = new ArrayList<>();
     private ScrollView scrollView;
-    private TextView title, profileNav, aboutNav, settingNav, sponsorNav, callNav;
+    private TextView title, profileNav, aboutNav, notifNav, settingNav, sponsorNav, callNav;
     private RelativeLayout linearLayout;
     private boolean check = true;
     private RelativeLayout navDrawer;
@@ -66,6 +67,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         navAnim = findViewById(R.id.navAnim);
         navDrawer = findViewById(R.id.navDrawer);
         profileNav = findViewById(R.id.profileNav);
+        notifNav = findViewById(R.id.notifNav);
         aboutNav = findViewById(R.id.aboutNav);
         settingNav = findViewById(R.id.settingNav);
         sponsorNav = findViewById(R.id.sponsorNav);
@@ -78,6 +80,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
     public void setupdata() {
 
         profileNav.setOnClickListener(this);
+        notifNav.setOnClickListener(this);
         profile.setOnClickListener(this);
         aboutNav.setOnClickListener(this);
         callNav.setOnClickListener(this);
@@ -266,6 +269,10 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, ProfileMain.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
+            case R.id.notifNav:
+                startActivity(new Intent(this, NotificationActivity.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
             case R.id.aboutNav:
                 startActivity(new Intent(DashActivity.this, AppTeam.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -290,6 +297,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     check = false;
                     navDrawer.setVisibility(View.VISIBLE);
                     profileNav.setVisibility(View.VISIBLE);
+                    notifNav.setVisibility(View.VISIBLE);
                     aboutNav.setVisibility(View.VISIBLE);
                     settingNav.setVisibility(View.VISIBLE);
                     sponsorNav.setVisibility(View.VISIBLE);
@@ -297,19 +305,23 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(recyclerView, "alpha", 1, 0);
                     ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(aboutNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(profileNav, "alpha", 0, 1);
+                    ObjectAnimator objectAnimator10 = ObjectAnimator.ofFloat(notifNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator4 = ObjectAnimator.ofFloat(settingNav, "alpha", 0, 1);
                     ObjectAnimator objectAnimator5 = ObjectAnimator.ofFloat(sponsorNav, "alpha", 0, 1);
 
                     ObjectAnimator objectAnimator6 = ObjectAnimator.ofFloat(aboutNav, "translationY", 15f, 0f);
                     ObjectAnimator objectAnimator7 = ObjectAnimator.ofFloat(profileNav, "translationY", 15f, 0f);
+                    ObjectAnimator objectAnimator11 = ObjectAnimator.ofFloat(notifNav, "translationY", 15f, 0f);
                     ObjectAnimator objectAnimator8 = ObjectAnimator.ofFloat(settingNav, "translationY", 15f, 0f);
                     ObjectAnimator objectAnimator9 = ObjectAnimator.ofFloat(sponsorNav, "translationY", 15f, 0f);
 
                     objectAnimator5.setDuration(500);
                     objectAnimator4.setDuration(500);
                     objectAnimator3.setDuration(500);
+                    objectAnimator10.setDuration(500);
                     objectAnimator6.setDuration(500);
                     objectAnimator7.setDuration(500);
+                    objectAnimator11.setDuration(500);
                     objectAnimator8.setDuration(500);
                     objectAnimator9.setDuration(500);
                     objectAnimator2.setDuration(500);
@@ -317,15 +329,17 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     objectAnimator.setDuration(500);
                     objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator10.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator4.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator5.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator6.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator7.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator11.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator8.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator9.setInterpolator(new AnticipateOvershootInterpolator());
 
                     AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9);
+                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9, objectAnimator10, objectAnimator11);
                     animatorSet.start();
                     animatorSet.addListener(new Animator.AnimatorListener() {
                         @Override
@@ -338,6 +352,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                             navDrawer.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             profileNav.setVisibility(View.VISIBLE);
+                            notifNav.setVisibility(View.VISIBLE);
                             aboutNav.setVisibility(View.VISIBLE);
                             settingNav.setVisibility(View.VISIBLE);
                             sponsorNav.setVisibility(View.VISIBLE);
@@ -372,11 +387,13 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
 
                     ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(aboutNav, "alpha", 1, 0);
                     ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(profileNav, "alpha", 1, 0);
+                    ObjectAnimator objectAnimator10 = ObjectAnimator.ofFloat(notifNav, "alpha", 1, 0);
                     ObjectAnimator objectAnimator4 = ObjectAnimator.ofFloat(settingNav, "alpha", 1, 0);
                     ObjectAnimator objectAnimator5 = ObjectAnimator.ofFloat(sponsorNav, "alpha", 1, 0);
 
                     ObjectAnimator objectAnimator6 = ObjectAnimator.ofFloat(aboutNav, "translationY", 0f, 15f);
                     ObjectAnimator objectAnimator7 = ObjectAnimator.ofFloat(profileNav, "translationY", 0f, 15f);
+                    ObjectAnimator objectAnimator11 = ObjectAnimator.ofFloat(notifNav, "translationY", 0f, 15f);
                     ObjectAnimator objectAnimator8 = ObjectAnimator.ofFloat(settingNav, "translationY", 0f, 15f);
                     ObjectAnimator objectAnimator9 = ObjectAnimator.ofFloat(sponsorNav, "translationY", 0f, 15f);
 
@@ -385,18 +402,22 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     objectAnimator1.setDuration(250);
                     objectAnimator4.setDuration(250);
                     objectAnimator3.setDuration(250);
+                    objectAnimator10.setDuration(250);
                     objectAnimator6.setDuration(250);
                     objectAnimator7.setDuration(250);
+                    objectAnimator11.setDuration(250);
                     objectAnimator8.setDuration(250);
                     objectAnimator9.setDuration(250);
                     objectAnimator2.setDuration(250);
 
                     objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator10.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator4.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator5.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator6.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator7.setInterpolator(new AnticipateOvershootInterpolator());
+                    objectAnimator11.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator8.setInterpolator(new AnticipateOvershootInterpolator());
                     objectAnimator9.setInterpolator(new AnticipateOvershootInterpolator());
 
@@ -404,7 +425,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     objectAnimator.setStartDelay(0);
 
                     AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9);
+                    animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9, objectAnimator10, objectAnimator11);
                     animatorSet.start();
                     animatorSet.addListener(new Animator.AnimatorListener() {
                         @Override
@@ -417,6 +438,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                             recyclerView.setVisibility(View.VISIBLE);
                             navDrawer.setVisibility(View.GONE);
                             profileNav.setVisibility(View.GONE);
+                            notifNav.setVisibility(View.GONE);
                             aboutNav.setVisibility(View.GONE);
                             settingNav.setVisibility(View.GONE);
                             sponsorNav.setVisibility(View.GONE);
