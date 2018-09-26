@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:fontFamily="@font/psb"
-                android:text="Rules"
+                android:text="Instructions"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:fontFamily="@font/psb"
-                android:text="Rules"
+                android:text="Instructions"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:fontFamily="@font/psb"
-                android:text="Rules"
+                android:text="Instructions"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 

@@ -36,12 +36,12 @@ import appteam.nith.hillffair2k18.model.Wall;
 
 public class WallFragment extends Fragment implements View.OnClickListener {
 
+    String user_id;
     private WallAdapter wallAdapter;
     private FloatingActionButton fab;
     private RecyclerView fifthRec;
     private List<Wall> wallList = new ArrayList<>();
     private Activity activity;
-    String user_id;
     private int PICK_PHOTO_CODE = 1046;
 
     public WallFragment() {
@@ -77,8 +77,9 @@ public class WallFragment extends Fragment implements View.OnClickListener {
 
     void getData() {
         wallList.clear();
-        wallList.add(new Wall("Captain America", "17MI544", "https://wallpapercave.com/wp/wp1808936.jpg", "1", "200", ""));
-        AndroidNetworking.get("http://hillffair.tk/getwall/0/" + user_id)
+        SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
+        String check = prefs.getString("roll number", "17mi524");
+        AndroidNetworking.get("http://hillffair.tk/getwall/0/" + check)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -91,8 +92,10 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                                 String name = json.getString("name");
                                 String roll = json.getString("rollno");
                                 String likes = json.getString("likes");
+                                String imgUrl = json.getString("image_url");
+                                String profile = json.getString("profile_pic");
                                 String image = json.getString("id");
-                                wallList.add(new Wall(name, roll, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", image, likes, ""));
+                                wallList.add(new Wall(name, roll, profile, imgUrl, likes, ""));
                             }
                             wallAdapter.notifyDataSetChanged();
 

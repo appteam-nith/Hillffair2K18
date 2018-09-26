@@ -1,6 +1,8 @@
 package appteam.nith.hillffair2k18.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -13,11 +15,15 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 
 import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +39,7 @@ public class Upload extends AppCompatActivity {
     ImageView image;
     RelativeLayout relativeLayout1;
     Bitmap img, bmp;
+    String base64b, check;
     byte[] byteArray;
 
     public static String encodeTobase64(Bitmap image) {
@@ -62,7 +69,6 @@ public class Upload extends AppCompatActivity {
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             img = getResizedBitmap(bmp, 700);
             image.setImageBitmap(img);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,10 +95,33 @@ public class Upload extends AppCompatActivity {
                             @Override
                             public void onSuccess(String requestId, Map resultData) {
                                 System.out.println(resultData.get("url"));
+                                String asd = String.valueOf(resultData.get("url"));
+                                SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
+                                check = prefs.getString("roll number", "17mi524");
                                 Toast toast = Toast.makeText(Upload.this, "Uploaded", Toast.LENGTH_SHORT);
                                 toast.show();
-                                startActivity(new Intent(Upload.this, DashActivity.class));
-                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                try {
+                                    byte[] data1 = asd.getBytes("UTF-8");
+                                    base64b = Base64.encodeToString(data1, Base64.DEFAULT);
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                AndroidNetworking.get("http://hillffair.tk/postwall/" + check + "/" + base64b)
+                                        .build()
+                                        .getAsJSONObject(new JSONObjectRequestListener() {
+
+                                            @Override
+                                            public void onResponse(org.json.JSONObject response) {
+                                                startActivity(new Intent(Upload.this, DashActivity.class));
+                                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                            }
+
+                                            @Override
+                                            public void onError(ANError error) {
+                                                // handle error
+                                            }
+                                        });
+
                             }
 
                             @Override

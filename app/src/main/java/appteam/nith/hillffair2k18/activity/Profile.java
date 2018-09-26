@@ -27,6 +27,7 @@ import org.json.JSONArray;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import appteam.nith.hillffair2k18.R;
@@ -35,8 +36,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Profile extends AppCompatActivity {
 
     private byte[] byteArray;
-    private EditText studentName, rollNumber, branch, contactNumber;
-    private String Name, RollNumber, Branch, referal, ContactNumber;
+    private EditText studentName, rollNumber, branch, contactNumber, referral;
+    private String Name, base64a, base64b, RollNumber, Branch, referal, ContactNumber, imgUrl;
     private CircleImageView profilePicture;
     private TextView buttonLoadImage, save;
     private Bitmap bmp, img;
@@ -125,6 +126,7 @@ public class Profile extends AppCompatActivity {
 
         studentName = findViewById(R.id.studentName);
         rollNumber = findViewById(R.id.rollNumber);
+        referral = findViewById(R.id.referal);
         branch = findViewById(R.id.branch);
         contactNumber = findViewById(R.id.contactNumber);
         save = findViewById(R.id.save);
@@ -139,10 +141,10 @@ public class Profile extends AppCompatActivity {
     }
 
     public void setdata() {
-
-        Name = (studentName.getText()).toString();
-        RollNumber = rollNumber.getText().toString();
-        Branch = branch.getText().toString();
+        Name = String.valueOf(studentName.getText());
+        RollNumber = String.valueOf(rollNumber.getText());
+        Branch = String.valueOf(branch.getText());
+        referal = String.valueOf(referral.getText());
         ContactNumber = contactNumber.getText().toString();
         if (Name.length() == 0 || RollNumber.length() == 0 || Branch.length() == 0 || ContactNumber.length() == 0) {
             Toast.makeText(Profile.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
@@ -168,22 +170,21 @@ public class Profile extends AppCompatActivity {
                         @Override
                         public void onSuccess(String requestId, Map resultData) {
                             System.out.println(resultData.get("url"));
+                            post(ContactNumber);
+                            imgUrl = String.valueOf(resultData.get("url"));
                             startActivity(new Intent(Profile.this, DashActivity.class));
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                             editor.putString("ImageURL", String.valueOf(resultData.get("url")));
                             editor.commit();
                             finish();
-
                         }
 
                         @Override
                         public void onError(String requestId, ErrorInfo error) {
-                            // your code here
                         }
 
                         @Override
                         public void onReschedule(String requestId, ErrorInfo error) {
-                            // your code here
                         }
                     })
                     .dispatch(Profile.this);
@@ -192,8 +193,16 @@ public class Profile extends AppCompatActivity {
     }
 
     public void post(String ContactNumber) {
+        try {
+            byte[] data = referal.getBytes("UTF-8");
+            base64a = Base64.encodeToString(data, Base64.DEFAULT);
+            byte[] data1 = imgUrl.getBytes("UTF-8");
+            base64b = Base64.encodeToString(data1, Base64.DEFAULT);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         System.out.print("http://hillffair.tk/postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber);//22
-        AndroidNetworking.get("http://hillffair.tk/postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber + "/" + referal)
+        AndroidNetworking.get("http://hillffair.tk/postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber + "/" + base64a + "/" + base64b)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
