@@ -27,7 +27,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/ps"
                 android:gravity="center"
-                android:text="Make Bets No. 1 "
+                android:text="Make Bet No. 1 of 5"
                 android:textColor="@color/black" />
 
             <EditText

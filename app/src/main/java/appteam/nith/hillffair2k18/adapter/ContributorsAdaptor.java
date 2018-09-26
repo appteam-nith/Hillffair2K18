@@ -2,20 +2,13 @@ package appteam.nith.hillffair2k18.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.ImageViewTarget;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,7 +22,8 @@ public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdapto
 
     private List<contributorsItem> contributorList;
     private Context context;
-    public ContributorsAdaptor(List<contributorsItem> contributorList,Context context) {
+
+    public ContributorsAdaptor(List<contributorsItem> contributorList, Context context) {
         this.contributorList = (ArrayList<contributorsItem>) contributorList;
         this.context = context;
     }
@@ -43,16 +37,11 @@ public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdapto
 
     @Override
     public void onBindViewHolder(@NonNull final ContributorsAdaptor.MyViewHolder holder, int position) {
-//        final contributorsItem contributor = contributorList.get(position);
-//        holder.name.setText(contributor.getName());
-//
-//
-//        Picasso.get().load(contributor.getImage()).into(holder.image);
-        if(!(contributorList.get(position).getName().isEmpty())){
+        if (!(contributorList.get(position).getName().isEmpty())) {
             holder.name.setText(contributorList.get(position).getName());
         }
-        if(!(contributorList.get(position).getGithubUrl().isEmpty())){
-            final String url=(contributorList.get(position).getGithubUrl());
+        if (!(contributorList.get(position).getGithubUrl().isEmpty())) {
+            final String url = (contributorList.get(position).getGithubUrl());
             holder.github.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -64,15 +53,8 @@ public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdapto
 
         }
 
-        if(!(contributorList.get(position).getImage()==null)){
-            Glide.with(context).asBitmap().load(contributorList.get(position).getImage()).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC)).into(new ImageViewTarget<Bitmap>(holder.image) {
-                @Override
-                protected void setResource(Bitmap resource) {
-                    RoundedBitmapDrawable drawable= RoundedBitmapDrawableFactory.create(context.getResources(),resource);
-                    drawable.setCircular(true);
-                    holder.image.setImageDrawable(drawable);
-                }
-            });
+        if (!(contributorList.get(position).getImage() == null)) {
+            Picasso.get().load(contributorList.get(position).getImage()).resize(80, 80).centerCrop().into(holder.image);
         }
     }
 
@@ -83,13 +65,13 @@ public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdapto
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView image;
-        TextView name,github;
+        TextView name, github;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             image = itemView.findViewById(R.id.image);
-            github=itemView.findViewById(R.id.github);
+            github = itemView.findViewById(R.id.github);
         }
     }
 }

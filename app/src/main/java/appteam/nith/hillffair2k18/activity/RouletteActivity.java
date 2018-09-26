@@ -17,6 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -59,6 +65,7 @@ public class RouletteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roulette);
         Date currentTime = Calendar.getInstance().getTime();
+        AndroidNetworking.initialize(getApplicationContext());
 
         final SharedPreferences sharedPreferences = getSharedPreferences("spin", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -67,10 +74,17 @@ public class RouletteActivity extends AppCompatActivity {
         final SharedPreferences.Editor editor1 = sharedPreferences1.edit();
 
         int date = sharedPreferences1.getInt("date", 0);
+        Log.e("curent date", date + "");
+        Log.e("curent1 date", (currentTime.getDate()) + "");
         if (date < (currentTime.getDate())) {
+            Log.e("LLLLL", "onCreate: ");
             editor1.putInt("date", currentTime.getDate());
+            editor1.commit();
             editor.putInt("spinTime", 0);
+            editor.commit();
         }
+
+        Log.e("spinnnnn", sharedPreferences.getInt("spinTime", 0) + "");
 
         textNsh = findViewById(R.id.textNsh);
         button = findViewById(R.id.button);
@@ -145,6 +159,23 @@ public class RouletteActivity extends AppCompatActivity {
                                     @Override
                                     public void onAnimationEnd(Animation animation) {
                                         textView.setText(currentNumber(360 - (degree % 360)));
+                                        if (currentNumber(360 - (degree % 360)).equals("Congratulations you have won 25 points")) {
+                                            SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
+                                            String roll = prefs.getString("roll number", "gsbs");
+                                            AndroidNetworking.get("http://hillffair.tk/postpoint/" + roll + "/" + "25")
+                                                    .build()
+                                                    .getAsJSONArray(new JSONArrayRequestListener() {
+                                                        @Override
+                                                        public void onResponse(JSONArray response) {
+                                                            // do anything with response
+                                                        }
+
+                                                        @Override
+                                                        public void onError(ANError error) {
+                                                            // handle error
+                                                        }
+                                                    });
+                                        }
                                         button.setVisibility(View.VISIBLE);
                                         textNsh.setText("   RE-BET   ");
                                         arrayList.clear();
@@ -177,7 +208,6 @@ public class RouletteActivity extends AppCompatActivity {
         String text = " ";
         for (i = 0; i < a.size(); i++) {
             int num = a.get(i);
-
 
             if (degrees >= angle * 1 && degrees <= angle * 2 && num == 32) {
 

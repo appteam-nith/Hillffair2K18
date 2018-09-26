@@ -78,14 +78,14 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     void getData() {
         wallList.clear();
         SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
-        String check = prefs.getString("roll number", "17mi524");
+        String check = prefs.getString("roll number", "gsb");
         AndroidNetworking.get("http://hillffair.tk/getwall/0/" + check)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        // do anything with response
                         try {
+                            System.out.println(response);
                             int users = response.length();
                             for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
@@ -95,7 +95,8 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                                 String imgUrl = json.getString("image_url");
                                 String profile = json.getString("profile_pic");
                                 String image = json.getString("id");
-                                wallList.add(new Wall(name, roll, profile, imgUrl, likes, ""));
+                                int inttt = json.getInt("liked");
+                                wallList.add(new Wall(name, roll, profile, imgUrl, likes, image, inttt));
                             }
                             wallAdapter.notifyDataSetChanged();
 
