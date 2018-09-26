@@ -4,12 +4,14 @@ package appteam.nith.hillffair2k18.activity;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -26,8 +28,9 @@ import java.util.ArrayList;
 import appteam.nith.hillffair2k18.R;
 
 public class Quiz extends AppCompatActivity implements View.OnClickListener {
+
     public int count = 0, l;
-    TextView textTimer, q1;
+    TextView textTimer, q1, point;
     Button o1, o2, o3, o4;
     String option1, option2, check, option3, option4, ans, ques1;
     int time, points = 0;
@@ -40,12 +43,20 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     int color;
     JSONArray ques;
     int i = 0;
-
+    private LinearLayout main1, main2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Quiz.this, DashActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
         AndroidNetworking.initialize(getApplicationContext());
         time = 15;
         setdata();
@@ -99,6 +110,11 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         o2 = findViewById(R.id.optionb);
         o3 = findViewById(R.id.optionc);
         o4 = findViewById(R.id.optiond);
+
+        main1 = findViewById(R.id.main1);
+        main2 = findViewById(R.id.main2);
+        point = findViewById(R.id.points);
+
         color = o2.getSolidColor();
         o1.setOnClickListener(this);
         o2.setOnClickListener(this);
@@ -109,7 +125,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
     public void start() {
         textTimer = findViewById(R.id.timer);
-        new CountDownTimer(2000, 1000) {
+        new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
@@ -139,6 +155,9 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                     start();
                 else {
                     textTimer.setText("FINISHED");
+                    main1.setVisibility(View.GONE);
+                    main2.setVisibility(View.VISIBLE);
+                    point.setText("Correct: " + points + "/10");
                     SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
                     String roll = prefs.getString("roll number", "gsbs");
                     AndroidNetworking.get("http://hillffair.tk/postpoint/" + roll + "/" + String.valueOf(points * 10))
