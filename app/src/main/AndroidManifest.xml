@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".activity.DashActivity"
             android:screenOrientation="portrait">
@@ -51,11 +50,14 @@
         <activity
             android:name=".activity.AppTeam"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.Quiz"
+        <activity
+            android:name=".activity.Quiz"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SettingsActivity"
             android:screenOrientation="portrait" />
-
+        <activity android:name=".Notification.NotificationActivity">
+        </activity>
     </application>
+
 </manifest>
