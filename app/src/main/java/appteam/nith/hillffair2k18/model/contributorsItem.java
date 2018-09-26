@@ -4,14 +4,14 @@ package appteam.nith.hillffair2k18.model;
  * Created by naman on 22-09-2018.
  */
 
-public class Contributor {
+public class contributorsItem {
 
-    String name, image, link;
+    String name,image,githubUrl;
 
-    public Contributor(String name, String link, String image) {
+    public contributorsItem(String name, String image, String githubUrl) {
         this.name = name;
-        this.link = link;
         this.image = image;
+        this.githubUrl=githubUrl;
     }
 
     public String getName() {
@@ -30,11 +30,11 @@ public class Contributor {
         this.image = image;
     }
 
-    public String getLink() {
-        return link;
+    public String getGithubUrl() {
+        return githubUrl;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setGithubUrl(String githubUrl) {
+        this.githubUrl = githubUrl;
     }
 }

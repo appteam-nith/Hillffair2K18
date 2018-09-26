@@ -55,7 +55,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
     private ScrollAdapter scrollAdapter;
     private List<Scroll> scrollList = new ArrayList<>();
     private ScrollView scrollView;
-    private TextView title, profileNav, aboutNav, settingNav, sponsorNav, callNav, notifNav, mapNav, hillffairNav;
+    private TextView title, profileNav, aboutNav, settingNav, sponsorNav, callNav, notifNav, mapNav, hillffairNav,contributorNav;
     private RelativeLayout linearLayout;
     private boolean check = true;
     private RelativeLayout navDrawer;
@@ -82,6 +82,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         mapNav = findViewById(R.id.mapNav);
         profile = findViewById(R.id.profile);
         viewPager = findViewById(R.id.viewpager);
+        contributorNav=findViewById(R.id.contributorNav);
         setupdata();
     }
 
@@ -97,6 +98,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         nav.setOnClickListener(this);
         hillffairNav.setOnClickListener(this);
         viewPager.addOnPageChangeListener(this);
+        contributorNav.setOnClickListener(this);
 
         Infodialog2 infodialog2 = new Infodialog2(DashActivity.this);
         infodialog2.show();
@@ -302,6 +304,10 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(DashActivity.this, EmergencyContact.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
+            case R.id.contributorNav:
+                startActivity(new Intent(DashActivity.this, ContributorsActivity.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
             case R.id.nav:
                 if (check) {
                     ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
@@ -325,6 +331,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     notifNav.setVisibility(View.VISIBLE);
                     mapNav.setVisibility(View.VISIBLE);
                     hillffairNav.setVisibility(View.VISIBLE);
+                    contributorNav.setVisibility(View.VISIBLE);
 
                     ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(navDrawer, "alpha", 0, 1);
                     ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(recyclerView, "alpha", 1, 0);
