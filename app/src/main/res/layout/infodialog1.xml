@@ -32,7 +32,6 @@
 
             <EditText
                 android:id="@+id/editBet"
-                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -41,15 +40,16 @@
                 android:fontFamily="@font/ps"
                 android:gravity="center"
                 android:hint="Make a bet"
+                android:inputType="number"
                 android:padding="10dp"
                 android:textColor="@color/dark_grey"
                 android:textColorHint="@color/dark_grey" />
 
             <TextView
+                android:id="@+id/next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:id="@+id/next"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:fontFamily="@font/ps"
                 android:padding="16dp"

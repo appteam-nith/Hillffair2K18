@@ -1,14 +1,12 @@
 package appteam.nith.hillffair2k18.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import appteam.nith.hillffair2k18.R;
 
@@ -28,13 +26,13 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        Switch sw =findViewById(R.id.sw);
+        Switch sw = findViewById(R.id.sw);
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Toast.makeText(SettingsActivity.this, "Notifications enabled",Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(SettingsActivity.this, "Notifications enabled", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(SettingsActivity.this, "Notifications disabled",Toast.LENGTH_SHORT ).show();
+                    Toast.makeText(SettingsActivity.this, "Notifications disabled", Toast.LENGTH_SHORT).show();
                 }
             }
         });

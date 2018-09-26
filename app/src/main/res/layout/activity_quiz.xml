@@ -30,9 +30,9 @@
                 android:id="@+id/timer"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
-                android:fontFamily="@font/psb"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
+                android:fontFamily="@font/psb"
                 android:text="Profile Name"
                 android:textSize="20sp" />
         </LinearLayout>

@@ -79,7 +79,6 @@
                 android:visibility="gone" />
 
 
-
             <TextView
                 android:id="@+id/notifNav"
                 android:layout_width="wrap_content"

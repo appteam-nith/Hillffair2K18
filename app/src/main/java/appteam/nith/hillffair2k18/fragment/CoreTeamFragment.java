@@ -1,7 +1,9 @@
 package appteam.nith.hillffair2k18.fragment;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,9 +25,6 @@ import java.util.List;
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.TeamAdapter;
 import appteam.nith.hillffair2k18.model.Team;
-import appteam.nith.hillffair2k18.model.Wall;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 /**
  * Coded by ThisIsNSH on Someday.
@@ -43,6 +42,7 @@ public class CoreTeamFragment extends Fragment {
     public CoreTeamFragment(Activity activity) {
         this.activity = activity;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,8 +55,7 @@ public class CoreTeamFragment extends Fragment {
         AndroidNetworking.initialize(getActivity().getApplicationContext());
         recyclerView = view.findViewById(R.id.thirdRec);
         teamAdapter = new TeamAdapter(teamList, activity);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         getData();
         recyclerView.setAdapter(teamAdapter);
         Log.e("CodeFragment", "onCreateView: ");
@@ -77,7 +76,7 @@ public class CoreTeamFragment extends Fragment {
                         // do anything with response
                         try {
                             int users = response.length();
-                            for (int i = 0;i<users;i++) {
+                            for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
                                 String name = json.getString("name");
                                 String profile = json.getString("profile_pic");
@@ -90,6 +89,7 @@ public class CoreTeamFragment extends Fragment {
                             e.printStackTrace();
                         }
                     }
+
                     @Override
                     public void onError(ANError error) {
                         // handle error

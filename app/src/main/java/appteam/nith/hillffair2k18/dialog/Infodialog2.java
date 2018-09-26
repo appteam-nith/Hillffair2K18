@@ -1,15 +1,17 @@
-package appteam.nith.hillffair2k18.fragment;
+package appteam.nith.hillffair2k18.dialog;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.view.Gravity;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -23,50 +25,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.adapter.TeamAdapter;
+import appteam.nith.hillffair2k18.adapter.SponsorAdapter;
 import appteam.nith.hillffair2k18.model.Team;
 
 /**
- * Coded by ThisIsNSH on Someday.
+ * Code by ThisIsNSH on Someday.
  */
 
-public class SponsersFragment extends Fragment {
+public class Infodialog2 extends Dialog {
 
+    String info;
+    TextView next, dialog;
+    EditText editBet;
+    int check = 1;
     private Activity activity;
     private RecyclerView recyclerView;
-    private TeamAdapter teamAdapter;
+    private SponsorAdapter teamAdapter;
     private List<Team> teamList = new ArrayList<>();
 
-    public SponsersFragment() {
+    public Infodialog2(@NonNull Activity context) {
+        super(context);
+        initUI();
     }
 
-    public SponsersFragment(Activity activity) {
-        this.activity = activity;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sponsers, container, false);
-        recyclerView = view.findViewById(R.id.fourthRec);
-        teamAdapter = new TeamAdapter(teamList, activity);
-        recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
-        recyclerView.setAdapter(teamAdapter);
+    public void initUI() {
+        setContentView(R.layout.activity_infodialog2);
+        setCancelable(true);
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.dimAmount = 0.3f;
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().setAttributes(lp);
         getData();
-        Log.e("SponsorFragment", "onCreateView: ");
-        return view;
+        setCanceledOnTouchOutside(true);
+        getWindow().setGravity(Gravity.CENTER);
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     public void getData() {
         teamList.clear();
-//        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
-//        teamList.add(new Team("Thanos", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "Villan"));
-//        teamList.add(new Team("Iron Mam", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "Hero"));
+        recyclerView = findViewById(R.id.thirdRec);
+        teamAdapter = new SponsorAdapter(teamList, activity);
+        recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
+        recyclerView.setAdapter(teamAdapter);
+        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
+        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
+        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
         AndroidNetworking.get("http://hillffair.tk/getsponsor")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -94,5 +97,7 @@ public class SponsersFragment extends Fragment {
                     }
                 });
         teamAdapter.notifyDataSetChanged();
+
     }
+
 }

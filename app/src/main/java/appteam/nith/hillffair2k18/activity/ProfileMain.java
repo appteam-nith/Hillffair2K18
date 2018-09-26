@@ -13,6 +13,8 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -24,6 +26,15 @@ public class ProfileMain extends AppCompatActivity {
     CircleImageView profilemain, buttonLoadImage;
     Bitmap bmp;
     private int PICK_PHOTO_CODE = 1046;
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+        return imageEncoded;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +68,15 @@ public class ProfileMain extends AppCompatActivity {
         if (!check3.equals("nullaaa")) {
             mobile1.setText(check3);
         }
-        String image = prefs.getString("Image", "nullaaa");
-        Bitmap img = decodeBase64(image);
-        Bitmap img1 = getResizedBitmap(img, 300);
-        profilemain.setImageBitmap(img1);
-        changeProfile();
+        String image = prefs.getString("Image", "https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png");
+        if (image.equals("https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png")) {
+            Picasso.get().load(image).resize(80, 80).centerCrop().into(profilemain);
+        } else {
+            Bitmap img = decodeBase64(image);
+            Bitmap img1 = getResizedBitmap(img, 300);
+            profilemain.setImageBitmap(img1);
+//            changeProfile();
+        }
     }
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
@@ -115,15 +130,6 @@ public class ProfileMain extends AppCompatActivity {
             editor.putString("Image", encodeTobase64(img1));
             editor.commit();
         }
-    }
-
-    public static String encodeTobase64(Bitmap image) {
-        Bitmap immage = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-        return imageEncoded;
     }
 
     public Bitmap decodeBase64(String input) {

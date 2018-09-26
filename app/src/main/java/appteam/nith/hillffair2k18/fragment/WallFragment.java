@@ -87,7 +87,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                                 String roll = json.getString("rollno");
                                 String likes = json.getString("likes");
                                 String image = json.getString("id");
-                                wallList.add(new Wall(name,roll, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", image, likes, ""));
+                                wallList.add(new Wall(name, roll, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", image, likes, ""));
                             }
                             wallAdapter.notifyDataSetChanged();
 
@@ -95,6 +95,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                             e.printStackTrace();
                         }
                     }
+
                     @Override
                     public void onError(ANError error) {
                         // handle error

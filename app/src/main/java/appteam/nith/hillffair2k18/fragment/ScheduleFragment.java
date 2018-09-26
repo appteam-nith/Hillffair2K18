@@ -21,7 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -30,7 +29,6 @@ import java.util.Locale;
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScheduleAdapter;
 import appteam.nith.hillffair2k18.model.Schedule;
-import appteam.nith.hillffair2k18.model.Wall;
 
 /**
  * Coded by ThisIsNSH on Someday.
@@ -106,34 +104,36 @@ public class ScheduleFragment extends Fragment {
         date3.setText("5 October");
 
         AndroidNetworking.get("http://hillffair.tk/getschedule")
-                 .build()
-                 .getAsJSONArray(new JSONArrayRequestListener() {
-                     @Override
-                     public void onResponse(JSONArray response) {
-                         // do anything with response
-                         try {
-                             int users = response.length();
-                             for (int i = 0;i<users;i++) {
-                                 JSONObject json = response.getJSONObject(i);
-                                 String clubname = json.getString("club_name");
-                                 String event_name = json.getString("event_name");
-                                 Long event_Time = json.getLong("event_time");
-                                 String event_time = getDate(event_Time);
-                                 scheduleList1.add(new Schedule(clubname, event_name, "1", event_time));
-                             }
-                             scheduleAdapter1.notifyDataSetChanged();
-                         } catch (JSONException e) {
-                             e.printStackTrace();
-                         }
-                     }
-                     @Override
-                     public void onError(ANError error) {
-                         // handle error
-                     }
-                 });
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // do anything with response
+                        try {
+                            int users = response.length();
+                            for (int i = 0; i < users; i++) {
+                                JSONObject json = response.getJSONObject(i);
+                                String clubname = json.getString("club_name");
+                                String event_name = json.getString("event_name");
+                                Long event_Time = json.getLong("event_time");
+                                String event_time = getDate(event_Time);
+                                scheduleList1.add(new Schedule(clubname, event_name, "1", event_time));
+                            }
+                            scheduleAdapter1.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-         scheduleAdapter1.notifyDataSetChanged();
-     }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                    }
+                });
+
+        scheduleAdapter1.notifyDataSetChanged();
+    }
+
     private String getDate(long time) {
         Calendar cal = Calendar.getInstance(Locale.ENGLISH);
         cal.setTimeInMillis(time);
@@ -156,4 +156,4 @@ public class ScheduleFragment extends Fragment {
 //        scheduleAdapter1.notifyDataSetChanged();
 //        scheduleAdapter2.notifyDataSetChanged();
 //        scheduleAdapter3.notifyDataSetChanged();
-    }
+}

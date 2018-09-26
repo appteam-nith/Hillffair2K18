@@ -6,15 +6,25 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cloudinary.android.MediaManager;
+import com.cloudinary.android.callback.ErrorInfo;
+import com.cloudinary.android.callback.UploadCallback;
+
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 import appteam.nith.hillffair2k18.R;
 
 /**
- * Created by naman on 21-09-2018.
+ * Coded by ThisIsNSH on Someday
  */
 
 public class Upload extends AppCompatActivity {
@@ -23,22 +33,39 @@ public class Upload extends AppCompatActivity {
     ImageView image;
     RelativeLayout relativeLayout1;
     Bitmap img, bmp;
+    byte[] byteArray;
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        Log.d("Image Log:", imageEncoded);
+        return imageEncoded;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.upload);
+        setupdata();
+
+        Map config = new HashMap();
+        config.put("cloud_name", "appteam");
+        MediaManager.init(this, config);
         Bundle bundle = getIntent().getExtras();
-        byte[] byteArray = bundle.getByteArray("imageUpload");
+        byteArray = bundle.getByteArray("imageUpload");
         image = findViewById(R.id.image);
         try {
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             img = getResizedBitmap(bmp, 700);
             image.setImageBitmap(img);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        setupdata();
     }
 
     public void setupdata() {
@@ -48,8 +75,37 @@ public class Upload extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 relativeLayout1.setVisibility(View.VISIBLE);
-                Toast toast = Toast.makeText(Upload.this, "Processing", Toast.LENGTH_SHORT);
-                toast.show();
+                String requestId = MediaManager.get().upload(byteArray)
+                        .unsigned("k5vtuu12")
+                        .callback(new UploadCallback() {
+                            @Override
+                            public void onStart(String requestId) {
+                            }
+
+                            @Override
+                            public void onProgress(String requestId, long bytes, long totalBytes) {
+                            }
+
+                            @Override
+                            public void onSuccess(String requestId, Map resultData) {
+                                System.out.println(resultData.get("url"));
+                                Toast toast = Toast.makeText(Upload.this, "Uploaded", Toast.LENGTH_SHORT);
+                                toast.show();
+                                startActivity(new Intent(Upload.this, DashActivity.class));
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            }
+
+                            @Override
+                            public void onError(String requestId, ErrorInfo error) {
+                                // your code here
+                            }
+
+                            @Override
+                            public void onReschedule(String requestId, ErrorInfo error) {
+                                // your code here
+                            }
+                        })
+                        .dispatch(Upload.this);
             }
         });
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {

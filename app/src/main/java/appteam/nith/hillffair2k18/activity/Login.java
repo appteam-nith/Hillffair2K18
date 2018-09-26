@@ -1,5 +1,8 @@
 package appteam.nith.hillffair2k18.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,7 +10,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +32,15 @@ import java.util.concurrent.TimeUnit;
 import appteam.nith.hillffair2k18.R;
 
 public class Login extends AppCompatActivity {
+
     public static String phone;
-    TextView btnGenerateOTP, btnSignIn, skip;
-    String phoneNumber, otp;
-    EditText etPhoneNumber, etOTP;
-    FirebaseAuth auth;
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+    private TextView btnGenerateOTP, btnSignIn, skip;
+    private String phoneNumber, otp;
+    private EditText etPhoneNumber, etOTP;
+    private FirebaseAuth auth;
+    private LinearLayout linearLayout;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+    private ImageView main;
     private String verificationCode;
 
     @Override
@@ -48,8 +58,60 @@ public class Login extends AppCompatActivity {
         btnGenerateOTP = findViewById(R.id.btn_generate_otp);
         btnSignIn = findViewById(R.id.btn_sign_in);
         etPhoneNumber = findViewById(R.id.et_phone_number);
+        linearLayout = findViewById(R.id.main1);
+        main = findViewById(R.id.main);
         etOTP = findViewById(R.id.et_otp);
         skip = findViewById(R.id.skip);
+
+        main.setVisibility(View.VISIBLE);
+        main.setAlpha(0f);
+        linearLayout.setVisibility(View.VISIBLE);
+        linearLayout.setAlpha(0f);
+        main.setTranslationY(70f);
+
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(main, "alpha", 0, 1);
+        ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(linearLayout, "alpha", 0, 1);
+        ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(main, "translationY", 70f, 0);
+        ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(linearLayout, "translationY", 70f, 0);
+        objectAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        objectAnimator1.setInterpolator(new AccelerateDecelerateInterpolator());
+        objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
+        objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
+        objectAnimator.setStartDelay(0);
+        objectAnimator1.setStartDelay(350);
+        objectAnimator2.setStartDelay(0);
+        objectAnimator3.setStartDelay(350);
+        objectAnimator.setDuration(1000);
+        objectAnimator1.setDuration(1000);
+        objectAnimator2.setDuration(1000);
+        objectAnimator3.setDuration(1000);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2);
+        animatorSet.start();
+        animatorSet.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                main.setVisibility(View.VISIBLE);
+                linearLayout.setVisibility(View.VISIBLE);
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
         setupdata();
     }
 
@@ -89,7 +151,8 @@ public class Login extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Login.this, Profile.class));
+                startActivity(new Intent(Login.this, DashActivity.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
     }
@@ -102,6 +165,7 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().signOut();
                             startActivity(new Intent(Login.this, Housie.class));
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                             finish();
                         } else {
                             Toast.makeText(Login.this, "Incorrect OTP", Toast.LENGTH_SHORT).show();

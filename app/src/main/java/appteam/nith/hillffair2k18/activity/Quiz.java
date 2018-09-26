@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import appteam.nith.hillffair2k18.R;
 
 public class Quiz extends AppCompatActivity implements View.OnClickListener {
+    public int count = 0, l;
     TextView textTimer, q1;
     Button o1, o2, o3, o4;
     String option1, option2, check, option3, option4, ans, ques1;
@@ -36,7 +37,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     ArrayList<String> optionD = new ArrayList<String>();
     ArrayList<String> answers = new ArrayList<String>();
     ArrayList<String> question = new ArrayList<String>();
-    public int count = 0, l;
     int color;
     JSONArray ques;
     int i = 0;
@@ -108,7 +108,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void start() {
-         textTimer = findViewById(R.id.timer);
+        textTimer = findViewById(R.id.timer);
         new CountDownTimer(2000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -141,13 +141,14 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                     textTimer.setText("FINISHED");
                     SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
                     String roll = prefs.getString("roll number", "gsbs");
-                    AndroidNetworking.get("http://hillffair.tk/postpoint/"+ roll +"/"+ String.valueOf(points*10))
+                    AndroidNetworking.get("http://hillffair.tk/postpoint/" + roll + "/" + String.valueOf(points * 10))
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
                                 @Override
                                 public void onResponse(JSONArray response) {
                                     // do anything with response
                                 }
+
                                 @Override
                                 public void onError(ANError error) {
                                     // handle error
