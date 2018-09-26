@@ -87,7 +87,7 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
                                 JSONObject json = response.getJSONObject(i);
                                 String clubname = json.getString("name");
                                 String score = json.getString("score");
-                                String id = json.getString("profile_pic");
+                                String id = json.getString("id");
                                 clubList.add(new Leaderboard(clubname, id, score));
                             }
                             clubAdapter.notifyDataSetChanged();
