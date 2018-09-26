@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
-
     <application
 
         android:allowBackup="true"
@@ -22,6 +21,10 @@
         <activity
             android:name=".activity.DashActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
@@ -39,10 +42,7 @@
         <activity
             android:name=".activity.Profile"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".activity.Upload"
@@ -56,5 +56,9 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.emergency_contact"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.about_hillffair"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>

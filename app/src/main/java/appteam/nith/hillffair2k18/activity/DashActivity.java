@@ -18,12 +18,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -282,6 +282,26 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(DashActivity.this, AppTeam.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
+            case R.id.callNav:
+                startActivity(new Intent(DashActivity.this, emergency_contact.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+            case R.id.hillffairNav:
+                startActivity(new Intent(DashActivity.this, about_hillffair.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+            case R.id.notifNav:
+                //        startActivity(new Intent(DashActivity.this, emergency_contact.class));
+                //      overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                Toast toast = Toast.makeText(DashActivity.this, "Coming Soon", Toast.LENGTH_SHORT);
+                toast.show();
+                break;
+            case R.id.mapNav:
+                //        startActivity(new Intent(DashActivity.this, emergency_contact.class));
+                //      overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                Toast toast1 = Toast.makeText(DashActivity.this, "Coming Soon", Toast.LENGTH_SHORT);
+                toast1.show();
+                break;
             case R.id.settingNav:
                 startActivity(new Intent(DashActivity.this, SettingsActivity.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -304,10 +324,10 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     profileNav.setVisibility(View.VISIBLE);
                     aboutNav.setVisibility(View.VISIBLE);
                     settingNav.setVisibility(View.GONE);
-                    sponsorNav.setVisibility(View.VISIBLE);
+                    sponsorNav.setVisibility(View.GONE);
                     callNav.setVisibility(View.VISIBLE);
-                    notifNav.setVisibility(View.VISIBLE);
-                    mapNav.setVisibility(View.VISIBLE);
+                    notifNav.setVisibility(View.GONE);
+                    mapNav.setVisibility(View.GONE);
                     hillffairNav.setVisibility(View.VISIBLE);
 
                     ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(navDrawer, "alpha", 0, 1);
@@ -384,11 +404,11 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                             profileNav.setVisibility(View.VISIBLE);
                             aboutNav.setVisibility(View.VISIBLE);
                             settingNav.setVisibility(View.GONE);
-                            sponsorNav.setVisibility(View.VISIBLE);
+                            sponsorNav.setVisibility(View.GONE);
                             callNav.setVisibility(View.VISIBLE);
-                            notifNav.setVisibility(View.VISIBLE);
+                            notifNav.setVisibility(View.GONE);
                             hillffairNav.setVisibility(View.VISIBLE);
-                            mapNav.setVisibility(View.VISIBLE);
+                            mapNav.setVisibility(View.GONE);
 
                         }
 
