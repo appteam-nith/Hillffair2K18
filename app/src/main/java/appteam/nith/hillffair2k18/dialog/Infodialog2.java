@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -26,8 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.activity.RouletteActivity;
-import appteam.nith.hillffair2k18.adapter.TeamAdapter;
+import appteam.nith.hillffair2k18.adapter.SponsorAdapter;
 import appteam.nith.hillffair2k18.model.Team;
 
 /**
@@ -36,15 +34,14 @@ import appteam.nith.hillffair2k18.model.Team;
 
 public class Infodialog2 extends Dialog {
 
-    private Activity activity;
-    private RecyclerView recyclerView;
-    private TeamAdapter teamAdapter;
-    private List<Team> teamList = new ArrayList<>();
-
     String info;
     TextView next, dialog;
     EditText editBet;
     int check = 1;
+    private Activity activity;
+    private RecyclerView recyclerView;
+    private SponsorAdapter teamAdapter;
+    private List<Team> teamList = new ArrayList<>();
 
     public Infodialog2(@NonNull Activity context) {
         super(context);
@@ -53,8 +50,7 @@ public class Infodialog2 extends Dialog {
 
     public void initUI() {
         setContentView(R.layout.activity_infodialog2);
-        setCancelable(false);
-        setCanceledOnTouchOutside(false);
+        setCancelable(true);
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.dimAmount = 0.3f;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -68,11 +64,13 @@ public class Infodialog2 extends Dialog {
     public void getData() {
         teamList.clear();
         recyclerView = findViewById(R.id.thirdRec);
-        teamAdapter = new TeamAdapter(teamList, activity);
+        teamAdapter = new SponsorAdapter(teamList, activity);
+        recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
+        recyclerView.setAdapter(teamAdapter);
         teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
-        teamList.add(new Team("Thanos", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "Villan"));
-        teamList.add(new Team("Iron Man", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "Hero"));
-        AndroidNetworking.get("http://hillffair.tk/getcoreteam")
+        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
+        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
+        AndroidNetworking.get("http://hillffair.tk/getsponsor")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -82,13 +80,12 @@ public class Infodialog2 extends Dialog {
                             int users = response.length();
                             for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
-                                String name = json.getString("name");
-                                String profile = json.getString("profile_pic");
-                                String position = json.getString("position");
-                                teamList.add(new Team(name, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", position));
+                                String sponsorName = json.getString("name");
+                                String info = json.getString("info");
+//                                String  = json.getString("event_time");
+                                teamList.add(new Team(sponsorName, "", info));
                             }
                             teamAdapter.notifyDataSetChanged();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -99,8 +96,8 @@ public class Infodialog2 extends Dialog {
                         // handle error
                     }
                 });
-        recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
-        recyclerView.setAdapter(teamAdapter);
+        teamAdapter.notifyDataSetChanged();
+
     }
 
 }

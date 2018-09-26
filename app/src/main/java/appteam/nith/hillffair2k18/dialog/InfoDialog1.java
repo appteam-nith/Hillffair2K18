@@ -53,7 +53,7 @@ public class InfoDialog1 extends Dialog {
                 if (check == 5) {
                     next.setText("Spin");
                 }
-                if (check <=5 ) {
+                if (check <= 5) {
                     dialog.setText("Make Bet No. " + check);
                     editBet.setText("");
                 } else {
@@ -62,7 +62,6 @@ public class InfoDialog1 extends Dialog {
             }
         });
 
-        setCanceledOnTouchOutside(true);
         getWindow().setGravity(Gravity.CENTER);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }

@@ -99,12 +99,15 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.play_quiz:
                 startActivity(new Intent(activity, Quiz.class));
+                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
             case R.id.play_tambola:
                 startActivity(new Intent(activity, Housie.class));
+                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
             case R.id.play_roulette:
                 startActivity(new Intent(activity, RouletteActivity.class));
+                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
         }
     }

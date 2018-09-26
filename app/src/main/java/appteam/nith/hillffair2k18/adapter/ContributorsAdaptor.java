@@ -17,12 +17,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdaptor.MyViewHolder> {
 
-    private List<Contributor> contributorList;
     Activity activity;
-    public ContributorsAdaptor (List<Contributor> contributorList, Activity activity) {
+    private List<Contributor> contributorList;
+
+    public ContributorsAdaptor(List<Contributor> contributorList, Activity activity) {
         this.activity = activity;
         this.contributorList = contributorList;
     }
+
     @NonNull
     @Override
     public ContributorsAdaptor.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,9 +44,10 @@ public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdapto
     public int getItemCount() {
         return contributorList.size();
     }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView image;
-        TextView name,link;
+        TextView name, link;
 
         public MyViewHolder(View itemView) {
             super(itemView);

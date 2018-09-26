@@ -16,8 +16,6 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -37,13 +35,14 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     Activity activity;
     Wall wall;
     int likes;
-    String image_id,user_id;
+    String image_id, user_id;
     private boolean check = true;
 
     public WallAdapter(List<Wall> wallList, Activity activity) {
         this.activity = activity;
         this.wallList = wallList;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -60,14 +59,14 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
         holder.like_count.setText(wall.getLikes());
         holder.desc.setText(wall.getDesc());
         holder.title.setText(wall.getName());
-        Picasso.get().load(wall.getProfile()).resize(80,80).centerCrop().into(holder.profile);
+        Picasso.get().load(wall.getProfile()).resize(80, 80).centerCrop().into(holder.profile);
         Picasso.get().load(wall.getImage()).resize(300, 300).centerCrop().into(holder.image);
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (check) {
                     likes = Integer.parseInt(wall.getLikes());
-                    likes = likes+1;
+                    likes = likes + 1;
                     ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
                     valueAnimator.setDuration(1000);
                     valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -81,7 +80,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                     post(String.valueOf(likes));
                     check = false;
                 } else {
-                    likes = likes-1;
+                    likes = likes - 1;
                     ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
                     valueAnimator.setDuration(100);
                     valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -99,6 +98,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
 
         });
     }
+
     @Override
     public long getItemId(int position) {
         return position;
@@ -108,9 +108,26 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     public int getItemViewType(int position) {
         return position;
     }
+
     @Override
     public int getItemCount() {
         return wallList.size();
+    }
+
+    public void post(String likes) {
+        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id + "/" + user_id)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // do anything with response
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                    }
+                });
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -130,20 +147,5 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
             title = itemView.findViewById(R.id.title);
             profile = itemView.findViewById(R.id.image);
         }
-    }
-    public void post(String likes)
-    {
-        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id +"/"+ user_id)
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        // do anything with response
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        // handle error
-                    }
-                });
     }
 }

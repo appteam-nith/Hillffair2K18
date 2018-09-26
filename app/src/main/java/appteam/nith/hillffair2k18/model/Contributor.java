@@ -6,9 +6,9 @@ package appteam.nith.hillffair2k18.model;
 
 public class Contributor {
 
-    String name,image,link;
-    public Contributor(String name, String link, String image)
-    {
+    String name, image, link;
+
+    public Contributor(String name, String link, String image) {
         this.name = name;
         this.link = link;
         this.image = image;

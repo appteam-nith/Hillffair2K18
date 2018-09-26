@@ -94,10 +94,10 @@
 
     <RelativeLayout
         android:id="@+id/rel1"
-        android:elevation="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#d0000000"
+        android:background="#a0000000"
+        android:elevation="4dp"
         android:visibility="gone">
 
         <ProgressBar

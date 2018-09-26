@@ -3,7 +3,7 @@ package appteam.nith.hillffair2k18.model;
 /**
  * Created by LENOVO on 26-09-2018.
  */
-public class Leaderboard{
+public class Leaderboard {
 
     String name;
     String image;

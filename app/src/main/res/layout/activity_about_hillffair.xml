@@ -319,8 +319,8 @@
                          </HorizontalScrollView>
                      </RelativeLayout> -->
 
-                 </LinearLayout>
-             </ScrollView>
+        </LinearLayout>
+    </ScrollView>
 
 
-         </RelativeLayout>
+</RelativeLayout>

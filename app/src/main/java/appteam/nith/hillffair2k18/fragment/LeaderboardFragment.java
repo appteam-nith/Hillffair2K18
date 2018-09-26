@@ -23,9 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.adapter.ClubAdapter;
 import appteam.nith.hillffair2k18.adapter.LeaderboardAdapter;
-import appteam.nith.hillffair2k18.model.Club;
 import appteam.nith.hillffair2k18.model.Leaderboard;
 
 /**
@@ -84,18 +82,19 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
                     public void onResponse(JSONArray response) {
                         try {
                             int users = response.length();
-                            for (int i = 0;i<users;i++) {
+                            for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
                                 String clubname = json.getString("name");
                                 String score = json.getString("score");
                                 String id = json.getString("id");
-                                clubList.add(new Leaderboard(clubname,id, score));
+                                clubList.add(new Leaderboard(clubname, id, score));
                             }
                             clubAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+
                     @Override
                     public void onError(ANError error) {
                     }

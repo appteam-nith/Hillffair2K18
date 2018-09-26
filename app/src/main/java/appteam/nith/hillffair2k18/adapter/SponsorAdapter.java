@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -12,57 +13,52 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.dialog.InfoDialog;
-import appteam.nith.hillffair2k18.model.Club;
+import appteam.nith.hillffair2k18.model.Team;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
- * Coded by ThisIsNSH on Someday.
+ * Coded by ThisIsNSH on 9/20/2018.
  */
 
-public class ClubAdapter extends RecyclerView.Adapter<ClubAdapter.MyViewHolder> {
-    List<Club> clubList;
+public class SponsorAdapter extends RecyclerView.Adapter<SponsorAdapter.MyViewHolder> {
+
+    List<Team> teamList;
     Activity activity;
 
-    public ClubAdapter(List<Club> clubList, Activity activity) {
+    public SponsorAdapter(List<Team> teamList, Activity activity) {
         this.activity = activity;
-        this.clubList = clubList;
+        this.teamList = teamList;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(), R.layout.adapter_clubs, null);
+        View view = View.inflate(parent.getContext(), R.layout.adapter_sponsor, null);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        final Club club = clubList.get(position);
-        holder.title.setText(club.getName());
-        Picasso.get().load(club.getImage()).resize(80, 80).centerCrop().into(holder.image);
-        holder.arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InfoDialog infoDialog = new InfoDialog(activity, club.getInfo());
-                infoDialog.show();
-            }
-        });
+        Team team = teamList.get(position);
+        holder.title.setText(team.getName());
+        holder.position.setText(team.getPosition());
+        if (!team.getImage().isEmpty())
+            Picasso.get().load(team.getImage()).resize(80, 80).centerCrop().into(holder.image);
     }
 
     @Override
     public int getItemCount() {
-        return clubList.size();
+        return teamList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        CircleImageView image;
+        ImageView image;
         TextView title;
-        TextView arrow;
+        TextView position;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            arrow = itemView.findViewById(R.id.arrow);
+            position = itemView.findViewById(R.id.position);
             title = itemView.findViewById(R.id.title);
             image = itemView.findViewById(R.id.image);
         }
