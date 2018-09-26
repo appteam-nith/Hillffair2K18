@@ -3,6 +3,8 @@ package appteam.nith.hillffair2k18.activity;
  * Created by LENOVO on 24-09-2018.
  */
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import org.json.JSONArray;
@@ -106,7 +109,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
     public void start() {
          textTimer = findViewById(R.id.timer);
-        new CountDownTimer(15000, 1000) {
+        new CountDownTimer(2000, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
@@ -136,8 +139,21 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                     start();
                 else {
                     textTimer.setText("FINISHED");
+                    SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
+                    String roll = prefs.getString("roll number", "gsbs");
+                    AndroidNetworking.get("http://hillffair.tk/postpoint/"+ roll +"/"+ String.valueOf(points*10))
+                            .build()
+                            .getAsJSONArray(new JSONArrayRequestListener() {
+                                @Override
+                                public void onResponse(JSONArray response) {
+                                    // do anything with response
+                                }
+                                @Override
+                                public void onError(ANError error) {
+                                    // handle error
+                                }
+                            });
                 }
-
             }
 
         }.start();

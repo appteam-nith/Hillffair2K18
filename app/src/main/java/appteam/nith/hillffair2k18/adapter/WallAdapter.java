@@ -37,6 +37,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     Activity activity;
     Wall wall;
     int likes;
+    String image_id,user_id;
     private boolean check = true;
 
     public WallAdapter(List<Wall> wallList, Activity activity) {
@@ -54,6 +55,8 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         wall = wallList.get(position);
+        image_id = wall.getImage();
+        user_id = wall.getDesc();
         holder.like_count.setText(wall.getLikes());
         holder.desc.setText(wall.getDesc());
         holder.title.setText(wall.getName());
@@ -130,8 +133,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     }
     public void post(String likes)
     {
-        AndroidNetworking.post("http://hillffair.tk/postlike")
-                .addPathParameter("likes",likes)
+        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id +"/"+ user_id)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -143,7 +145,5 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                         // handle error
                     }
                 });
-
-
     }
 }

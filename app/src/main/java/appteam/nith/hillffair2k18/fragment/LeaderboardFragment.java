@@ -77,7 +77,7 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
     public void getData() {
 
         clubList.clear();
-        AndroidNetworking.get("http://hillffair.tk/getleaderboard")
+        AndroidNetworking.get("http://hillffair.tk/getleaderboard/0")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
