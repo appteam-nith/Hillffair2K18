@@ -19,11 +19,10 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="16dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="16dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="24dp"
             android:src="@color/black" />
 
@@ -31,16 +30,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_toRightOf="@id/image"
-            android:orientation="vertical">
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/image"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/psb"
+                android:layout_gravity="center_horizontal"
                 android:text="Core Team"
                 android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
@@ -50,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/ps"
+                android:layout_gravity="center_horizontal"
                 android:text="Designation"
                 android:textColor="@color/dark_grey"
                 android:textSize="14sp" />
