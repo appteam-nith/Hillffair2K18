@@ -1,28 +1,37 @@
 package appteam.nith.hillffair2k18.adapter;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.ImageViewTarget;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.model.Contributor;
+import appteam.nith.hillffair2k18.model.contributorsItem;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdaptor.MyViewHolder> {
 
-    Activity activity;
-    private List<Contributor> contributorList;
-
-    public ContributorsAdaptor(List<Contributor> contributorList, Activity activity) {
-        this.activity = activity;
-        this.contributorList = contributorList;
+    private List<contributorsItem> contributorList;
+    private Context context;
+    public ContributorsAdaptor(List<contributorsItem> contributorList,Context context) {
+        this.contributorList = (ArrayList<contributorsItem>) contributorList;
+        this.context = context;
     }
 
     @NonNull
@@ -33,11 +42,38 @@ public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdapto
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContributorsAdaptor.MyViewHolder holder, int position) {
-        final Contributor contributor = contributorList.get(position);
-        holder.name.setText(contributor.getName());
-        holder.link.setText(contributor.getLink());
-        Picasso.get().load(contributor.getImage()).into(holder.image);
+    public void onBindViewHolder(@NonNull final ContributorsAdaptor.MyViewHolder holder, int position) {
+//        final contributorsItem contributor = contributorList.get(position);
+//        holder.name.setText(contributor.getName());
+//
+//
+//        Picasso.get().load(contributor.getImage()).into(holder.image);
+        if(!(contributorList.get(position).getName().isEmpty())){
+            holder.name.setText(contributorList.get(position).getName());
+        }
+        if(!(contributorList.get(position).getGithubUrl().isEmpty())){
+            final String url=(contributorList.get(position).getGithubUrl());
+            holder.github.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    context.startActivity(i);
+                }
+            });
+
+        }
+
+        if(!(contributorList.get(position).getImage()==null)){
+            Glide.with(context).asBitmap().load(contributorList.get(position).getImage()).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.AUTOMATIC)).into(new ImageViewTarget<Bitmap>(holder.image) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable drawable= RoundedBitmapDrawableFactory.create(context.getResources(),resource);
+                    drawable.setCircular(true);
+                    holder.image.setImageDrawable(drawable);
+                }
+            });
+        }
     }
 
     @Override
@@ -47,13 +83,13 @@ public class ContributorsAdaptor extends RecyclerView.Adapter<ContributorsAdapto
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView image;
-        TextView name, link;
+        TextView name,github;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            link = itemView.findViewById(R.id.link);
             name = itemView.findViewById(R.id.name);
             image = itemView.findViewById(R.id.image);
+            github=itemView.findViewById(R.id.github);
         }
     }
 }
