@@ -54,5 +54,8 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".Notification.NotificationActivity">
+        </activity>
     </application>
+
 </manifest>

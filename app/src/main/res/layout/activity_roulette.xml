@@ -96,7 +96,6 @@
             android:inputType="number"
             android:text="0" />
     </android.support.v7.widget.CardView>
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
