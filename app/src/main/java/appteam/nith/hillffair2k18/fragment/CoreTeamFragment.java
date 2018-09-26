@@ -24,6 +24,9 @@ import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.TeamAdapter;
 import appteam.nith.hillffair2k18.model.Team;
 import appteam.nith.hillffair2k18.model.Wall;
+
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
 /**
  * Coded by ThisIsNSH on Someday.
  */
@@ -49,6 +52,7 @@ public class CoreTeamFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_core_team, container, false);
+        AndroidNetworking.initialize(getActivity().getApplicationContext());
         recyclerView = view.findViewById(R.id.thirdRec);
         teamAdapter = new TeamAdapter(teamList, activity);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
@@ -78,7 +82,7 @@ public class CoreTeamFragment extends Fragment {
                                 String name = json.getString("name");
                                 String profile = json.getString("profile_pic");
                                 String position = json.getString("position");
-                                teamList.add(new Team(name, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg" , position));
+                                teamList.add(new Team(name, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", position));
                             }
                             teamAdapter.notifyDataSetChanged();
 
