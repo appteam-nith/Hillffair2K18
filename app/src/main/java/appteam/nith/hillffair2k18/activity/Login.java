@@ -3,7 +3,9 @@ package appteam.nith.hillffair2k18.activity;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -48,10 +50,21 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        setContentView(R.layout.activity_login);
-        findViews();
-        FirebaseApp.initializeApp(this);
-        StartFirebaseLogin();
+        final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        String Login = sharedPreferences.getString("Login","gsbs");
+        if (!Login.equals("gsbs"))
+        {
+            finish();
+            startActivity(new Intent(this,DashActivity.class));
+        }
+        else
+        {
+            setContentView(R.layout.activity_login);
+            findViews();
+            FirebaseApp.initializeApp(this);
+            StartFirebaseLogin();
+        }
     }
 
     private void findViews() {
@@ -166,7 +179,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(Login.this, DashActivity.class));
+                            startActivity(new Intent(Login.this, Profile.class));
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                             finish();
                         } else {
@@ -184,6 +197,10 @@ public class Login extends AppCompatActivity {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
                 Toast.makeText(Login.this, "verification completed", Toast.LENGTH_SHORT).show();
+                final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+                final SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Login", "Complete");
+                editor.commit();
             }
 
             @Override

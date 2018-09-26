@@ -48,7 +48,6 @@ public class Upload extends AppCompatActivity {
         immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] b = baos.toByteArray();
         String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-
         Log.d("Image Log:", imageEncoded);
         return imageEncoded;
     }
@@ -61,7 +60,7 @@ public class Upload extends AppCompatActivity {
 
         Map config = new HashMap();
         config.put("cloud_name", "appteam");
-        MediaManager.init(this, config);
+//        MediaManager.init(this, config);
         Bundle bundle = getIntent().getExtras();
         byteArray = bundle.getByteArray("imageUpload");
         image = findViewById(R.id.image);

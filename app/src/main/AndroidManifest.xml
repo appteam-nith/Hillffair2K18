@@ -35,7 +35,12 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Login"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.Housie"
             android:screenOrientation="portrait" />
@@ -60,7 +65,7 @@
         <activity
             android:name=".activity.EmergencyContact"
             android:screenOrientation="portrait" />
-        
+
     </application>
 
 </manifest>
