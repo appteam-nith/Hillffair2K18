@@ -76,5 +76,4 @@ public class Upload extends AppCompatActivity {
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
-
 }

@@ -16,16 +16,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.model.Wall;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
     EditText studentName, rollNumber, branch, contactNumber;
-    String Name, RollNumber, Branch, ContactNumber;
+    String Name, RollNumber, Branch,referal, ContactNumber;
     CircleImageView profilePicture;
     TextView buttonLoadImage, save;
     Bitmap  bmp,img;
@@ -35,6 +44,8 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        AndroidNetworking.initialize(getApplicationContext());
+
         buttonLoadImage = findViewById(R.id.galleryView);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 
@@ -118,7 +129,9 @@ public class Profile extends AppCompatActivity {
             Name = (studentName.getText()).toString();
             RollNumber = rollNumber.getText().toString();
             Branch = branch.getText().toString();
+            referal = "17mi501";
             ContactNumber = contactNumber.getText().toString();
+            post(ContactNumber);
             if (Name.length() == 0 || RollNumber.length() == 0 || Branch.length() == 0 || ContactNumber.length() == 0) {
                 Toast.makeText(Profile.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
             } else {
@@ -140,8 +153,23 @@ public class Profile extends AppCompatActivity {
         immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] b = baos.toByteArray();
         String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-
         Log.d("Image Log:", imageEncoded);
         return imageEncoded;
+    }
+    public void post(String ContactNumber)
+    {
+        System.out.print("http://hillffair.tk/postprofile/"+ Name +"/"+ RollNumber +"/"+ ContactNumber );//22
+        AndroidNetworking.get("http://hillffair.tk/postprofile/"+ Name +"/"+ RollNumber +"/"+ ContactNumber +"/"+ referal)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // do anything with response
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                    }
+                });
     }
 }

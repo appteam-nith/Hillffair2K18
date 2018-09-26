@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScheduleAdapter;
@@ -93,35 +97,6 @@ public class ScheduleFragment extends Fragment {
     }
 
     public void getData() {
-//         AndroidNetworking.get("http://192.168.43.52:5000/getschedule")
-//                 .build()
-//                 .getAsJSONArray(new JSONArrayRequestListener() {
-//                     @Override
-//                     public void onResponse(JSONArray response) {
-//                         // do anything with response
-//                         try {
-//                             int users = response.length();
-//                             for (int i = 0;i<users;i++) {
-//                                 JSONObject json = response.getJSONObject(i);
-//                                 String clubname = json.getString("club_id");
-//                                 String event_name = json.getString("event_name");
-//                                 String event_time = json.getString("event_time");
-//                                 scheduleList.add(new Schedule(clubname, event_name, "1", event_time));
-//                             }
-//                             scheduleAdapter.notifyDataSetChanged();
-//
-//                         } catch (JSONException e) {
-//                             e.printStackTrace();
-//                         }
-//                     }
-//                     @Override
-//                     public void onError(ANError error) {
-//                         // handle error
-//                     }
-//                 });
-//
-//         scheduleAdapter.notifyDataSetChanged();
-//     }
 
         scheduleList1.clear();
         scheduleList2.clear();
@@ -130,21 +105,55 @@ public class ScheduleFragment extends Fragment {
         date2.setText("4 October");
         date3.setText("5 October");
 
+        AndroidNetworking.get("http://hillffair.tk/getschedule")
+                 .build()
+                 .getAsJSONArray(new JSONArrayRequestListener() {
+                     @Override
+                     public void onResponse(JSONArray response) {
+                         // do anything with response
+                         try {
+                             int users = response.length();
+                             for (int i = 0;i<users;i++) {
+                                 JSONObject json = response.getJSONObject(i);
+                                 String clubname = json.getString("club_name");
+                                 String event_name = json.getString("event_name");
+                                 Long event_Time = json.getLong("event_time");
+                                 String event_time = getDate(event_Time);
+                                 scheduleList1.add(new Schedule(clubname, event_name, "1", event_time));
+                             }
+                             scheduleAdapter1.notifyDataSetChanged();
+                         } catch (JSONException e) {
+                             e.printStackTrace();
+                         }
+                     }
+                     @Override
+                     public void onError(ANError error) {
+                         // handle error
+                     }
+                 });
 
-        scheduleList1.add(new Schedule("Captain Marvel", "Her to Hero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "05:00 Pm"));
-        scheduleList1.add(new Schedule("Thanos", "Infinity Stones", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "06:00 PM"));
-        scheduleList1.add(new Schedule("Iron Man", "Attitude and talent", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "07:00 PM"));
-
-        scheduleList2.add(new Schedule("Captain Marvel", "Her to Hero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "05:00 Pm"));
-        scheduleList2.add(new Schedule("Thanos", "Infinity Stones", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "06:00 PM"));
-        scheduleList2.add(new Schedule("Iron Man", "Attitude and talent", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "07:00 PM"));
-
-        scheduleList3.add(new Schedule("Captain Marvel", "Her to Hero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "05:00 Pm"));
-        scheduleList3.add(new Schedule("Thanos", "Infinity Stones", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "06:00 PM"));
-        scheduleList3.add(new Schedule("Iron Man", "Attitude and talent", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "07:00 PM"));
-
-        scheduleAdapter1.notifyDataSetChanged();
-        scheduleAdapter2.notifyDataSetChanged();
-        scheduleAdapter3.notifyDataSetChanged();
+         scheduleAdapter1.notifyDataSetChanged();
+     }
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("dd/MM", cal).toString();
+        return date;
     }
-}
+
+//        scheduleList1.add(new Schedule("Captain Marvel", "Her to Hero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "05:00 Pm"));
+//        scheduleList1.add(new Schedule("Thanos", "Infinity Stones", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "06:00 PM"));
+//        scheduleList1.add(new Schedule("Iron Man", "Attitude and talent", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "07:00 PM"));
+//
+//        scheduleList2.add(new Schedule("Captain Marvel", "Her to Hero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "05:00 Pm"));
+//        scheduleList2.add(new Schedule("Thanos", "Infinity Stones", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "06:00 PM"));
+//        scheduleList2.add(new Schedule("Iron Man", "Attitude and talent", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "07:00 PM"));
+//
+//        scheduleList3.add(new Schedule("Captain Marvel", "Her to Hero", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "05:00 Pm"));
+//        scheduleList3.add(new Schedule("Thanos", "Infinity Stones", "https://pre00.deviantart.net/db91/th/pre/i/2017/197/8/0/thanos_wallpaper_16_by_rippenstain-dbghpzw.jpg", "06:00 PM"));
+//        scheduleList3.add(new Schedule("Iron Man", "Attitude and talent", "https://wallpapersite.com/images/pages/ico_n/15263.jpg", "07:00 PM"));
+//
+//        scheduleAdapter1.notifyDataSetChanged();
+//        scheduleAdapter2.notifyDataSetChanged();
+//        scheduleAdapter3.notifyDataSetChanged();
+    }

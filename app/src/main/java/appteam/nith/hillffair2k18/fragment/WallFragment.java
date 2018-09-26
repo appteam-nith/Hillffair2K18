@@ -72,8 +72,8 @@ public class WallFragment extends Fragment implements View.OnClickListener {
 
     void getData() {
         wallList.clear();
-        wallList.add(new Wall("Captain America", "I love to protect universe.", "https://wallpapercave.com/wp/wp1808936.jpg", "https://wallpapercave.com/wp/wp1808936.jpg", "200", ""));
-        AndroidNetworking.get("http://hillffair.tk/getwall")
+        wallList.add(new Wall("Captain America", "17MI544", "https://wallpapercave.com/wp/wp1808936.jpg", "1", "200", ""));
+        AndroidNetworking.get("http://hillffair.tk/getwall/0")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -86,8 +86,8 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                                 String name = json.getString("name");
                                 String roll = json.getString("rollno");
                                 String likes = json.getString("likes");
-                                String image = json.getString("image_id");
-                                wallList.add(new Wall(name, roll, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", likes, ""));
+                                String image = json.getString("id");
+                                wallList.add(new Wall(name,roll, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", image, likes, ""));
                             }
                             wallAdapter.notifyDataSetChanged();
 
@@ -95,12 +95,12 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                             e.printStackTrace();
                         }
                     }
-
                     @Override
                     public void onError(ANError error) {
                         // handle error
                     }
                 });
+//        wallAdapter.notifyDataSetChanged();
 
     }
 
