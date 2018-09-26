@@ -43,7 +43,6 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
         this.activity = activity;
         this.wallList = wallList;
     }
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
