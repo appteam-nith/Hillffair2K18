@@ -3,6 +3,7 @@ package appteam.nith.hillffair2k18.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -46,8 +47,7 @@ public class SponsersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sponsers, container, false);
         recyclerView = view.findViewById(R.id.fourthRec);
         teamAdapter = new TeamAdapter(teamList, activity);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         recyclerView.setAdapter(teamAdapter);
         getData();
         Log.e("SponsorFragment", "onCreateView: ");
