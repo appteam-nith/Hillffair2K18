@@ -194,8 +194,8 @@ public class Profile extends AppCompatActivity {
 
     public void post(String ContactNumber) {
         try {
-            byte[] data = referal.getBytes("UTF-8");
-            base64a = Base64.encodeToString(data, Base64.DEFAULT);
+//            byte[] data = referal.getBytes("UTF-8");
+            base64a = referal;
             byte[] data1 = imgUrl.getBytes("UTF-8");
             base64b = Base64.encodeToString(data1, Base64.DEFAULT);
         } catch (UnsupportedEncodingException e) {

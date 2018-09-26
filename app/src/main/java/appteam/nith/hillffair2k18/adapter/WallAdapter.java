@@ -54,11 +54,26 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         wall = wallList.get(position);
-        image_id = wall.getImage();
+        image_id = wall.getShare();
         user_id = wall.getDesc();
-        holder.like_count.setText(wall.getLikes());
+        holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes())));
         holder.desc.setText(wall.getDesc());
         holder.title.setText(wall.getName());
+        if (wall.getLiked() == 0) {
+            check = true;
+        } else {
+            check = false;
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+            valueAnimator.setDuration(1000);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    holder.like.setProgress(animation.getAnimatedFraction());
+                }
+            });
+            valueAnimator.start();
+        }
+
         Picasso.get().load(wall.getProfile()).resize(80, 80).centerCrop().into(holder.profile);
         Picasso.get().load(wall.getImage()).resize(300, 300).centerCrop().into(holder.image);
         holder.like.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +92,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                     });
                     valueAnimator.start();
                     holder.like_count.setText(String.valueOf(likes));
-                    post(String.valueOf(likes));
+                    post();
                     check = false;
                 } else {
                     likes = likes - 1;
@@ -92,7 +107,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                     holder.like_count.setText(String.valueOf(likes));
                     valueAnimator.start();
                     check = true;
-                    post(String.valueOf(likes));
+                    remove();
                 }
             }
 
@@ -114,8 +129,8 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
         return wallList.size();
     }
 
-    public void post(String likes) {
-        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id + "/" + user_id)
+    public void post() {
+        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id + "/" + user_id + "/1")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -129,6 +144,23 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                     }
                 });
     }
+
+    public void remove() {
+        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id + "/" + user_id + "/0")
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // do anything with response
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                    }
+                });
+    }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         CircleImageView profile;

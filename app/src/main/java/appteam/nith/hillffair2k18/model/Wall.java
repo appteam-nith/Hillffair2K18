@@ -12,14 +12,24 @@ public class Wall {
     String likes;
     String share;
     String desc;
+    int liked;
 
-    public Wall(String name, String desc, String profile, String image, String likes, String share) {
+    public Wall(String name, String desc, String profile, String image, String likes, String share, int liked) {
         this.name = name;
         this.desc = desc;
+        this.liked = liked;
         this.profile = profile;
         this.image = image;
         this.likes = likes;
         this.share = share;
+    }
+
+    public int getLiked() {
+        return liked;
+    }
+
+    public void setLiked(int liked) {
+        this.liked = liked;
     }
 
     public String getDesc() {

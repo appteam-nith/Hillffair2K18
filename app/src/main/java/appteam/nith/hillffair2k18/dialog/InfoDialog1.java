@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.activity.RouletteActivity;
+
+import static appteam.nith.hillffair2k18.activity.RouletteActivity.arrayList;
 
 /**
  * Code by ThisIsNSH on Someday.
@@ -24,10 +26,12 @@ public class InfoDialog1 extends Dialog {
     String info;
     TextView next, dialog;
     EditText editBet;
+    Activity context;
     int check = 1;
 
     public InfoDialog1(@NonNull Activity context) {
         super(context);
+        this.context = context;
         initUI();
     }
 
@@ -48,13 +52,21 @@ public class InfoDialog1 extends Dialog {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ++check;
-                RouletteActivity.arrayList.add(String.valueOf(editBet.getText()));
+                if (Integer.parseInt(String.valueOf(editBet.getText())) > 36 || Integer.parseInt(String.valueOf(editBet.getText())) < 0) {
+                    Toast.makeText(context, "Number out of limit", Toast.LENGTH_SHORT).show();
+                } else if (!arrayList.contains(String.valueOf(editBet.getText()))) {
+                    ++check;
+                    arrayList.add(String.valueOf(editBet.getText()));
+                } else {
+                    Toast.makeText(context, "Number already entered", Toast.LENGTH_SHORT).show();
+                }
+
+
                 if (check == 5) {
                     next.setText("Spin");
                 }
                 if (check <= 5) {
-                    dialog.setText("Make Bet No. " + check);
+                    dialog.setText("Make Bet No. " + check + " of 5");
                     editBet.setText("");
                 } else {
                     dismiss();
