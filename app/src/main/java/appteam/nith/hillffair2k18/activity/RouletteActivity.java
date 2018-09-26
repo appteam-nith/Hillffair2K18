@@ -173,6 +173,7 @@ public class RouletteActivity extends AppCompatActivity {
     }
 
 
+
     private String currentNumber(int degrees) {
         String text = " ";
         for (i = 0; i < a.size(); i++) {
