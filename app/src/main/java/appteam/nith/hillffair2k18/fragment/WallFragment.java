@@ -1,7 +1,9 @@
 package appteam.nith.hillffair2k18.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -39,6 +41,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     private RecyclerView fifthRec;
     private List<Wall> wallList = new ArrayList<>();
     private Activity activity;
+    String user_id;
     private int PICK_PHOTO_CODE = 1046;
 
     public WallFragment() {
@@ -61,6 +64,8 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_wall, container, false);
         fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(this);
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("roll number", Context.MODE_PRIVATE);
+        user_id = prefs.getString("name", "gsbs");
         fifthRec = view.findViewById(R.id.fifthRec);
         wallAdapter = new WallAdapter(wallList, activity);
         fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
@@ -73,7 +78,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     void getData() {
         wallList.clear();
         wallList.add(new Wall("Captain America", "17MI544", "https://wallpapercave.com/wp/wp1808936.jpg", "1", "200", ""));
-        AndroidNetworking.get("http://hillffair.tk/getwall/0")
+        AndroidNetworking.get("http://hillffair.tk/getwall/0/" + user_id)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override

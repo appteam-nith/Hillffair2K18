@@ -116,15 +116,17 @@ public class Login extends AppCompatActivity {
     }
 
     public void setupdata() {
+        phone = "+91 ";
         phoneNumber = String.valueOf(etPhoneNumber.getText());
         btnGenerateOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 phoneNumber = String.valueOf(etPhoneNumber.getText());
-                phone = phoneNumber;
+                phone += phoneNumber;
                 if (phoneNumber.length() == 0)
                     Toast.makeText(Login.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
                 else {
+                    phoneNumber = phone;
                     btnSignIn.setVisibility(View.VISIBLE);
                     btnGenerateOTP.setVisibility(View.GONE);
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
@@ -164,7 +166,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(Login.this, Housie.class));
+                            startActivity(new Intent(Login.this, DashActivity.class));
                             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                             finish();
                         } else {
