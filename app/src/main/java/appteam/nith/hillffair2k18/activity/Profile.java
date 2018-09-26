@@ -29,6 +29,8 @@ public class Profile extends AppCompatActivity {
     CircleImageView profilePicture;
     TextView buttonLoadImage, save;
     Bitmap  bmp,img;
+    private int PICK_PHOTO_CODE = 1046;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class Profile extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(intent, Gallery.PICK_PHOTO_CODE);
+                    startActivityForResult(intent, PICK_PHOTO_CODE);
                 }
             }
         });
@@ -59,7 +61,6 @@ public class Profile extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Intent i = new Intent(this, ImageUI.class);
             ByteArrayOutputStream bs = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byte[] byteArray = bs.toByteArray();
@@ -85,6 +86,8 @@ public class Profile extends AppCompatActivity {
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
+
+
     public void initUI() {
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
         String check = prefs.getString("name", "gsbs");

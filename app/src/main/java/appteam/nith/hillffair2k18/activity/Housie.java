@@ -1,6 +1,8 @@
 package appteam.nith.hillffair2k18.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,45 +31,54 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
     int[] checked = new int[15];
     TextView number_1, number_2, number_3, number, number_4, number_5, number_6, number_7, number_8, number_9, number_10, number_11, number_12, number_13, number_14, number_15;
     String currentNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_housie);
         AndroidNetworking.initialize(getApplicationContext());
         init();
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Housie.this, DashActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
         getdata();
     }
 
     public void getdata() {
 
-            Timer t = new Timer();
-            t.scheduleAtFixedRate(new TimerTask() {
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(new TimerTask() {
 
-                                      @Override
-                                      public void run() {
-                                          AndroidNetworking.get("http://192.168.43.52:5000/gettambolanumber")
-                                                  .build()
-                                                  .getAsJSONObject(new JSONObjectRequestListener() {
-                                                      @Override
-                                                      public void onResponse(JSONObject response) {
-                                                          // do anything with response
-                                                          try {
-                                                              currentNumber = response.getString("number");
-                                                              number.setText(currentNumber);
-                                                          } catch (JSONException e) {
-                                                              e.printStackTrace();
-                                                          }
+                                  @Override
+                                  public void run() {
+                                      AndroidNetworking.get("http://192.168.43.52:5000/gettambolanumber")
+                                              .build()
+                                              .getAsJSONObject(new JSONObjectRequestListener() {
+                                                  @Override
+                                                  public void onResponse(JSONObject response) {
+                                                      // do anything with response
+                                                      try {
+                                                          currentNumber = response.getString("number");
+                                                          number.setText(currentNumber);
+                                                      } catch (JSONException e) {
+                                                          e.printStackTrace();
                                                       }
+                                                  }
 
-                                                      @Override
-                                                      public void onError(ANError error) {
-                                                      }
-                                                  });
+                                                  @Override
+                                                  public void onError(ANError error) {
+                                                  }
+                                              });
 
-                                      }
-                                  },
-                    0,
-                    15000);
+                                  }
+                              },
+                0,
+                15000);
     }
 
     public void init() {
@@ -140,32 +151,32 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
-    public void disqualified()
-    {
-        number_1.setClickable(false);
-        number_2.setClickable(false);
-        number_3.setClickable(false);
-        number_4.setClickable(false);
-        number_5.setClickable(false);
-        number_6.setClickable(false);
-        number_7.setClickable(false);
-        number_8.setClickable(false);
-        number_9.setClickable(false);
-        number_10.setClickable(false);
-        number_11.setClickable(false);
-        number_12.setClickable(false);
-        number_13.setClickable(false);
-        number_14.setClickable(false);
-        number_15.setClickable(false);
+    public void disqualified() {
+//        number_1.setClickable(false);
+//        number_2.setClickable(false);
+//        number_3.setClickable(false);
+//        number_4.setClickable(false);
+//        number_5.setClickable(false);
+//        number_6.setClickable(false);
+//        number_7.setClickable(false);
+//        number_8.setClickable(false);
+//        number_9.setClickable(false);
+//        number_10.setClickable(false);
+//        number_11.setClickable(false);
+//        number_12.setClickable(false);
+//        number_13.setClickable(false);
+//        number_14.setClickable(false);
+//        number_15.setClickable(false);
 
 
     }
+
     @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.number_1:
-                number_1.setBackgroundColor(R.color.colorPrimaryDark);
+                number_1.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_1.getText() == currentNumber) {
                     if (checked[0] == 0) {
                         checked[0] = 1;
@@ -175,9 +186,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -185,7 +194,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_2:
-                number_2.setBackgroundColor(R.color.colorPrimaryDark);
+                number_2.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_2.getText() == currentNumber) {
                     if (checked[1] == 0) {
                         checked[1] = 1;
@@ -195,9 +204,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -205,7 +212,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_3:
-                number_3.setBackgroundColor(R.color.colorPrimaryDark);
+                number_3.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_3.getText() == currentNumber) {
                     if (checked[2] == 0) {
                         checked[2] = 1;
@@ -215,9 +222,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -225,7 +230,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_4:
-                number_4.setBackgroundColor(R.color.colorPrimaryDark);
+                number_4.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_4.getText() == currentNumber) {
                     if (checked[3] == 0) {
                         checked[3] = 1;
@@ -235,9 +240,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -245,7 +248,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_5:
-                number_5.setBackgroundColor(R.color.colorPrimaryDark);
+                number_5.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_5.getText() == currentNumber) {
                     if (checked[4] == 0) {
                         checked[4] = 1;
@@ -255,9 +258,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -265,7 +266,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_6:
-                number_6.setBackgroundColor(R.color.colorPrimaryDark);
+                number_6.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_6.getText() == currentNumber) {
                     if (checked[5] == 0) {
                         checked[5] = 1;
@@ -275,9 +276,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -285,7 +284,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_7:
-                number_7.setBackgroundColor(R.color.colorPrimaryDark);
+                number_7.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_7.getText() == currentNumber) {
                     if (checked[6] == 0) {
                         checked[6] = 1;
@@ -295,9 +294,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -305,7 +302,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_8:
-                number_8.setBackgroundColor(R.color.colorPrimaryDark);
+                number_8.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_8.getText() == currentNumber) {
                     if (checked[7] == 0) {
                         checked[7] = 1;
@@ -315,9 +312,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -325,7 +320,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_9:
-                number_9.setBackgroundColor(R.color.colorPrimaryDark);
+                number_9.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_9.getText() == currentNumber) {
                     if (checked[8] == 0) {
                         checked[8] = 1;
@@ -336,9 +331,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -346,7 +339,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_10:
-                number_10.setBackgroundColor(R.color.colorPrimaryDark);
+                number_10.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_10.getText() == currentNumber) {
                     if (checked[9] == 0) {
                         checked[9] = 1;
@@ -356,9 +349,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -366,7 +357,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_11:
-                number_11.setBackgroundColor(R.color.colorPrimaryDark);
+                number_11.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_11.getText() == currentNumber) {
                     if (checked[10] == 0) {
                         checked[10] = 1;
@@ -376,9 +367,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -386,7 +375,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_12:
-                number_12.setBackgroundColor(R.color.colorPrimaryDark);
+                number_12.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_12.getText() == currentNumber) {
                     if (checked[11] == 0) {
                         checked[11] = 1;
@@ -396,9 +385,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                     }
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -406,7 +393,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_13:
-                number_13.setBackgroundColor(R.color.colorPrimaryDark);
+                number_13.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_13.getText() == currentNumber) {
 
                     if (checked[12] == 0) {
@@ -418,9 +405,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -428,7 +413,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_14:
-                number_14.setBackgroundColor(R.color.colorPrimaryDark);
+                number_14.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_14.getText() == currentNumber) {
                     if (checked[13] == 0) {
                         checked[0] = 1;
@@ -439,9 +424,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();
@@ -449,7 +432,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                 break;
             case R.id.number_15:
-                number_15.setBackgroundColor(R.color.colorPrimaryDark);
+                number_15.setBackgroundTintList(ColorStateList.valueOf(R.color.signin));
                 if (number_15.getText() == currentNumber) {
                     if (checked[14] == 0) {
                         checked[14] = 1;
@@ -460,9 +443,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
                     if (count == 15)
                         win();
-                }
-                else
-                {
+                } else {
                     Toast.makeText(this, "Disqualified", Toast.LENGTH_SHORT).show();
                     //post
                     disqualified();

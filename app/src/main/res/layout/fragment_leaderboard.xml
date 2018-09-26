@@ -2,12 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:paddingTop="126dp">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/leaderboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/table"/>
+
     <android.support.v7.widget.CardView
+        android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp"
         app:cardPreventCornerOverlap="true"
@@ -24,7 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/greenBottom"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/point"
@@ -74,7 +84,8 @@
                 android:id="@+id/greenBottom"
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="@drawable/red_magenta" />
+                android:background="@drawable/red_magenta"
+                android:visibility="gone" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

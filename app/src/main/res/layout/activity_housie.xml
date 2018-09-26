@@ -1,137 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.Housie">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="48dp"
+        android:background="#fff"
+        android:elevation="4dp"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/number"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/profile_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@id/back"
+            android:fontFamily="@font/ps"
+            android:text="TAMBOLA"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back_icon" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/f"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top"
+        android:layout_marginTop="32dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/number1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top"
             android:layout_gravity="center"
-            android:text="50" />
+            android:layout_margin="8dp"
+            android:fontFamily="@font/ps"
+            android:text="Current Number"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="40dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/number_6"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_7"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_8"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_9"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_10"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/number_1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_3"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_4"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_5"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="75dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/number_11"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_12"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_13"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_14"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-
-                <TextView
-                    android:id="@+id/number_15"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:text="92" />
-            </LinearLayout>
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top"
+            android:layout_gravity="center"
+            android:layout_toRightOf="@id/number1"
+            android:background="@drawable/green_corner"
+            android:backgroundTint="#f3f3f3"
+            android:fontFamily="@font/psb"
+            android:padding="10dp"
+            android:text="50"
+            android:textColor="@color/dark_grey"
+            android:textSize="16sp" />
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_below="@id/f"
+        android:layout_marginBottom="16sp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16sp"
+        android:background="#bbb" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/line"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/number_1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/one"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/number_6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_10"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/two"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/number_11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_12"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_13"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_14"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/number_15"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="#f3f3f3"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="92"
+                android:textColor="@color/dark_grey"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="4dp">
+
+        <TextView
+            android:id="@+id/textNsh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/psb"
+            android:padding="4dp"
+            android:text="   END GAME  "
+            android:textColor="#000"
+            android:textSize="13sp" />
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

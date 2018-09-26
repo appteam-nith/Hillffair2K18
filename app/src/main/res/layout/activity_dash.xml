@@ -55,6 +55,18 @@
                 android:visibility="gone" />
 
             <TextView
+                android:id="@+id/hillffairNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/psb"
+                android:text="About Hill'ffair"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/aboutNav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,6 +77,8 @@
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="gone" />
+
+
 
             <TextView
                 android:id="@+id/notifNav"
@@ -103,6 +117,30 @@
                 android:visibility="gone" />
 
             <TextView
+                android:id="@+id/notifNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/psb"
+                android:text="Notification"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/mapNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:fontFamily="@font/psb"
+                android:text="Map"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/sponsorNav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -114,9 +152,7 @@
                 android:textSize="20sp"
                 android:visibility="gone" />
 
-
         </LinearLayout>
-
 
     </RelativeLayout>
 

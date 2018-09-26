@@ -2,16 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="appteam.nith.hillffair2k18">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity
             android:name=".activity.DashActivity"
             android:screenOrientation="portrait">
@@ -27,22 +34,13 @@
             android:name=".activity.RouletteActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Housie"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.Gallery"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".activity.Profile"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".activity.ImageUI"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Upload"
