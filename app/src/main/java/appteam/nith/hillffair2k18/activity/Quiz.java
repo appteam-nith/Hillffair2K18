@@ -36,6 +36,8 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     public int count = 0, l;
     int color;
     JSONArray ques;
+    int i = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_quiz);
         AndroidNetworking.initialize(getApplicationContext());
         time = 15;
+        setdata();
     }
 
 
@@ -86,7 +89,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-    int i = 0;
 
     public void getdata() {
         q1 = findViewById(R.id.ques);
@@ -103,7 +105,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void start() {
-
+         textTimer = findViewById(R.id.timer);
         new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {

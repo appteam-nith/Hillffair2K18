@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.activity.Housie;
+import appteam.nith.hillffair2k18.activity.Quiz;
 import appteam.nith.hillffair2k18.activity.RouletteActivity;
 
 /**
@@ -97,7 +98,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 tambola.setTextColor(getResources().getColor(R.color.hint));
                 break;
             case R.id.play_quiz:
-//                startActivity(new Intent(activity, Quiz.class));
+                startActivity(new Intent(activity, Quiz.class));
                 break;
             case R.id.play_tambola:
                 startActivity(new Intent(activity, Housie.class));
