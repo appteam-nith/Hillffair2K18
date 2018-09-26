@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/white</item>
@@ -14,10 +15,12 @@
     <style name="RedHighlight" parent="AppTheme">
         <item name="android:colorControlHighlight">#bf021c</item>
     </style>
+
     <style name="GreenHighlight" parent="AppTheme">
         <item name="android:colorControlHighlight">#AAF719</item>
     </style>
-    <style name="SwitchCompatTheme" >
+
+    <style name="SwitchCompatTheme">
         <item name="colorControlActivated">#f3f3f3</item>
     </style>
 </resources>

@@ -1,10 +1,10 @@
 package appteam.nith.hillffair2k18.adapter;
+
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -12,8 +12,6 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.dialog.InfoDialog;
-import appteam.nith.hillffair2k18.model.Club;
 import appteam.nith.hillffair2k18.model.Leaderboard;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -41,9 +39,10 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         final Leaderboard club = leaderboardList.get(position);
         holder.title.setText(club.getName());
-        Picasso.get().load(club.getImage()).resize(80,80).centerCrop().into(holder.image);
+        Picasso.get().load(club.getImage()).resize(80, 80).centerCrop().into(holder.image);
         holder.arrow.setText(club.getInfo());
     }
+
     @Override
     public int getItemCount() {
         return leaderboardList.size();

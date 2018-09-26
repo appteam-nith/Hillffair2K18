@@ -24,7 +24,6 @@ import java.util.List;
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ClubAdapter;
 import appteam.nith.hillffair2k18.model.Club;
-import appteam.nith.hillffair2k18.model.Schedule;
 
 /**
  * Coded by ThisIsNSH on Someday.
@@ -40,6 +39,7 @@ public class ClubsFragment extends Fragment {
     public ClubsFragment() {
 
     }
+
     public ClubsFragment(Activity activity) {
         this.activity = activity;
     }
@@ -65,31 +65,32 @@ public class ClubsFragment extends Fragment {
 
     public void getData() {
         clubList.clear();
-                 AndroidNetworking.get("http://hillffair.tk/getclubs")
-                 .build()
-                 .getAsJSONArray(new JSONArrayRequestListener() {
-                     @Override
-                     public void onResponse(JSONArray response) {
-                         try {
-                             int users = response.length();
-                             for (int i = 0;i<users;i++) {
-                                 JSONObject json = response.getJSONObject(i);
-                                 String clubname = json.getString("name");
-                                 String info = json.getString("info");
-                                 String id = json.getString("id");
-                                 clubList.add(new Club(clubname,id, info));
-                             }
-                             clubAdapter.notifyDataSetChanged();
-                         } catch (JSONException e) {
-                             e.printStackTrace();
-                         }
-                     }
-                     @Override
-                     public void onError(ANError error) {
-                     }
-                 });
+        AndroidNetworking.get("http://hillffair.tk/getclubs")
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            int users = response.length();
+                            for (int i = 0; i < users; i++) {
+                                JSONObject json = response.getJSONObject(i);
+                                String clubname = json.getString("name");
+                                String info = json.getString("info");
+                                String id = json.getString("id");
+                                clubList.add(new Club(clubname, id, info));
+                            }
+                            clubAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
-         clubAdapter.notifyDataSetChanged();
+                    @Override
+                    public void onError(ANError error) {
+                    }
+                });
+
+        clubAdapter.notifyDataSetChanged();
 //     }
 //
 //        clubList.add(new Club("Captain Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Comming Soon"));

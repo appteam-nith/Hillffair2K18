@@ -19,13 +19,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.TeamAdapter;
-import appteam.nith.hillffair2k18.model.Schedule;
 import appteam.nith.hillffair2k18.model.Team;
 
 /**
@@ -77,18 +75,19 @@ public class SponsersFragment extends Fragment {
                         // do anything with response
                         try {
                             int users = response.length();
-                            for (int i = 0;i<users;i++) {
+                            for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
                                 String sponsorName = json.getString("name");
                                 String info = json.getString("info");
 //                                String  = json.getString("event_time");
-                                teamList.add(new Team(sponsorName,"",info));
+                                teamList.add(new Team(sponsorName, "", info));
                             }
                             teamAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+
                     @Override
                     public void onError(ANError error) {
                         // handle error

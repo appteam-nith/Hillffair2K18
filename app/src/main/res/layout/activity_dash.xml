@@ -79,7 +79,6 @@
                 android:visibility="gone" />
 
 
-
             <TextView
                 android:id="@+id/settingNav"
                 android:layout_width="wrap_content"

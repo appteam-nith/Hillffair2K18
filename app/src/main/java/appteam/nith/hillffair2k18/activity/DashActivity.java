@@ -18,7 +18,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.RelativeLayout;
@@ -26,6 +25,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -34,6 +34,7 @@ import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScrollAdapter;
+import appteam.nith.hillffair2k18.dialog.Infodialog2;
 import appteam.nith.hillffair2k18.listener.RecyclerItemClickListener;
 import appteam.nith.hillffair2k18.model.Scroll;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -97,12 +98,18 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         hillffairNav.setOnClickListener(this);
         viewPager.addOnPageChangeListener(this);
 
+        Infodialog2 infodialog2 = new Infodialog2(DashActivity.this);
+        infodialog2.show();
+
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
-        String check2 = prefs.getString("Image", "gsbs");
-        if (!check2.equals("gsbs")) {
+        String check2 = prefs.getString("Image", "https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png");
+        if (!check2.equals("https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png")) {
             Bitmap img = setProfile(check2);
             profile.setImageBitmap(img);
+        } else {
+            Picasso.get().load(check2).resize(80, 80).centerCrop().into(profile);
         }
+
 
         final SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(), DashActivity.this);
         viewPager.setAdapter(adapter);
@@ -284,6 +291,15 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.settingNav:
                 startActivity(new Intent(DashActivity.this, SettingsActivity.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+
+            case R.id.hillffairNav:
+                startActivity(new Intent(DashActivity.this, AboutHillffair.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+            case R.id.callNav:
+                startActivity(new Intent(DashActivity.this, EmergencyContact.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
             case R.id.nav:
@@ -552,6 +568,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
             Intent i = new Intent(this, Upload.class);
             i.putExtra("imageUpload", byteArray);
             startActivity(i);
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         }
 
 

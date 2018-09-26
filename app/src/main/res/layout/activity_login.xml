@@ -7,97 +7,106 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-
-
-    <TextView
-        android:id="@+id/title_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/psb"
-        android:text="HILL'FFAIR 2018"
-        android:textColor="@color/dark_grey"
-        android:textSize="29sp" />
-
-    <TextView
-        android:id="@+id/subtitle_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/psb"
-        android:text="Halycon Hues"
-        android:textAllCaps="true"
-        android:textColor="@color/dark_grey"
-        android:textSize="19sp" />
-
-    <EditText
-        android:id="@+id/et_phone_number"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/et_otp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginRight="64dp"
-        android:background="@drawable/green_corner"
-        android:fontFamily="@font/ps"
-        android:gravity="center"
-        android:hint="Enter Number"
-        android:paddingBottom="8dp"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:paddingTop="8dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/dark_grey"
-        android:textSize="17sp" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
 
-    <EditText
-        android:id="@+id/et_otp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/card"
-        android:layout_marginBottom="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginRight="64dp"
-        android:background="@drawable/green_corner"
-        android:fontFamily="@font/ps"
-        android:gravity="center"
-        android:hint="Enter Otp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:paddingTop="8dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/dark_grey"
-        android:textSize="17sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/skip"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="64dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp"
-        app:cardPreventCornerOverlap="true">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/main"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/green_dark"
-            android:padding="4dp">
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="96dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/hillffair2"
+            android:visibility="gone" />
 
-            <android.support.v7.widget.CardView
+        <LinearLayout
+            android:id="@+id/main1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/main"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/psb"
+                android:text="REGISTER"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/et_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login"
+                android:inputType="number"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:hint="Enter Number"
+                android:paddingBottom="8dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_grey"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/et_otp"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_phone_number"
+                android:layout_marginLeft="48dp"
+                android:layout_marginRight="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/green_corner"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/ps"
+                android:gravity="center"
+                android:hint="Enter Otp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_grey"
+                android:textSize="18sp" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="48dp"
+                android:layout_marginTop="16dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="14dp"
                 app:cardElevation="0dp"
                 app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
                 app:contentPaddingBottom="8dp"
                 app:contentPaddingLeft="16dp"
                 app:contentPaddingRight="16dp"
@@ -112,8 +121,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/psb"
-                        android:text="GENERATE OTP"
+                        android:text="GET OTP"
                         android:textColor="@color/black"
+                        android:textSize="13sp"
                         android:visibility="visible" />
 
                     <TextView
@@ -123,11 +133,15 @@
                         android:fontFamily="@font/psb"
                         android:text="VERIFY"
                         android:textColor="@color/black"
+                        android:textSize="13sp"
                         android:visibility="gone" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/skip"
@@ -135,9 +149,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/ps"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:fontFamily="@font/psb"
+        android:padding="16dp"
         android:text="Skip"
         android:textAllCaps="true"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"/>
 </RelativeLayout>

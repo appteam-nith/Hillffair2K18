@@ -19,26 +19,39 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.cloudinary.android.MediaManager;
+import com.cloudinary.android.callback.ErrorInfo;
+import com.cloudinary.android.callback.UploadCallback;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Map;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.model.Wall;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
-    EditText studentName, rollNumber, branch, contactNumber;
-    String Name, RollNumber, Branch,referal, ContactNumber;
-    CircleImageView profilePicture;
-    TextView buttonLoadImage, save;
-    Bitmap  bmp,img;
+    private byte[] byteArray;
+    private EditText studentName, rollNumber, branch, contactNumber;
+    private String Name, RollNumber, Branch, referal, ContactNumber;
+    private CircleImageView profilePicture;
+    private TextView buttonLoadImage, save;
+    private Bitmap bmp, img;
     private int PICK_PHOTO_CODE = 1046;
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immage = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        Log.d("Image Log:", imageEncoded);
+        return imageEncoded;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,20 +87,22 @@ public class Profile extends AppCompatActivity {
             }
             ByteArrayOutputStream bs = new ByteArrayOutputStream();
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
-            byte[] byteArray = bs.toByteArray();
+            byteArray = bs.toByteArray();
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            img = getResizedBitmap(bmp,300);
+            img = getResizedBitmap(bmp, 300);
             profilePicture = findViewById(R.id.profilePicture);
             profilePicture.setImageBitmap(img);
+
         }
 
 
     }
+
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();
 
-        float bitmapRatio = (float)width / (float) height;
+        float bitmapRatio = (float) width / (float) height;
         if (bitmapRatio > 1) {
             width = maxSize;
             height = (int) (width / bitmapRatio);
@@ -98,14 +113,13 @@ public class Profile extends AppCompatActivity {
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
-
     public void initUI() {
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
         String check = prefs.getString("name", "gsbs");
 //        studentName.setText(check);
-        if (!check.equals("gsbs"))
-        {
+        if (!check.equals("gsbs")) {
             startActivity(new Intent(Profile.this, DashActivity.class));
+            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             finish();
         }
 
@@ -126,46 +140,67 @@ public class Profile extends AppCompatActivity {
 
     public void setdata() {
 
-            Name = (studentName.getText()).toString();
-            RollNumber = rollNumber.getText().toString();
-            Branch = branch.getText().toString();
-            referal = "17mi501";
-            ContactNumber = contactNumber.getText().toString();
-            post(ContactNumber);
-            if (Name.length() == 0 || RollNumber.length() == 0 || Branch.length() == 0 || ContactNumber.length() == 0) {
-                Toast.makeText(Profile.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
-            } else {
-                SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("name", Name);
-                editor.putString("roll number", RollNumber);
-                editor.putString("Branch", Branch);
-                editor.putString("Phone", ContactNumber);
-                editor.putString("Image",encodeTobase64(img));
-                editor.commit();
-                startActivity(new Intent(Profile.this, DashActivity.class));
-                finish();
-            }
+        Name = (studentName.getText()).toString();
+        RollNumber = rollNumber.getText().toString();
+        Branch = branch.getText().toString();
+        ContactNumber = contactNumber.getText().toString();
+        if (Name.length() == 0 || RollNumber.length() == 0 || Branch.length() == 0 || ContactNumber.length() == 0) {
+            Toast.makeText(Profile.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
+        } else {
+            final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+            final SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("name", Name);
+            editor.putString("roll number", RollNumber);
+            editor.putString("Branch", Branch);
+            editor.putString("Phone", ContactNumber);
+            editor.putString("Image", encodeTobase64(img));
+            String requestId = MediaManager.get().upload(byteArray)
+                    .unsigned("k5vtuu12")
+                    .callback(new UploadCallback() {
+                        @Override
+                        public void onStart(String requestId) {
+                        }
+
+                        @Override
+                        public void onProgress(String requestId, long bytes, long totalBytes) {
+                        }
+
+                        @Override
+                        public void onSuccess(String requestId, Map resultData) {
+                            System.out.println(resultData.get("url"));
+                            startActivity(new Intent(Profile.this, DashActivity.class));
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            editor.putString("ImageURL", String.valueOf(resultData.get("url")));
+                            editor.commit();
+                            finish();
+
+                        }
+
+                        @Override
+                        public void onError(String requestId, ErrorInfo error) {
+                            // your code here
+                        }
+
+                        @Override
+                        public void onReschedule(String requestId, ErrorInfo error) {
+                            // your code here
+                        }
+                    })
+                    .dispatch(Profile.this);
+
+        }
     }
-    public static String encodeTobase64(Bitmap image) {
-        Bitmap immage = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.JPEG, 50, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-        Log.d("Image Log:", imageEncoded);
-        return imageEncoded;
-    }
-    public void post(String ContactNumber)
-    {
-        System.out.print("http://hillffair.tk/postprofile/"+ Name +"/"+ RollNumber +"/"+ ContactNumber );//22
-        AndroidNetworking.get("http://hillffair.tk/postprofile/"+ Name +"/"+ RollNumber +"/"+ ContactNumber +"/"+ referal)
+
+    public void post(String ContactNumber) {
+        System.out.print("http://hillffair.tk/postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber);//22
+        AndroidNetworking.get("http://hillffair.tk/postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber + "/" + referal)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         // do anything with response
                     }
+
                     @Override
                     public void onError(ANError error) {
                         // handle error
