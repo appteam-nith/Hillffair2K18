@@ -268,7 +268,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         scrollList.add(new Scroll("Live Feed", R.drawable.live));
         scrollList.add(new Scroll("Quiz & Games", R.drawable.games));
         scrollList.add(new Scroll("Schedule", R.drawable.schedule));
-        scrollList.add(new Scroll("Leaderboard", R.drawable.leaderboard));
+        scrollList.add(new Scroll("Top 10", R.drawable.leaderboard));
         scrollList.add(new Scroll("Clubs", R.drawable.club));
         scrollList.add(new Scroll("Core Members", R.drawable.core));
         scrollList.add(new Scroll("Sponsors", R.drawable.sponsor));

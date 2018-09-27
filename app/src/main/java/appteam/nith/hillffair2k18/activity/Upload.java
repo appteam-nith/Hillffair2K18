@@ -21,6 +21,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
+import com.cloudinary.android.policy.TimeWindow;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
@@ -80,7 +81,7 @@ public class Upload extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 relativeLayout1.setVisibility(View.VISIBLE);
-                String requestId = MediaManager.get().upload(byteArray)
+                String requestId = MediaManager.get().upload(byteArray).constrain(TimeWindow.immediate())
                         .unsigned("k5vtuu12")
                         .callback(new UploadCallback() {
                             @Override
@@ -105,7 +106,8 @@ public class Upload extends AppCompatActivity {
                                 } catch (UnsupportedEncodingException e) {
                                     e.printStackTrace();
                                 }
-                                AndroidNetworking.get("http://hillffair.tk/postwall/" + check + "/" + base64b)
+                                AndroidNetworking.get(getString(R.string.baseUrl) + "postwall/" + check + "/" + base64b)
+                                        .addPathParameter(base64b)
                                         .build()
                                         .getAsJSONObject(new JSONObjectRequestListener() {
 

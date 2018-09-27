@@ -6,12 +6,12 @@ package appteam.nith.hillffair2k18.model;
 
 public class contributorsItem {
 
-    String name,image,githubUrl;
+    String name, image, githubUrl;
 
     public contributorsItem(String name, String image, String githubUrl) {
         this.name = name;
         this.image = image;
-        this.githubUrl=githubUrl;
+        this.githubUrl = githubUrl;
     }
 
     public String getName() {

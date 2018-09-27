@@ -45,6 +45,7 @@ public class Infodialog2 extends Dialog {
 
     public Infodialog2(@NonNull Activity context) {
         super(context);
+        activity = context;
         initUI();
     }
 
@@ -67,10 +68,7 @@ public class Infodialog2 extends Dialog {
         teamAdapter = new SponsorAdapter(teamList, activity);
         recyclerView.setLayoutManager(new GridLayoutManager(activity, 2));
         recyclerView.setAdapter(teamAdapter);
-        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
-        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
-        teamList.add(new Team("Captaion Marvel", "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", "Chief"));
-        AndroidNetworking.get("http://hillffair.tk/getsponsor")
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getsponsor")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override

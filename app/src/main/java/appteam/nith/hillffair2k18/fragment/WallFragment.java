@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -37,6 +38,7 @@ import appteam.nith.hillffair2k18.model.Wall;
 public class WallFragment extends Fragment implements View.OnClickListener {
 
     String user_id;
+    ProgressBar loadwall;
     private WallAdapter wallAdapter;
     private FloatingActionButton fab;
     private RecyclerView fifthRec;
@@ -62,6 +64,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         AndroidNetworking.initialize(getActivity().getApplicationContext());
         View view = inflater.inflate(R.layout.fragment_wall, container, false);
+        loadwall = view.findViewById(R.id.loadwall);
         fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(this);
         SharedPreferences prefs = this.getActivity().getSharedPreferences("roll number", Context.MODE_PRIVATE);
@@ -76,15 +79,17 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     }
 
     void getData() {
+        loadwall.setVisibility(View.VISIBLE);
         wallList.clear();
         SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
-        String check = prefs.getString("roll number", "gsb");
-        AndroidNetworking.get("http://hillffair.tk/getwall/0/" + check)
+        final String check = prefs.getString("roll number", "gsb");
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getwall/0/" + check)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            loadwall.setVisibility(View.GONE);
                             System.out.println(response);
                             int users = response.length();
                             for (int i = 0; i < users; i++) {
