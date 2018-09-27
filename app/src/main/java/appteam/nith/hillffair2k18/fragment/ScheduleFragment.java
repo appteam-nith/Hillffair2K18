@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -36,6 +37,7 @@ import appteam.nith.hillffair2k18.model.Schedule;
 
 public class ScheduleFragment extends Fragment {
 
+    ProgressBar loadwall;
     private ScheduleAdapter scheduleAdapter1, scheduleAdapter2, scheduleAdapter3;
     private RecyclerView recyclerView1, recyclerView2, recyclerView3;
     private List<Schedule> scheduleList1 = new ArrayList<>();
@@ -64,6 +66,7 @@ public class ScheduleFragment extends Fragment {
         AndroidNetworking.initialize(getActivity().getApplicationContext());
         View view = inflater.inflate(R.layout.fragment_schedule, container, false);
         date1 = view.findViewById(R.id.date1);
+        loadwall = view.findViewById(R.id.loadwall);
         date2 = view.findViewById(R.id.date2);
         date3 = view.findViewById(R.id.date3);
         noSch = view.findViewById(R.id.noSch);
@@ -102,14 +105,16 @@ public class ScheduleFragment extends Fragment {
         date1.setText("3 October");
         date2.setText("4 October");
         date3.setText("5 October");
+        loadwall.setVisibility(View.VISIBLE);
 
-        AndroidNetworking.get("http://hillffair.tk/getschedule")
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getschedule")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         // do anything with response
                         try {
+                            loadwall.setVisibility(View.GONE);
                             int users = response.length();
                             for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -31,6 +32,7 @@ import appteam.nith.hillffair2k18.model.Club;
 
 public class ClubsFragment extends Fragment {
 
+    ProgressBar loadwall;
     private ClubAdapter clubAdapter;
     private RecyclerView recyclerView;
     private Activity activity;
@@ -54,6 +56,7 @@ public class ClubsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_clubs, container, false);
         recyclerView = view.findViewById(R.id.secondRec);
+        loadwall = view.findViewById(R.id.loadwall);
         clubAdapter = new ClubAdapter(clubList, activity);
         getData();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false);
@@ -65,12 +68,14 @@ public class ClubsFragment extends Fragment {
 
     public void getData() {
         clubList.clear();
-        AndroidNetworking.get("http://hillffair.tk/getclubs")
+        loadwall.setVisibility(View.VISIBLE);
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getclubs")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            loadwall.setVisibility(View.GONE);
                             int users = response.length();
                             for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);

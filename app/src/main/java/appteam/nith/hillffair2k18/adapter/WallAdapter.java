@@ -2,6 +2,8 @@ package appteam.nith.hillffair2k18.adapter;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,9 +15,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -31,6 +36,7 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> {
 
+    String roll;
     List<Wall> wallList;
     Activity activity;
     Wall wall;
@@ -56,9 +62,13 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
         wall = wallList.get(position);
         image_id = wall.getShare();
         user_id = wall.getDesc();
+        SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
+        roll = prefs.getString("roll number", "gsb");
+
         holder.like_count.setText(String.valueOf(Integer.parseInt(wall.getLikes())));
         holder.desc.setText(wall.getDesc());
         holder.title.setText(wall.getName());
+
         if (wall.getLiked() == 0) {
             check = true;
         } else {
@@ -80,33 +90,13 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
             @Override
             public void onClick(View v) {
                 if (check) {
-                    likes = Integer.parseInt(wall.getLikes());
-                    likes = likes + 1;
-                    ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
-                    valueAnimator.setDuration(1000);
-                    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public void onAnimationUpdate(ValueAnimator animation) {
-                            holder.like.setProgress(animation.getAnimatedFraction());
-                        }
-                    });
-                    valueAnimator.start();
-                    holder.like_count.setText(String.valueOf(likes));
+                    getlike(holder);
+                    holder.like.setEnabled(false);
                     post();
-                    check = false;
+
                 } else {
-                    likes = likes - 1;
-                    ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
-                    valueAnimator.setDuration(100);
-                    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                        @Override
-                        public void onAnimationUpdate(ValueAnimator animation) {
-                            holder.like.setProgress(1 - animation.getAnimatedFraction());
-                        }
-                    });
-                    holder.like_count.setText(String.valueOf(likes));
-                    valueAnimator.start();
-                    check = true;
+                    getlike1(holder);
+                    holder.like.setEnabled(false);
                     remove();
                 }
             }
@@ -130,7 +120,7 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
     }
 
     public void post() {
-        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id + "/" + user_id + "/1")
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "postlike/" + image_id + "/" + roll + "/1")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
@@ -145,8 +135,75 @@ public class WallAdapter extends RecyclerView.Adapter<WallAdapter.MyViewHolder> 
                 });
     }
 
+    public void getlike(final MyViewHolder holder) {
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getlike/" + image_id)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            likes = Integer.parseInt(response.getString("likes"));
+                            likes = likes + 1;
+                            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+                            valueAnimator.setDuration(1000);
+                            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public void onAnimationUpdate(ValueAnimator animation) {
+                                    holder.like.setProgress(animation.getAnimatedFraction());
+                                }
+                            });
+                            valueAnimator.start();
+                            holder.like_count.setText(String.valueOf(likes));
+                            check = false;
+                            holder.like.setEnabled(true);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                    }
+                });
+    }
+
+    public void getlike1(final MyViewHolder holder) {
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getlike/" + image_id)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            likes = Integer.parseInt(response.getString("likes"));
+                            likes = likes - 1;
+                            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+                            valueAnimator.setDuration(100);
+                            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public void onAnimationUpdate(ValueAnimator animation) {
+                                    holder.like.setProgress(1 - animation.getAnimatedFraction());
+                                }
+                            });
+                            holder.like_count.setText(String.valueOf(likes));
+                            valueAnimator.start();
+                            holder.like.setEnabled(true);
+                            check = true;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError error) {
+                        // handle error
+                    }
+                });
+    }
+
+
     public void remove() {
-        AndroidNetworking.get("http://hillffair.tk/postlike/" + image_id + "/" + user_id + "/0")
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "postlike/" + image_id + "/" + roll + "/0")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override

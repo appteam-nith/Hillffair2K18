@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -31,6 +32,7 @@ import appteam.nith.hillffair2k18.model.Leaderboard;
  */
 
 public class LeaderboardFragment extends Fragment implements View.OnClickListener {
+    ProgressBar loadwall;
     private LeaderboardAdapter clubAdapter;
     private RecyclerView recyclerView;
     private List<Leaderboard> clubList = new ArrayList<>();
@@ -57,6 +59,7 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
 
         point = view.findViewById(R.id.point);
         referral = view.findViewById(R.id.referral);
+        loadwall = view.findViewById(R.id.loadwall);
         popular = view.findViewById(R.id.popular);
         popular.setOnClickListener(this);
         point.setOnClickListener(this);
@@ -75,19 +78,21 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
     public void getData() {
 
         clubList.clear();
-        AndroidNetworking.get("http://hillffair.tk/getleaderboard/0")
+        loadwall.setVisibility(View.VISIBLE);
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getleaderboard/0")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            loadwall.setVisibility(View.GONE);
                             int users = response.length();
                             System.out.println(response);
                             for (int i = 0; i < users; i++) {
                                 JSONObject json = response.getJSONObject(i);
                                 String clubname = json.getString("name");
                                 String score = json.getString("score");
-                                String id = json.getString("id");
+                                String id = json.getString("image_url");
                                 clubList.add(new Leaderboard(clubname, id, score));
                             }
                             clubAdapter.notifyDataSetChanged();

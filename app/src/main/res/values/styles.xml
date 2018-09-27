@@ -11,7 +11,14 @@
         <item name="android:backgroundDimAmount">0.3</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/black</item>
+    </style>
 
+
+    <style name="AppTheme1" parent="AppTheme">
+        <item name="colorAccent">@color/black</item>
+    </style>
     <style name="RedHighlight" parent="AppTheme">
         <item name="android:colorControlHighlight">#bf021c</item>
     </style>

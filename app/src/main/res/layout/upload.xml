@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_margin="16dp"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp">
 
@@ -97,6 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#a0000000"
+        android:clickable="true"
         android:elevation="4dp"
         android:visibility="gone">
 
@@ -105,6 +107,18 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_centerInParent="true"
+            android:layout_margin="16dp"
             android:visibility="visible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progress"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/psb"
+            android:text="Uploading"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
     </RelativeLayout>
 </RelativeLayout>

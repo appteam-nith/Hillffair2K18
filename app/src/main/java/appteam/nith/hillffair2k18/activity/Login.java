@@ -52,14 +52,11 @@ public class Login extends AppCompatActivity {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        String Login = sharedPreferences.getString("Login","gsbs");
-        if (!Login.equals("gsbs"))
-        {
+        String Login = sharedPreferences.getString("Login", "gsbs");
+        if (!Login.equals("gsbs")) {
             finish();
-            startActivity(new Intent(this,DashActivity.class));
-        }
-        else
-        {
+            startActivity(new Intent(this, DashActivity.class));
+        } else {
             setContentView(R.layout.activity_login);
             findViews();
             FirebaseApp.initializeApp(this);
@@ -75,7 +72,6 @@ public class Login extends AppCompatActivity {
         main = findViewById(R.id.main);
         etOTP = findViewById(R.id.et_otp);
         skip = findViewById(R.id.skip);
-
         main.setVisibility(View.VISIBLE);
         main.setAlpha(0f);
         linearLayout.setVisibility(View.VISIBLE);
@@ -134,12 +130,18 @@ public class Login extends AppCompatActivity {
         btnGenerateOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                etPhoneNumber.setVisibility(View.INVISIBLE);
+                etOTP.setVisibility(View.VISIBLE);
                 phoneNumber = String.valueOf(etPhoneNumber.getText());
                 phone += phoneNumber;
                 if (phoneNumber.length() == 0)
                     Toast.makeText(Login.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
                 else {
                     phoneNumber = phone;
+                    final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("numberMobile", phone);
+                    editor.commit();
                     btnSignIn.setVisibility(View.VISIBLE);
                     btnGenerateOTP.setVisibility(View.GONE);
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
