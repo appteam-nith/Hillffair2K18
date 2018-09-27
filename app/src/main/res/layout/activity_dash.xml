@@ -126,7 +126,7 @@
                 android:layout_margin="16dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:fontFamily="@font/psb"
-                android:text="Map"
+                android:text="Campus Map"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:visibility="gone" />
