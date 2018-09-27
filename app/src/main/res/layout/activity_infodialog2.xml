@@ -9,12 +9,24 @@
     app:cardElevation="0dp"
     app:cardPreventCornerOverlap="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/cross"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/cross" />
+
         <TextView
+            android:id="@+id/sponsors"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -27,7 +39,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:layout_below="@id/sponsors">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/thirdRec"
@@ -37,5 +50,5 @@
 
             </android.support.v7.widget.RecyclerView>
         </ScrollView>
-    </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
