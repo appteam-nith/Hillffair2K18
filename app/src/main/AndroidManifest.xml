@@ -73,6 +73,9 @@
         <activity
             android:name=".activity.Map"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AboutHillffair"
+            android:screenOrientation="portrait" />
 
     </application>
 
