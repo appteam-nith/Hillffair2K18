@@ -52,8 +52,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Quiz.this, DashActivity.class);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
