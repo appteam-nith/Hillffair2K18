@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -37,6 +39,7 @@ import appteam.nith.hillffair2k18.model.Wall;
 public class WallFragment extends Fragment implements View.OnClickListener {
 
     String user_id;
+    SwipeRefreshLayout swiperefresh;
     private WallAdapter wallAdapter;
     private FloatingActionButton fab;
     private RecyclerView fifthRec;
@@ -56,7 +59,6 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,11 +73,26 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         fifthRec.setAdapter(wallAdapter);
         getData();
+        swiperefresh = view.findViewById(R.id.swiperefresh);
+        swiperefresh.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+//                        Handler handler = new Handler();
+//                            handler.postDelayed((Runnable) getActivity().getApplicationContext(), 1000);
+                        getData();
+                        swiperefresh.setRefreshing(false);
+                    }
+
+                }
+        );
+
         Log.e("WallFragment", "onCreateView: ");
         return view;
     }
 
-    void getData() {
+    void getData()
+    {
         wallList.clear();
         SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
         String check = prefs.getString("roll number", "gsb");
@@ -99,7 +116,6 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                                 wallList.add(new Wall(name, roll, profile, imgUrl, likes, image, inttt));
                             }
                             wallAdapter.notifyDataSetChanged();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -111,7 +127,6 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                     }
                 });
 //        wallAdapter.notifyDataSetChanged();
-
     }
 
     @Override
