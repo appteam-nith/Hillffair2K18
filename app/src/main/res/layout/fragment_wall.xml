@@ -8,6 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/loadwall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:theme="@style/AppTheme1"
+        android:visibility="gone" />
+
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fifthRec"
         android:layout_width="match_parent"

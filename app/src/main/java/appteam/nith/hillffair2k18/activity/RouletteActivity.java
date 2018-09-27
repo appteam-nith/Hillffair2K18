@@ -161,7 +161,7 @@ public class RouletteActivity extends AppCompatActivity {
                                         if (currentNumber(360 - (degree % 360)).equals("Congratulations you have won 25 points")) {
                                             SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
                                             String roll = prefs.getString("roll number", "gsbs");
-                                            AndroidNetworking.get("http://hillffair.tk/postpoint/" + roll + "/" + "25")
+                                            AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + "25")
                                                     .build()
                                                     .getAsJSONArray(new JSONArrayRequestListener() {
                                                         @Override

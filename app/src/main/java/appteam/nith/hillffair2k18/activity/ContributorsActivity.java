@@ -7,7 +7,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +20,10 @@ import appteam.nith.hillffair2k18.model.contributorsItem;
  */
 
 public class ContributorsActivity extends AppCompatActivity {
+    String BASE_URL = "https://github.com/";
     private List<contributorsItem> contributorsItems = new ArrayList<>();
     private RecyclerView recyclerView;
     private ContributorsAdaptor contributorsAdaptor;
-    String BASE_URL = "https://github.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class ContributorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contributors);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
-        contributorsAdaptor  = new ContributorsAdaptor(contributorsItems,ContributorsActivity.this);
+        contributorsAdaptor = new ContributorsAdaptor(contributorsItems, ContributorsActivity.this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -47,28 +46,28 @@ public class ContributorsActivity extends AppCompatActivity {
         });
         initData();
     }
-    private void initData()
-    {
+
+    private void initData() {
         //5th Year
-        contributorsItems.add(new contributorsItem("Sahil Ramola", BASE_URL + "RamolaWeb.png",BASE_URL + "RamolaWeb"));
+        contributorsItems.add(new contributorsItem("Sahil Ramola", BASE_URL + "RamolaWeb.png", BASE_URL + "RamolaWeb"));
 
 
-        contributorsItems.add(new contributorsItem("Sukhbir Singh", BASE_URL + "sukhbir-singh.png",BASE_URL + "sukhbir-singh"));
+        contributorsItems.add(new contributorsItem("Sukhbir Singh", BASE_URL + "sukhbir-singh.png", BASE_URL + "sukhbir-singh"));
         contributorsItems.add(new contributorsItem("Jalaz Kumar", BASE_URL + "jaykay12.png", BASE_URL + "jaykay12"));
         contributorsItems.add(new contributorsItem("Narendra Dodwaria", BASE_URL + "narendra36.png", BASE_URL + "narendra36"));
 
         //4th Year
-        contributorsItems.add(new contributorsItem("Aditya Arora", BASE_URL + "adi23arora.png",BASE_URL + "adi23arora"));
+        contributorsItems.add(new contributorsItem("Aditya Arora", BASE_URL + "adi23arora.png", BASE_URL + "adi23arora"));
         contributorsItems.add(new contributorsItem("B Jatin Rao", BASE_URL + "Jatin0312.png", BASE_URL + "Jatin0312"));
         contributorsItems.add(new contributorsItem("Nitin Sharma", BASE_URL + "iamNitin16.png", BASE_URL + "iamNitin16"));
-        contributorsItems.add(new contributorsItem("Suraj Negi", BASE_URL + "Akatsuki06.png",BASE_URL + "Akatsuki06"));
+        contributorsItems.add(new contributorsItem("Suraj Negi", BASE_URL + "Akatsuki06.png", BASE_URL + "Akatsuki06"));
 
         //3rd Year
-        contributorsItems.add(new contributorsItem("Bharat Shah", BASE_URL + "bharatshah1498.png",BASE_URL + "bharatshah1498"));
-        contributorsItems.add(new contributorsItem("Kartik Saxena", BASE_URL + "SaxenaKartik.png",BASE_URL + "SaxenaKartik"));
-        contributorsItems.add(new contributorsItem("Muskan Jhunjhunwalla", BASE_URL + "musukeshu.png",BASE_URL + "musukeshu"));
-        contributorsItems.add(new contributorsItem("Anubhaw Bhalotia", BASE_URL + "anubhawbhalotia.png",BASE_URL + "anubhawbhalotia"));
-        contributorsItems.add(new contributorsItem("Kaushal Kishore", BASE_URL + "kaushal16124.png",BASE_URL + "kaushal16124"));
+        contributorsItems.add(new contributorsItem("Bharat Shah", BASE_URL + "bharatshah1498.png", BASE_URL + "bharatshah1498"));
+        contributorsItems.add(new contributorsItem("Kartik Saxena", BASE_URL + "SaxenaKartik.png", BASE_URL + "SaxenaKartik"));
+        contributorsItems.add(new contributorsItem("Muskan Jhunjhunwalla", BASE_URL + "musukeshu.png", BASE_URL + "musukeshu"));
+        contributorsItems.add(new contributorsItem("Anubhaw Bhalotia", BASE_URL + "anubhawbhalotia.png", BASE_URL + "anubhawbhalotia"));
+        contributorsItems.add(new contributorsItem("Kaushal Kishore", BASE_URL + "kaushal16124.png", BASE_URL + "kaushal16124"));
 
         //2nd Year
         contributorsItems.add(new contributorsItem("Abhinav Lamba", BASE_URL + "Abhinavlamba.png", BASE_URL + "Abhinavlamba"));

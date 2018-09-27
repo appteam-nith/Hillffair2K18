@@ -14,7 +14,6 @@ import java.util.List;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.model.Team;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Coded by ThisIsNSH on 9/20/2018.

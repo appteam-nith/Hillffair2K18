@@ -29,9 +29,9 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/image"
                     android:layout_width="30dp"
-                    android:scaleType="centerCrop"
                     android:layout_height="30dp"
                     android:layout_margin="16dp"
+                    android:scaleType="centerCrop"
                     android:src="@color/black" />
 
                 <TextView

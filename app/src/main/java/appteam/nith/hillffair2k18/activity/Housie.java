@@ -17,16 +17,11 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import appteam.nith.hillffair2k18.R;
 
@@ -35,7 +30,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
     ArrayList<Integer> list = new ArrayList<Integer>();
     ArrayList<TextView> numb = new ArrayList<TextView>();
     ArrayList<Integer> checknumber = new ArrayList<>();
-    int total = 15, count = 0,i;
+    int total = 15, count = 0, i;
     int Cnumber = 0;
     int[] checked = new int[15];
     TextView number_1, number_2, number_3, number, number_4, number_5, number_6, number_7, number_8, number_9, number_10, number_11, number_12, number_13, number_14, number_15;
@@ -57,6 +52,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
         });
 
     }
+
     public void getdata() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -64,13 +60,14 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
             public void run() {
                 currentNumber = checknumber.get(Cnumber).toString();
                 number.setText(currentNumber);
-                Cnumber+=1;
-                if (Cnumber<40)
+                Cnumber += 1;
+                if (Cnumber < 40)
                     getdata();
             }
         }, 7000);
 
     }
+
     public void init() {
         number_1 = findViewById(R.id.number_1);
         number_2 = findViewById(R.id.number_2);
@@ -453,7 +450,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
         Toast.makeText(this, "You WIN!", Toast.LENGTH_SHORT).show();
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
         String roll = prefs.getString("roll number", "gsbs");
-        AndroidNetworking.get("http://hillffair.tk/postpoint/" + roll + "/" + String.valueOf(15))
+        AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + String.valueOf(15))
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override

@@ -72,7 +72,8 @@
                 android:paddingTop="8dp"
                 android:textColor="@color/black"
                 android:textColorHint="#bbb"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="visible" />
 
             <EditText
                 android:id="@+id/et_otp"
@@ -94,7 +95,8 @@
                 android:paddingTop="8dp"
                 android:textColor="@color/black"
                 android:textColorHint="#bbb"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <android.support.v7.widget.CardView
                 android:id="@+id/card"
@@ -148,7 +150,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -156,5 +157,6 @@
         android:padding="16dp"
         android:text="Skip"
         android:textAllCaps="true"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:visibility="gone" />
 </RelativeLayout>
