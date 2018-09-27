@@ -21,5 +21,7 @@
         <li>25 points will be awarded for the correct match</li>
     </string>
 
+    <string name="google_maps_key">AIzaSyByIUspPrtzSN1TGWXi2zXn7zaeTGr6850</string>
+
 
 </resources>
