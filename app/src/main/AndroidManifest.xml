@@ -18,11 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:fullBackupContent">
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -30,9 +28,7 @@
         <activity
             android:name=".activity.DashActivity"
             android:exported="true"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.ProfileMain"
             android:screenOrientation="portrait" />
@@ -42,19 +38,17 @@
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait">
-
+          <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
         </activity>
         <activity
             android:name=".activity.Housie"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Profile"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.Upload"
             android:screenOrientation="portrait" />
@@ -79,7 +73,7 @@
         <activity
             android:name=".activity.AboutHillffair"
             android:screenOrientation="portrait" />
-
+        <activity android:name=".dialog.CautionDialog"></activity>
     </application>
 
 </manifest>

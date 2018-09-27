@@ -1,6 +1,7 @@
 package appteam.nith.hillffair2k18.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.dialog.CautionDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
@@ -79,6 +81,8 @@ public class Profile extends AppCompatActivity {
             }
         });
         initUI();
+        CautionDialog cautionDialog=new CautionDialog(Profile.this);
+        cautionDialog.show();
     }
 
     @Override
