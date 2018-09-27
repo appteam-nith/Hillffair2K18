@@ -45,6 +45,7 @@ public class InfoDialog1 extends Dialog {
         getWindow().setAttributes(lp);
 
         next = findViewById(R.id.next);
+        next.setTextColor(Color.parseColor("#0000ff"));
         dialog = findViewById(R.id.dialog);
         editBet = findViewById(R.id.editBet);
         editBet.setText("");
@@ -52,18 +53,23 @@ public class InfoDialog1 extends Dialog {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Integer.parseInt(String.valueOf(editBet.getText())) > 36 || Integer.parseInt(String.valueOf(editBet.getText())) < 0) {
-                    Toast.makeText(context, "Number out of limit", Toast.LENGTH_SHORT).show();
-                } else if (!arrayList.contains(String.valueOf(editBet.getText()))) {
-                    ++check;
-                    arrayList.add(String.valueOf(editBet.getText()));
-                } else {
-                    Toast.makeText(context, "Number already entered", Toast.LENGTH_SHORT).show();
+                if (editBet.getText().toString().equals("")) {
+                    Toast.makeText(context, "Enter some bet first", Toast.LENGTH_SHORT).show();
                 }
-
+                else {
+                    if (Integer.parseInt(String.valueOf(editBet.getText())) > 36 || Integer.parseInt(String.valueOf(editBet.getText())) < 0) {
+                        Toast.makeText(context, "Enter no. less than 37", Toast.LENGTH_SHORT).show();
+                    } else if (!arrayList.contains(String.valueOf(editBet.getText()))) {
+                        ++check;
+                        arrayList.add(String.valueOf(editBet.getText()));
+                    } else {
+                        Toast.makeText(context, "Number already entered", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
                 if (check == 5) {
                     next.setText("Spin");
+                    next.setTextColor(Color.parseColor("#FF1B5E20"));
                 }
                 if (check <= 5) {
                     dialog.setText("Make Bet No. " + check + " of 5");
