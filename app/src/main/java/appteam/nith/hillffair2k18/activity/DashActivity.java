@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -84,8 +85,10 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         profile = findViewById(R.id.profile);
         viewPager = findViewById(R.id.viewpager);
         contributorNav = findViewById(R.id.contributorNav);
+
         setupdata();
     }
+
 
     public void setupdata() {
 
@@ -310,8 +313,8 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                 toast.show();
                 break;
             case R.id.mapNav:
-                Toast toast1 = Toast.makeText(DashActivity.this, "Coming Soon", Toast.LENGTH_SHORT);
-                toast1.show();
+                startActivity(new Intent(DashActivity.this, Map.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
             case R.id.contributorNav:
                 startActivity(new Intent(DashActivity.this, ContributorsActivity.class));
@@ -338,7 +341,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                     sponsorNav.setVisibility(View.GONE);
                     callNav.setVisibility(View.VISIBLE);
                     notifNav.setVisibility(View.VISIBLE);
-                    mapNav.setVisibility(View.GONE);
+                    mapNav.setVisibility(View.VISIBLE);
                     hillffairNav.setVisibility(View.VISIBLE);
                     contributorNav.setVisibility(View.VISIBLE);
 
@@ -420,7 +423,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                             callNav.setVisibility(View.VISIBLE);
                             notifNav.setVisibility(View.VISIBLE);
                             hillffairNav.setVisibility(View.VISIBLE);
-                            mapNav.setVisibility(View.GONE);
+                            mapNav.setVisibility(View.VISIBLE);
                             contributorNav.setVisibility(View.VISIBLE);
 
                         }
