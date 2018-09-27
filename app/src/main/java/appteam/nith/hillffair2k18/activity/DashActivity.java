@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -84,8 +85,10 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         profile = findViewById(R.id.profile);
         viewPager = findViewById(R.id.viewpager);
         contributorNav = findViewById(R.id.contributorNav);
+
         setupdata();
     }
+
 
     public void setupdata() {
 
