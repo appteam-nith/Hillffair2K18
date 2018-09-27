@@ -19,8 +19,17 @@
         android:theme="@style/AppTheme"
         tools:replace="android:fullBackupContent">
 
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
         <activity
             android:name=".activity.DashActivity"
+            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity
@@ -60,6 +69,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.EmergencyContact"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.Map"
             android:screenOrientation="portrait" />
 
     </application>
