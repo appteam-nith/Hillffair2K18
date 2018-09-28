@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:fullBackupContent">
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -28,6 +30,13 @@
             android:name=".activity.DashActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
+
+
         <activity
             android:name=".activity.ProfileMain"
             android:screenOrientation="portrait" />
@@ -71,12 +80,18 @@
             android:name=".activity.Map"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".Notification.Notification2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Notification.NotificationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activity.AboutHillffair"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

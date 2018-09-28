@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import appteam.nith.hillffair2k18.Notification.NotificationActivity;
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.ScrollAdapter;
 import appteam.nith.hillffair2k18.dialog.Infodialog2;
@@ -309,8 +310,8 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
             case R.id.notifNav:
-                Toast toast = Toast.makeText(DashActivity.this, "Coming Soon", Toast.LENGTH_SHORT);
-                toast.show();
+                startActivity(new Intent(DashActivity.this, NotificationActivity.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
             case R.id.mapNav:
                 startActivity(new Intent(DashActivity.this, Map.class));
