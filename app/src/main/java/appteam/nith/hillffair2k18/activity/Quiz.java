@@ -3,7 +3,9 @@ package appteam.nith.hillffair2k18.activity;
  * Created by LENOVO on 24-09-2018.
  */
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
@@ -40,20 +43,27 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     ArrayList<String> optionD = new ArrayList<String>();
     ArrayList<String> answers = new ArrayList<String>();
     ArrayList<String> question = new ArrayList<String>();
-    int color;
+    int color, status;
     JSONArray ques;
     int i = 0;
+    int u;
+    TextSwitcher textSwitcher;
+    int touch = 0, col;
     private LinearLayout main1, main2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        textSwitcher = findViewById(R.id.qu);
+        textSwitcher.setInAnimation(Quiz.this, R.anim.fade_in);
+        textSwitcher.setOutAnimation(Quiz.this, R.anim.fade_out);
+        textSwitcher.addView(new TextView(Quiz.this));
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Quiz.this, DashActivity.class);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
@@ -64,7 +74,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
 
     public void setdata() {
-        AndroidNetworking.get("http://hillffair.tk/getquiz")
+        AndroidNetworking.get(getString(R.string.baseUrl) + "getquiz")
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -105,7 +115,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
 
     public void getdata() {
-        q1 = findViewById(R.id.ques);
+//        q1 = findViewById(R.id.ques);
         o1 = findViewById(R.id.optiona);
         o2 = findViewById(R.id.optionb);
         o3 = findViewById(R.id.optionc);
@@ -131,7 +141,9 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
                 check = answers.get(i);
                 textTimer.setText("0:" + checkDigit(time));
-                q1.setText(question.get(i));
+                textSwitcher.setText(question.get(i));
+                touch = 0;
+                col = o1.getSolidColor();
                 o1.setText(optionA.get(i));
                 o2.setText(optionB.get(i));
                 o3.setText(optionC.get(i));
@@ -141,10 +153,29 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
             }
 
             public void onFinish() {
-                o1.setClickable(true);
-                o2.setClickable(true);
-                o3.setClickable(true);
-                o4.setClickable(true);
+                int y;
+                if (check.equals("1")) {
+//                 y = o1.getSolidColor();
+                    if (status == 1)
+                        points++;
+                }
+                if (check.equals("2")) {
+//                    y = o2.getSolidColor();
+                    if (status == 2)
+                        points++;
+                }
+
+                if (check.equals("3")) {
+//                    y = o3.getSolidColor();
+                    if (status == 3)
+                        points++;
+                }
+
+                if (check.equals("4")) {
+//                    y = o4.getSolidColor();
+                    if (status == 4)
+                        points++;
+                }
                 o1.setBackgroundColor(color);
                 o2.setBackgroundColor(color);
                 o3.setBackgroundColor(color);
@@ -160,7 +191,7 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                     point.setText("Correct: " + points + "/10");
                     SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
                     String roll = prefs.getString("roll number", "gsbs");
-                    AndroidNetworking.get("http://hillffair.tk/postpoint/" + roll + "/" + String.valueOf(points * 10))
+                    AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + String.valueOf(points * 10))
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
                                 @Override
@@ -185,47 +216,58 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void visible() {
-        o1.setClickable(false);
-        o2.setClickable(false);
-        o3.setClickable(false);
-        o4.setClickable(false);
-
+        o1.setBackgroundColor(col);
+        o2.setBackgroundColor(col);
+        o3.setBackgroundColor(col);
+        o4.setBackgroundColor(col);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.optiona:
-                if (check.equals("1")) {
-                    points++;
-                }
                 visible();
                 o1.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
+//                u = o1.getBack;
+                status = 1;
                 break;
             case R.id.optionb:
-                if (check.equals("2")) {
-                    points++;
-                }
                 visible();
                 o2.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
+//                u = o2.getSolidColor();
+                status = 2;
                 break;
 
             case R.id.optionc:
-                if (check.equals("3")) {
-                    points++;
-                }
                 visible();
                 o3.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
+//                u = o3.getSolidColor();
+                status = 3;
                 break;
             case R.id.optiond:
-                if (check.equals("4")) {
-                    points++;
-                }
                 visible();
                 o4.setBackground(getResources().getDrawable(R.drawable.yellow_orange));
+//                u = o4.getSolidColor();
+                status = 4;
                 break;
         }
 
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        builder.setTitle("EXIT");
+        builder.setMessage("You won't get another chance today");
+        builder.setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Quiz.super.onBackPressed();
+            }
+        });
+        builder.setNegativeButton("DISAGREE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        builder.show();
+    }
 }

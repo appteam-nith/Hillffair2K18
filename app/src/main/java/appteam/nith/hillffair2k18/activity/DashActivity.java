@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -85,8 +86,10 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         profile = findViewById(R.id.profile);
         viewPager = findViewById(R.id.viewpager);
         contributorNav = findViewById(R.id.contributorNav);
+
         setupdata();
     }
+
 
     public void setupdata() {
 
@@ -269,7 +272,7 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
         scrollList.add(new Scroll("Live Feed", R.drawable.live));
         scrollList.add(new Scroll("Quiz & Games", R.drawable.games));
         scrollList.add(new Scroll("Schedule", R.drawable.schedule));
-        scrollList.add(new Scroll("Leaderboard", R.drawable.leaderboard));
+        scrollList.add(new Scroll("Top 10", R.drawable.leaderboard));
         scrollList.add(new Scroll("Clubs", R.drawable.club));
         scrollList.add(new Scroll("Core Members", R.drawable.core));
         scrollList.add(new Scroll("Sponsors", R.drawable.sponsor));

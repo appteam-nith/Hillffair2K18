@@ -17,8 +17,7 @@ public class AboutHillffair extends AppCompatActivity {
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AboutHillffair.this, DashActivity.class);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });

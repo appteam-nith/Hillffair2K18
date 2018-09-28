@@ -1,6 +1,7 @@
 package appteam.nith.hillffair2k18.activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,10 +34,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import appteam.nith.hillffair2k18.R;
+import appteam.nith.hillffair2k18.dialog.CautionDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
+    LinearLayout progress;
+    String pass = "";
     private byte[] byteArray;
     private EditText studentName, rollNumber, branch, contactNumber, referral;
     private String Name, base64a, base64b, RollNumber, Branch, referal, ContactNumber, imgUrl;
@@ -60,7 +65,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         AndroidNetworking.initialize(getApplicationContext());
-
+        progress = findViewById(R.id.loadwall);
         Map config = new HashMap();
         config.put("cloud_name", "appteam");
         MediaManager.init(this, config);
@@ -79,6 +84,8 @@ public class Profile extends AppCompatActivity {
             }
         });
         initUI();
+        CautionDialog cautionDialog=new CautionDialog(Profile.this);
+        cautionDialog.show();
     }
 
     @Override
@@ -95,7 +102,8 @@ public class Profile extends AppCompatActivity {
             selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, bs);
             byteArray = bs.toByteArray();
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
-            img = getResizedBitmap(bmp, 300);
+            img = getResizedBitmap(bmp, 150);
+            pass = encodeTobase64(img);
             profilePicture = findViewById(R.id.profilePicture);
             profilePicture.setImageBitmap(img);
         }
@@ -121,7 +129,7 @@ public class Profile extends AppCompatActivity {
     public void initUI() {
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
         String check = prefs.getString("name", "gsbs");
-//        studentName.setText(check);
+
         if (!check.equals("gsbs")) {
             startActivity(new Intent(Profile.this, DashActivity.class));
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
@@ -133,6 +141,9 @@ public class Profile extends AppCompatActivity {
         referral = findViewById(R.id.referal);
         branch = findViewById(R.id.branch);
         contactNumber = findViewById(R.id.contactNumber);
+        final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+        contactNumber.setText(sharedPreferences.getString("numberMobile", "None"));
+        contactNumber.setEnabled(false);
         save = findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
 
@@ -150,49 +161,58 @@ public class Profile extends AppCompatActivity {
         Branch = String.valueOf(branch.getText());
         referal = String.valueOf(referral.getText());
         ContactNumber = contactNumber.getText().toString();
+
         if (Name.length() == 0 || RollNumber.length() == 0 || Branch.length() == 0 || ContactNumber.length() == 0) {
             Toast.makeText(Profile.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
         } else {
             final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
             final SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("name", Name);
-            editor.putString("roll number", RollNumber);
-            editor.putString("Branch", Branch);
-            editor.putString("Phone", ContactNumber);
-            editor.putString("Image", encodeTobase64(img));
-            String requestId = MediaManager.get().upload(byteArray)
-                    .unsigned("k5vtuu12")
-                    .callback(new UploadCallback() {
-                        @Override
-                        public void onStart(String requestId) {
-                        }
 
-                        @Override
-                        public void onProgress(String requestId, long bytes, long totalBytes) {
-                        }
+            if (pass == "") {
+                Toast.makeText(Profile.this, "Please select profile picture", Toast.LENGTH_SHORT).show();
+            } else if (Name == "" || RollNumber == "" || Branch == "" || ContactNumber == "" || pass == "") {
+                Toast.makeText(Profile.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            } else {
+                editor.putString("name", Name);
+                editor.putString("roll number", RollNumber);
+                editor.putString("Branch", Branch);
+                editor.putString("Phone", ContactNumber);
+                editor.putString("Image", pass);
+                progress.setVisibility(View.VISIBLE);
+                String requestId = MediaManager.get().upload(byteArray)
+                        .unsigned("kifap7u6")
+                        .callback(new UploadCallback() {
+                            @Override
+                            public void onStart(String requestId) {
+                            }
 
-                        @Override
-                        public void onSuccess(String requestId, Map resultData) {
-                            System.out.println(resultData.get("url"));
-                            imgUrl = String.valueOf(resultData.get("url"));
-                            post(ContactNumber);
-                            startActivity(new Intent(Profile.this, DashActivity.class));
-                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                            editor.putString("ImageURL", String.valueOf(resultData.get("url")));
-                            editor.commit();
-                            finish();
-                        }
+                            @Override
+                            public void onProgress(String requestId, long bytes, long totalBytes) {
+                            }
 
-                        @Override
-                        public void onError(String requestId, ErrorInfo error) {
-                        }
+                            @Override
+                            public void onSuccess(String requestId, Map resultData) {
+                                System.out.println(resultData.get("url"));
+                                imgUrl = String.valueOf(resultData.get("url"));
+                                post(ContactNumber);
+                                startActivity(new Intent(Profile.this, DashActivity.class));
+                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                editor.putString("ImageURL", String.valueOf(resultData.get("url")));
+                                editor.commit();
+                                finish();
+                            }
 
-                        @Override
-                        public void onReschedule(String requestId, ErrorInfo error) {
-                        }
-                    })
-                    .dispatch(Profile.this);
+                            @Override
+                            public void onError(String requestId, ErrorInfo error) {
+                            }
 
+                            @Override
+                            public void onReschedule(String requestId, ErrorInfo error) {
+                            }
+                        })
+                        .dispatch(Profile.this);
+
+            }
         }
     }
 
@@ -200,17 +220,21 @@ public class Profile extends AppCompatActivity {
         try {
 //            byte[] data = referal.getBytes("UTF-8");
             base64a = referal;
+            if (base64a.equals(""))
+                base64a = "0";
             byte[] data1 = imgUrl.getBytes("UTF-8");
             base64b = Base64.encodeToString(data1, Base64.DEFAULT);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        System.out.print("http://hillffair.tk/postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber);//22
-        AndroidNetworking.get("http://hillffair.tk/postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber + "/" + base64a + "/" + base64b)
+
+        System.out.print(getString(R.string.baseUrl) + "postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber);//22
+        AndroidNetworking.get(getString(R.string.baseUrl) + "postprofile/" + Name + "/" + RollNumber + "/" + ContactNumber + "/" + base64a + "/" + base64b)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        progress.setVisibility(View.GONE);
                         // do anything with response
                     }
 

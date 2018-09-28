@@ -1,98 +1,111 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:scrollbars="none">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <ProgressBar
+        android:id="@+id/loadwall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:theme="@style/AppTheme1"
+        android:visibility="gone" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="vertical">
+        android:scrollbars="none">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/main"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:context=".fragment.ScheduleFragment">
+            android:background="@color/white"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/date1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:clipToPadding="false"
-                android:fontFamily="@font/psb"
-                android:paddingTop="126dp"
-                android:text="3 October"
-                android:textColor="@color/dark_grey"
-                android:textSize="20sp"
-                android:visibility="gone" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/firstRec1"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="false"
-                android:paddingTop="126dp"
-                android:scrollbars="none" />
+                android:orientation="vertical"
+                tools:context=".fragment.ScheduleFragment">
+
+                <TextView
+                    android:id="@+id/date1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:fontFamily="@font/psb"
+                    android:paddingTop="126dp"
+                    android:text="3 October"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/firstRec1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingTop="126dp"
+                    android:scrollbars="none" />
+
+                <TextView
+                    android:id="@+id/date2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:fontFamily="@font/psb"
+                    android:paddingTop="16dp"
+                    android:text="3 October"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/firstRec2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/date3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:clipToPadding="false"
+                    android:fontFamily="@font/psb"
+                    android:paddingTop="16dp"
+                    android:text="3 October"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/firstRec3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/date2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:clipToPadding="false"
-                android:fontFamily="@font/psb"
-                android:paddingTop="16dp"
-                android:text="3 October"
-                android:textColor="@color/dark_grey"
-                android:textSize="20sp"
-                android:visibility="gone" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/firstRec2"
+                android:id="@+id/noSch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/date3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:clipToPadding="false"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/psb"
-                android:paddingTop="16dp"
-                android:text="3 October"
-                android:textColor="@color/dark_grey"
+                android:gravity="center"
+                android:paddingTop="226dp"
+                android:text="No Schedule Yet"
+                android:textColor="@color/black"
                 android:textSize="20sp"
-                android:visibility="gone" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/firstRec3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none"
                 android:visibility="gone" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/noSch"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/psb"
-            android:gravity="center"
-            android:paddingTop="226dp"
-            android:text="No Schedule Yet"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:visibility="gone" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>

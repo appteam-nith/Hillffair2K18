@@ -98,8 +98,7 @@ public class RouletteActivity extends AppCompatActivity {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(RouletteActivity.this, DashActivity.class);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
             }
@@ -162,7 +161,7 @@ public class RouletteActivity extends AppCompatActivity {
                                         if (currentNumber(360 - (degree % 360)).equals("Congratulations you have won 25 points")) {
                                             SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
                                             String roll = prefs.getString("roll number", "gsbs");
-                                            AndroidNetworking.get("http://hillffair.tk/postpoint/" + roll + "/" + "25")
+                                            AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + "25")
                                                     .build()
                                                     .getAsJSONArray(new JSONArrayRequestListener() {
                                                         @Override

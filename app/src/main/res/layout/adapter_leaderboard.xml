@@ -45,12 +45,12 @@
             android:id="@+id/image"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:scaleType="centerCrop"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:layout_toRightOf="@id/rank"
+            android:scaleType="centerCrop"
             android:src="@color/black" />
 
         <LinearLayout
