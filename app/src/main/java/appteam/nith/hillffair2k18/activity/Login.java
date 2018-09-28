@@ -198,7 +198,7 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-                Toast.makeText(Login.this, "verification completed", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Login.this, "verification completed", Toast.LENGTH_SHORT).show();
                 final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
                 final SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("Login", "Complete");
