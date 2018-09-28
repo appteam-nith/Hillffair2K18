@@ -45,8 +45,7 @@ public class NotificationActivity extends AppCompatActivity {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NotificationActivity.this, DashActivity.class);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
             }
