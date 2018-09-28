@@ -23,7 +23,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileMain extends AppCompatActivity {
-    TextView name1, rollNumber1, referral, branch1, mobile1;
+    TextView name1, rollNumber1, referral, branch1, mobile1, reffaralDone;
     CircleImageView profilemain, buttonLoadImage;
     Bitmap bmp;
     String base64a;
@@ -75,6 +75,10 @@ public class ProfileMain extends AppCompatActivity {
             String check3 = prefs.getString("Phone", "nullaaa");
             if (!check3.equals("nullaaa")) {
                 mobile1.setText(check3);
+            }
+            String check4 = prefs.getString("Score", "0");
+            if (!check3.equals("0")) {
+                reffaralDone.setText(check4);
             }
             String image = prefs.getString("Image", "https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png");
             if (image.equals("https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png")) {
@@ -156,5 +160,6 @@ public class ProfileMain extends AppCompatActivity {
         branch1 = findViewById(R.id.branch1);
         mobile1 = findViewById(R.id.mobile1);
         profilemain = findViewById(R.id.profilePicture);
+        reffaralDone = findViewById(R.id.referralDone);
     }
 }

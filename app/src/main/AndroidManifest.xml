@@ -31,7 +31,6 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
-
         <meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"
             android:value="DISABLE" />
