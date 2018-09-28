@@ -37,10 +37,11 @@
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait">
-          <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.Housie"
@@ -72,7 +73,10 @@
         <activity
             android:name=".activity.AboutHillffair"
             android:screenOrientation="portrait" />
-        <activity android:name=".dialog.CautionDialog"></activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

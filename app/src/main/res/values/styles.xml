@@ -1,7 +1,7 @@
 <resources>
 
+    <!-- Base application theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/white</item>
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -11,14 +11,25 @@
         <item name="android:backgroundDimAmount">0.3</item>
         <item name="android:windowContentTransitions">true</item>
     </style>
+
+    <style name="LoginTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginProgress" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColor">@color/black</item>
     </style>
 
-
     <style name="AppTheme1" parent="AppTheme">
         <item name="colorAccent">@color/black</item>
     </style>
+
     <style name="RedHighlight" parent="AppTheme">
         <item name="android:colorControlHighlight">#bf021c</item>
     </style>
