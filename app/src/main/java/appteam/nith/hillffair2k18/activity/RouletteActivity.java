@@ -120,12 +120,10 @@ public class RouletteActivity extends AppCompatActivity {
                         @Override
                         public void onDismiss(DialogInterface dialog) {
                             button.setVisibility(View.GONE);
-                            editor.putInt("spinTime", spinTime + 1);
-                            editor.commit();
                             r = new Random();
                             degreeold = degree % 360;
                             degree = r.nextInt(3600) + 720;
-                            RotateAnimation rotate = new RotateAnimation(degreeold, degree, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                            final RotateAnimation rotate = new RotateAnimation(degreeold, degree, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
                             rotate.setDuration(3600);
                             rotate.setFillAfter(true);
                             rotate.setInterpolator(new DecelerateInterpolator());
@@ -149,47 +147,60 @@ public class RouletteActivity extends AppCompatActivity {
                             } else if (num > 37) {
 //                            MakeToast("Inappropriate Choice");
                             } else {
-                                rotate.setAnimationListener(new Animation.AnimationListener() {
-                                    @Override
-                                    public void onAnimationStart(Animation animation) {
-                                        textView.setText("");
-                                    }
+                                button.setVisibility(View.VISIBLE);
+                                textNsh.setText("   SPIN   ");
 
+                                button.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onAnimationEnd(Animation animation) {
-                                        textView.setText(currentNumber(360 - (degree % 360)));
-                                        if (currentNumber(360 - (degree % 360)).equals("Congratulations you have won 25 points")) {
-                                            SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
-                                            String roll = prefs.getString("roll number", "gsbs");
-                                            AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + "25")
-                                                    .build()
-                                                    .getAsJSONArray(new JSONArrayRequestListener() {
-                                                        @Override
-                                                        public void onResponse(JSONArray response) {
-                                                            // do anything with response
-                                                        }
+                                    public void onClick(View v) {
 
-                                                        @Override
-                                                        public void onError(ANError error) {
-                                                            // handle error
-                                                        }
-                                                    });
-                                        }
-                                        button.setVisibility(View.VISIBLE);
-                                        textNsh.setText("   RE-BET   ");
-                                        arrayList.clear();
-                                    }
 
-                                    @Override
-                                    public void onAnimationRepeat(Animation animation) {
+                                        editor.putInt("spinTime", spinTime + 1);
+                                        editor.commit();
+
+                                        rotate.setAnimationListener(new Animation.AnimationListener() {
+                                            @Override
+                                            public void onAnimationStart(Animation animation) {
+                                                textView.setText("");
+                                            }
+
+                                            @Override
+                                            public void onAnimationEnd(Animation animation) {
+                                                textView.setText(currentNumber(360 - (degree % 360)));
+                                                if (currentNumber(360 - (degree % 360)).equals("Congratulations you have won 25 points")) {
+                                                    SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
+                                                    String roll = prefs.getString("roll number", "gsbs");
+                                                    AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + "25")
+                                                            .build()
+                                                            .getAsJSONArray(new JSONArrayRequestListener() {
+                                                                @Override
+                                                                public void onResponse(JSONArray response) {
+                                                                    // do anything with response
+                                                                }
+
+                                                                @Override
+                                                                public void onError(ANError error) {
+                                                                    // handle error
+                                                                }
+                                                            });
+                                                }
+                                                button.setVisibility(View.VISIBLE);
+                                                textNsh.setText("   RE-BET   ");
+                                                arrayList.clear();
+                                            }
+
+                                            @Override
+                                            public void onAnimationRepeat(Animation animation) {
+                                            }
+                                        });
+                                        wheel.startAnimation(rotate);
+
+
+                                        button.setVisibility(View.GONE);
+                                        syntax1.setVisibility(View.GONE);
+                                        syntax2.setVisibility(View.GONE);
                                     }
                                 });
-                                wheel.startAnimation(rotate);
-
-
-                                button.setVisibility(View.GONE);
-                                syntax1.setVisibility(View.GONE);
-                                syntax2.setVisibility(View.GONE);
 
                             }
                         }
