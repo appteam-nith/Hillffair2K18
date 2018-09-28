@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".utils.MyApplication"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,9 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:fullBackupContent"
-        android:name=".utils.MyApplication"
-        >
+        tools:replace="android:fullBackupContent">
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -47,10 +46,11 @@
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait">
-          <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-           </intent-filter>
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.Housie"
@@ -81,15 +81,17 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Notification.Notification2"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Notification.NotificationActivity"
-            android:screenOrientation="portrait"
-            android:exported="true"/>
-        <activity android:name=".activity.AboutHillffair"
             android:screenOrientation="portrait" />
-        
-        <activity android:name=".dialog.CautionDialog"></activity>
-
+        <activity
+            android:name=".Notification.NotificationActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AboutHillffair"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
