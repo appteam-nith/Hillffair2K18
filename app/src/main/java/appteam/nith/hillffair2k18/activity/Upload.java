@@ -113,7 +113,7 @@ public class Upload extends AppCompatActivity {
 
                                             @Override
                                             public void onResponse(org.json.JSONObject response) {
-                                                startActivity(new Intent(Upload.this, DashActivity.class));
+                                                finish();
                                                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                             }
 
