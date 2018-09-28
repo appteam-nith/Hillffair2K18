@@ -83,8 +83,6 @@ public class Profile extends AppCompatActivity {
             }
         });
         initUI();
-        CautionDialog cautionDialog = new CautionDialog(Profile.this);
-        cautionDialog.show();
     }
 
     @Override
@@ -129,7 +127,11 @@ public class Profile extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
         String check = prefs.getString("name", "gsbs");
 
+        CautionDialog cautionDialog = new CautionDialog(Profile.this);
+        cautionDialog.show();
+
         if (!check.equals("gsbs")) {
+            cautionDialog.dismiss();
             startActivity(new Intent(Profile.this, DashActivity.class));
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             finish();

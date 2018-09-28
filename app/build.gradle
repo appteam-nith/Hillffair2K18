@@ -28,6 +28,10 @@ android {
         aaptOptions {
             cruncherEnabled = false
         }
+        lintOptions {
+            disable 'ValidFragment'
+            checkReleaseBuilds false
+        }
     }
     buildTypes {
         release {
