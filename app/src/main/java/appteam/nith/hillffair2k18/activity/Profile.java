@@ -177,6 +177,7 @@ public class Profile extends AppCompatActivity {
                 editor.putString("Branch", Branch);
                 editor.putString("Phone", ContactNumber);
                 editor.putString("Image", pass);
+                editor.commit();
                 progress.setVisibility(View.VISIBLE);
                 String requestId = MediaManager.get().upload(byteArray)
                         .unsigned("kifap7u6")

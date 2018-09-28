@@ -8,13 +8,22 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.util.Log;
-import android.util.Printer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.concurrent.TimeUnit;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.activity.Housie;
@@ -32,27 +41,28 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
     private TextView quiz, tambola, roulette;
     private RelativeLayout rel1, rel2, rel3;
     private CardView playQuiz, playTambola, playRoulette;
-    private TextView spinLeft;
-    int spinTime;
-
+    String user_id;
+    String quizs,roullets,tambolas;
+    int q=0,t=0,r=0;
     public QuizGamesFragment() {
     }
 
     public QuizGamesFragment(Activity activity) {
         this.activity = activity;
-
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        AndroidNetworking.initialize(getActivity().getApplicationContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, container, false);
+        final SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("number", Context.MODE_PRIVATE);
+        user_id = sharedPreferences.getString("roll number","gsbs");
         getData();
 //        System.out.print("jnnjn"+nowAsString);
         quiz = view.findViewById(R.id.quiz);
@@ -67,8 +77,6 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
         playRoulette = view.findViewById(R.id.play_roulette);
         playTambola = view.findViewById(R.id.play_tambola);
 
-        spinLeft = view.findViewById(R.id.spinLeft);
-
         playTambola.setOnClickListener(this);
         playRoulette.setOnClickListener(this);
         playQuiz.setOnClickListener(this);
@@ -81,6 +89,17 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
     }
 
     public void getData() {
+
+    }
+    public void quizstatus()
+    {
+
+    }
+    public void roulletestatus()
+    {
+    }
+    public void tambolastatus()
+    {
 
     }
 
@@ -112,22 +131,159 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 roulette.setTextColor(getResources().getColor(R.color.black));
                 quiz.setTextColor(getResources().getColor(R.color.hint));
                 tambola.setTextColor(getResources().getColor(R.color.hint));
-                final SharedPreferences sharedPreferences = getActivity().getSharedPreferences("spin", Context.MODE_PRIVATE);
-                spinTime = sharedPreferences.getInt("spinTime", 0);
-                spinLeft.setText("No of Spins Left for Today  :  " + (5-spinTime));
 //                ROULLETTE();
                 break;
             case R.id.play_quiz:
-                startActivity(new Intent(activity, Quiz.class));
-                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+//                quizstatus();
+                AndroidNetworking.get("http://hillffair.tk/getquizstatus/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try
+                                {
+
+//                            System.out.print("aaaaaaaaaaaaaaaaaaa" + user_id + "nnnnnnnnn   ");
+//                            System.out.print("http://hillffair.tk/getquizstatus/" + user_id);
+                                    quizs = response.getString("quizstatus");
+                                    if (quizs.equals("null"))
+                                        q = 1;
+                                    else
+                                        q = 0;
+                                    if (q != 0)
+                                    {
+                                        startActivity(new Intent(activity, Quiz.class));
+                                        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(activity, "You have played once\nPlay tomorrow", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+
+                            }
+
+                        });
+                AndroidNetworking.get("http://hillffair.tk/postquizstatus/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
+
                 break;
             case R.id.play_tambola:
-                startActivity(new Intent(activity, Housie.class));
-                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+//                tambolastatus();
+                AndroidNetworking.get("http://hillffair.tk/gettambolastatus/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try
+                                {
+                                    tambolas = response.getString("tambolastatus");
+                                    if (tambolas.equals("0"))
+                                        t = 1;
+                                    else
+                                        t = 0;
+                                    if (t != 0)
+                                    {
+                                        startActivity(new Intent(activity, Housie.class));
+                                        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(activity, "You have played once\nPlay tomorrow", Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+
+                            }
+
+                        });
+                AndroidNetworking.get("http://hillffair.tk/posttambolastatus/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
                 break;
             case R.id.play_roulette:
-                startActivity(new Intent(activity, RouletteActivity.class));
-                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+//                roulletestatus();
+
+                AndroidNetworking.get("http://hillffair.tk/getroulettecount/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try
+                                {
+                                    roullets = response.getString("roulettecount");
+                                    if (Integer.parseInt(roullets) <= 5)
+                                        r = 1;
+                                    else
+                                        r = 0;
+                                    if (r != 0) {
+                                        startActivity(new Intent(activity, RouletteActivity.class));
+                                        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(activity, "You have finished all chances\nPlay tomorrow", Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+
+                            }
+
+                        });
+                AndroidNetworking.get("http://hillffair.tk/postroulettecount/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
                 break;
         }
     }
