@@ -29,15 +29,7 @@
         <activity
             android:name=".activity.DashActivity"
             android:exported="true"
-            android:screenOrientation="portrait" >
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.onesignal.NotificationOpened.DEFAULT"
@@ -53,6 +45,11 @@
         <activity
             android:name=".activity.Login"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".activity.Housie"
