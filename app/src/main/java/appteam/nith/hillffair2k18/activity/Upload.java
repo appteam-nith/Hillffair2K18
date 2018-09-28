@@ -141,8 +141,7 @@ public class Upload extends AppCompatActivity {
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Upload.this, DashActivity.class);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
@@ -161,5 +160,12 @@ public class Upload extends AppCompatActivity {
             width = (int) (height * bitmapRatio);
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

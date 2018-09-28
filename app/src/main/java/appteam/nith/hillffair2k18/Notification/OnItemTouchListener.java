@@ -1,4 +1,5 @@
 package appteam.nith.hillffair2k18.Notification;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -7,13 +8,8 @@ import android.view.View;
 
 
 public class OnItemTouchListener implements RecyclerView.OnItemTouchListener {
-    private OnItemClickListener mListener;
-
-    public interface OnItemClickListener {
-        public void onItemClick(View view, int position);
-    }
-
     GestureDetector mGestureDetector;
+    private OnItemClickListener mListener;
 
     public OnItemTouchListener(Context context, OnItemClickListener listener) {
         mListener = listener;
@@ -41,5 +37,9 @@ public class OnItemTouchListener implements RecyclerView.OnItemTouchListener {
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
+    }
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
     }
 }

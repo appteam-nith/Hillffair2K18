@@ -55,8 +55,7 @@ public class InfoDialog1 extends Dialog {
             public void onClick(View v) {
                 if (editBet.getText().toString().equals("")) {
                     Toast.makeText(context, "Enter some bet first", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     if (Integer.parseInt(String.valueOf(editBet.getText())) > 36 || Integer.parseInt(String.valueOf(editBet.getText())) < 0) {
                         Toast.makeText(context, "Enter no. less than 37", Toast.LENGTH_SHORT).show();
                     } else if (!arrayList.contains(String.valueOf(editBet.getText()))) {

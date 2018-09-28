@@ -17,6 +17,11 @@ import appteam.nith.hillffair2k18.Notification.NotificationActivity;
 
 public class MyApplication extends Application {
     private static MyApplication myApplication;
+
+    public static synchronized Context getAppContext() {
+        return myApplication.getApplicationContext();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,28 +30,25 @@ public class MyApplication extends Application {
                 .setNotificationReceivedHandler(new ExampleNotificationReceivedHandler())
                 .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler()).init();
 
-        myApplication=this;
+        myApplication = this;
     }
 
-    public static synchronized Context getAppContext(){
-        return myApplication.getApplicationContext();
-    }
     class ExampleNotificationReceivedHandler implements OneSignal.NotificationReceivedHandler {
         @Override
         public void notificationReceived(OSNotification notification) {
             JSONObject data = notification.payload.additionalData;
             String customKey;
-            String id =notification.payload.notificationID;
-            String title=notification.payload.title;
-            String small_icon=notification.payload.smallIcon;
-            String large_icon=notification.payload.largeIcon;
-            String launch_url=notification.payload.launchURL;
-            String description = notification.payload.body  ;
+            String id = notification.payload.notificationID;
+            String title = notification.payload.title;
+            String small_icon = notification.payload.smallIcon;
+            String large_icon = notification.payload.largeIcon;
+            String launch_url = notification.payload.launchURL;
+            String description = notification.payload.body;
             String image = notification.payload.bigPicture;
-            Log.v("","in receiver");
+            Log.v("", "in receiver");
             DbHelper dbHelper = new DbHelper(getApplicationContext());
-            if(dbHelper.insert_2_homeposts(id,small_icon,title,description,image,large_icon,launch_url)){
-                Log.v("","inserted Successfully");
+            if (dbHelper.insert_2_homeposts(id, small_icon, title, description, image, large_icon, launch_url)) {
+                Log.v("", "inserted Successfully");
 //                Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                startActivity(intent);
@@ -60,6 +62,7 @@ public class MyApplication extends Application {
             }
         }
     }
+
     class ExampleNotificationOpenedHandler implements OneSignal.NotificationOpenedHandler {
         // This fires when a notification is opened by tapping on it.
         @Override
@@ -68,14 +71,14 @@ public class MyApplication extends Application {
             JSONObject data = result.notification.payload.additionalData;
             String customKey;
             DbHelper dbHelper = new DbHelper(getApplicationContext());
-            String id =result.notification.payload.notificationID;
-            String title=result.notification.payload.title;
-            String small_icon=result.notification.payload.smallIcon;
-            String large_icon=result.notification.payload.largeIcon;
-            String launch_url=result.notification.payload.launchURL;
-            String description = result.notification.payload.body  ;
+            String id = result.notification.payload.notificationID;
+            String title = result.notification.payload.title;
+            String small_icon = result.notification.payload.smallIcon;
+            String large_icon = result.notification.payload.largeIcon;
+            String launch_url = result.notification.payload.launchURL;
+            String description = result.notification.payload.body;
             String image = result.notification.payload.bigPicture;
-            if(!dbHelper.checkidrepeated(id)) {
+            if (!dbHelper.checkidrepeated(id)) {
                 if (dbHelper.insert_2_homeposts(id, small_icon, title, description, image, large_icon, launch_url)) {
                     Log.v("", "inserted Successfully");
                 }
@@ -97,7 +100,6 @@ public class MyApplication extends Application {
 
             // Add the following to your AndroidManifest.xml to prevent the launching of your main Activity
             //   if you are calling startActivity above.
-
 
 
         }

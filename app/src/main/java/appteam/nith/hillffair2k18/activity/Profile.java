@@ -1,7 +1,6 @@
 package appteam.nith.hillffair2k18.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -84,7 +83,7 @@ public class Profile extends AppCompatActivity {
             }
         });
         initUI();
-        CautionDialog cautionDialog=new CautionDialog(Profile.this);
+        CautionDialog cautionDialog = new CautionDialog(Profile.this);
         cautionDialog.show();
     }
 
@@ -142,7 +141,7 @@ public class Profile extends AppCompatActivity {
         branch = findViewById(R.id.branch);
         contactNumber = findViewById(R.id.contactNumber);
         final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
-        contactNumber.setText(sharedPreferences.getString("numberMobile", "None"));
+        contactNumber.setText(sharedPreferences.getString("numberMobile", "None").replace("+91 ", ""));
         contactNumber.setEnabled(false);
         save = findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
@@ -243,5 +242,12 @@ public class Profile extends AppCompatActivity {
                         // handle error
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+//        finish();
+        Toast.makeText(this, "Please fill details to register", Toast.LENGTH_SHORT).show();
     }
 }

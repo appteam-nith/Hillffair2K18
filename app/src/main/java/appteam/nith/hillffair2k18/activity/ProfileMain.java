@@ -157,4 +157,11 @@ public class ProfileMain extends AppCompatActivity {
         mobile1 = findViewById(R.id.mobile1);
         profilemain = findViewById(R.id.profilePicture);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+    }
 }
