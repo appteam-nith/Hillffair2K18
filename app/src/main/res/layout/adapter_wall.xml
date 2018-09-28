@@ -40,9 +40,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/psb"
-                    android:text="Naman"
+                    android:text=""
                     android:textColor="@color/dark_grey"
-                    android:textSize="18sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <ImageView
@@ -60,7 +60,8 @@
                 android:layout_below="@id/upload"
                 android:layout_margin="16dp"
                 android:fontFamily="@font/ps"
-                android:text="You know who I am"
+                android:text=""
+                android:visibility="gone"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -94,7 +95,7 @@
                     android:layout_marginRight="-32dp"
                     android:layout_toRightOf="@id/like"
                     android:fontFamily="@font/psb"
-                    android:text="0 Likes"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 

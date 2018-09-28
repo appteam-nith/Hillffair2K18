@@ -1,6 +1,5 @@
 package appteam.nith.hillffair2k18.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -94,5 +93,12 @@ public class ContributorsActivity extends AppCompatActivity {
         contributorsItems.add(new contributorsItem("Abhiraj Singh Rathore", BASE_URL + "AbhirajSinghRathore.png", BASE_URL + "AbhirajSingh99"));
         contributorsItems.add(new contributorsItem("Chirag Thakur", BASE_URL + "chirag-thakur.png", BASE_URL + "chirag-thakur"));
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }

@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,6 +47,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DashActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
+    boolean doubleBackToExitPressedOnce = false;
     Bitmap bmp, img;
     private LinearLayoutManager linearLayoutManager;
     private ViewPager viewPager;
@@ -595,5 +595,135 @@ public class DashActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Override
+    public void onBackPressed() {
 
+        if (recyclerView.getVisibility() == View.GONE) {
+            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 1f);
+            valueAnimator.setDuration(750);
+            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    if (animation.getAnimatedFraction() <= 0.7f)
+                        navAnim.setProgress(0.7f - animation.getAnimatedFraction());
+                }
+            });
+            valueAnimator.start();
+            check = true;
+            recyclerView.setVisibility(View.VISIBLE);
+            ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(navDrawer, "alpha", 1, 0);
+            ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(recyclerView, "alpha", 0, 1);
+
+            ObjectAnimator objectAnimator2 = ObjectAnimator.ofFloat(aboutNav, "alpha", 1, 0);
+            ObjectAnimator objectAnimator3 = ObjectAnimator.ofFloat(profileNav, "alpha", 1, 0);
+            ObjectAnimator objectAnimator4 = ObjectAnimator.ofFloat(settingNav, "alpha", 1, 0);
+            ObjectAnimator objectAnimator5 = ObjectAnimator.ofFloat(sponsorNav, "alpha", 1, 0);
+
+            ObjectAnimator objectAnimator6 = ObjectAnimator.ofFloat(aboutNav, "translationY", 0f, 15f);
+            ObjectAnimator objectAnimator7 = ObjectAnimator.ofFloat(profileNav, "translationY", 0f, 15f);
+            ObjectAnimator objectAnimator8 = ObjectAnimator.ofFloat(settingNav, "translationY", 0f, 15f);
+            ObjectAnimator objectAnimator9 = ObjectAnimator.ofFloat(sponsorNav, "translationY", 0f, 15f);
+
+            ObjectAnimator objectAnimator4a = ObjectAnimator.ofFloat(callNav, "translationY", 0f, 15f);
+            ObjectAnimator objectAnimator5a = ObjectAnimator.ofFloat(mapNav, "translationY", 0f, 15f);
+            ObjectAnimator objectAnimator6a = ObjectAnimator.ofFloat(notifNav, "translationY", 0f, 15f);
+            ObjectAnimator objectAnimator6aa = ObjectAnimator.ofFloat(hillffairNav, "translationY", 0f, 15f);
+
+            ObjectAnimator objectAnimator1a = ObjectAnimator.ofFloat(mapNav, "alpha", 1, 0);
+            ObjectAnimator objectAnimator2a = ObjectAnimator.ofFloat(notifNav, "alpha", 1, 0);
+            ObjectAnimator objectAnimator3aa = ObjectAnimator.ofFloat(hillffairNav, "alpha", 1, 0);
+            ObjectAnimator objectAnimator3a = ObjectAnimator.ofFloat(callNav, "alpha", 1, 0);
+
+            objectAnimator.setDuration(250);
+            objectAnimator5.setDuration(250);
+            objectAnimator1.setDuration(250);
+            objectAnimator4.setDuration(250);
+            objectAnimator3.setDuration(250);
+            objectAnimator6.setDuration(250);
+            objectAnimator7.setDuration(250);
+            objectAnimator8.setDuration(250);
+            objectAnimator9.setDuration(250);
+            objectAnimator2.setDuration(250);
+
+            objectAnimator1a.setDuration(250);
+            objectAnimator2a.setDuration(250);
+            objectAnimator3a.setDuration(250);
+            objectAnimator3aa.setDuration(250);
+            objectAnimator4a.setDuration(250);
+            objectAnimator5a.setDuration(250);
+            objectAnimator6a.setDuration(250);
+            objectAnimator6aa.setDuration(250);
+
+            objectAnimator1a.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator2a.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator3a.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator3aa.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator4a.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator5a.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator6a.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator6aa.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator2.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator3.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator4.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator5.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator6.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator7.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator8.setInterpolator(new AnticipateOvershootInterpolator());
+            objectAnimator9.setInterpolator(new AnticipateOvershootInterpolator());
+
+            objectAnimator1.setStartDelay(0);
+            objectAnimator.setStartDelay(0);
+
+            AnimatorSet animatorSet = new AnimatorSet();
+            animatorSet.playTogether(objectAnimator, objectAnimator1, objectAnimator2, objectAnimator3, objectAnimator4, objectAnimator5, objectAnimator6, objectAnimator7, objectAnimator8, objectAnimator9, objectAnimator1a, objectAnimator2a, objectAnimator3a, objectAnimator3aa, objectAnimator4a, objectAnimator5a, objectAnimator6a, objectAnimator6aa);
+            animatorSet.start();
+            animatorSet.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    navDrawer.setVisibility(View.GONE);
+                    profileNav.setVisibility(View.GONE);
+                    aboutNav.setVisibility(View.GONE);
+                    settingNav.setVisibility(View.GONE);
+                    sponsorNav.setVisibility(View.GONE);
+                    callNav.setVisibility(View.GONE);
+                    notifNav.setVisibility(View.GONE);
+                    hillffairNav.setVisibility(View.GONE);
+                    mapNav.setVisibility(View.GONE);
+
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animation) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animation) {
+
+                }
+            });
+        } else {
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please press back again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
+        }
+    }
 }

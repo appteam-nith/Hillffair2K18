@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -39,6 +38,9 @@ import appteam.nith.hillffair2k18.model.Wall;
 
 public class WallFragment extends Fragment implements View.OnClickListener {
 
+    public static ArrayList<String> imageArray = new ArrayList<>();
+    public static ArrayList<String> likesArray = new ArrayList<>();
+    public static ArrayList<Boolean> likedArray = new ArrayList<>();
     String user_id;
     ProgressBar loadwall;
     SwipeRefreshLayout swiperefresh;
@@ -48,6 +50,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     private List<Wall> wallList = new ArrayList<>();
     private Activity activity;
     private int PICK_PHOTO_CODE = 1046;
+
 
     public WallFragment() {
     }
@@ -73,6 +76,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         user_id = prefs.getString("name", "gsbs");
         fifthRec = view.findViewById(R.id.fifthRec);
         wallAdapter = new WallAdapter(wallList, activity);
+
         fifthRec.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false));
         fifthRec.setAdapter(wallAdapter);
         getData();
@@ -81,15 +85,12 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
                     public void onRefresh() {
-//                        Handler handler = new Handler();
-//                            handler.postDelayed((Runnable) getActivity().getApplicationContext(), 1000);
                         getData();
                         swiperefresh.setRefreshing(false);
                     }
 
                 }
         );
-
         Log.e("WallFragment", "onCreateView: ");
         return view;
     }
@@ -98,7 +99,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
         loadwall.setVisibility(View.VISIBLE);
         wallList.clear();
         SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
-        final String check = prefs.getString("roll number", "gsb");
+        final String check = prefs.getString("roll number", "17mi524");
         AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getwall/0/" + check)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -117,7 +118,10 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                                 String profile = json.getString("profile_pic");
                                 String image = json.getString("id");
                                 int inttt = json.getInt("liked");
-                                wallList.add(new Wall(name, roll, profile, imgUrl, likes, image, inttt));
+                                imageArray.add(image);
+                                likesArray.add(likes);
+                                likedArray.add(inttt > 0);
+                                wallList.add(new Wall(name, roll, profile, imgUrl, likes, image, inttt > 0));
                             }
                             wallAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {

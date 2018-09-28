@@ -7,19 +7,19 @@ import com.google.gson.annotations.SerializedName;
  */
 public class notifications {
 
+    String bigpicture;
+    String launchurl;
     @SerializedName("id")
     private String id;
-
     @SerializedName("headings")
     private ContentModel headings;
-
     @SerializedName("contents")
     private ContentModel contents;
-
+    ;
     @SerializedName("big_picture")
     private String big_picture;
-
-    private String small_icon;;
+    private String small_icon;
+    private String notification_id;
 
     public String getImg() {
         return big_picture;
@@ -54,9 +54,6 @@ public class notifications {
         this.contents = body;
     }
 
-    private String notification_id;
-
-
     public String getBigpicture() {
         return bigpicture;
     }
@@ -65,8 +62,6 @@ public class notifications {
         this.bigpicture = bigpicture;
     }
 
-    String bigpicture;
-
     public String getLaunchurl() {
         return launchurl;
     }
@@ -74,10 +69,6 @@ public class notifications {
     public void setLaunchurl(String launchurl) {
         this.launchurl = launchurl;
     }
-
-    String launchurl;
-
-
 
     public String getSmall_icon() {
         return small_icon;
@@ -88,7 +79,7 @@ public class notifications {
     }
 
 
-       public String getNotification_id() {
+    public String getNotification_id() {
         return notification_id;
     }
 
@@ -96,5 +87,5 @@ public class notifications {
         this.notification_id = notification_id;
     }
 
-    
+
 }

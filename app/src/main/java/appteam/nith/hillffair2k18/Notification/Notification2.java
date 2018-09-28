@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,15 +16,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
 import appteam.nith.hillffair2k18.R;
-import appteam.nith.hillffair2k18.activity.DashActivity;
-import appteam.nith.hillffair2k18.activity.ProfileMain;
 
 
 /**
@@ -34,9 +30,10 @@ import appteam.nith.hillffair2k18.activity.ProfileMain;
 
 public class Notification2 extends AppCompatActivity {
 
-    TextView title,body,launch_url;
+    TextView title, body, launch_url;
     ImageView big_picture;
-    CardView sec_card,thrd_card;
+    CardView sec_card, thrd_card;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
@@ -55,12 +52,11 @@ public class Notification2 extends AppCompatActivity {
         });
 
 
-
         title = (TextView) findViewById(R.id.not2_title);
         body = (TextView) findViewById(R.id.not2_body);
         launch_url = (TextView) findViewById(R.id.launch_url);
-        sec_card=(CardView)findViewById(R.id.secondcard);
-        thrd_card=(CardView)findViewById(R.id.thiredcard);
+        sec_card = (CardView) findViewById(R.id.secondcard);
+        thrd_card = (CardView) findViewById(R.id.thiredcard);
         big_picture = (ImageView) findViewById(R.id.not2_big_picture);
         //String id = b.getString("id");
         //String id = bundle.getString("id",null);
@@ -69,16 +65,16 @@ public class Notification2 extends AppCompatActivity {
         //  Cursor cursor = dbHelper.homeposteinnerdata(id);
 
         // cursor.moveToFirst();
-        Intent i =getIntent();
+        Intent i = getIntent();
         Bundle b = i.getBundleExtra("assign");
-        String ftitle =b.getString("title");
-        String fbody =b.getString("body");
-        String fbig_pic=b.getString("bigpicture");
-        final String l_url=b.getString("launchurl");
-        Log.d("sdgvajdsf","getstringextras"+body+"_"+fbig_pic+"_"+l_url);
+        String ftitle = b.getString("title");
+        String fbody = b.getString("body");
+        String fbig_pic = b.getString("bigpicture");
+        final String l_url = b.getString("launchurl");
+        Log.d("sdgvajdsf", "getstringextras" + body + "_" + fbig_pic + "_" + l_url);
         title.setText(ftitle);
         body.setText(fbody);
-        if(l_url!=null) {
+        if (l_url != null) {
             launch_url.setText(l_url);
             launch_url.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,12 +84,11 @@ public class Notification2 extends AppCompatActivity {
                     startActivity(i);
                 }
             });
-        }
-        else {
+        } else {
             thrd_card.setVisibility(View.GONE);
         }
         final ProgressBar progressBar1 = (ProgressBar) findViewById(R.id.progress_not2);
-        if(fbig_pic!=null  ) {
+        if (fbig_pic != null) {
 
             Glide.with(getApplicationContext()).load(fbig_pic).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)).listener(new RequestListener<Drawable>() {
                 @Override
@@ -108,8 +103,7 @@ public class Notification2 extends AppCompatActivity {
                 }
             }).into(big_picture);
 
-        }
-        else {
+        } else {
             sec_card.setVisibility(View.GONE);
         }
 

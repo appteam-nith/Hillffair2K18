@@ -38,7 +38,12 @@ public class InfoDialog1 extends Dialog {
     public void initUI() {
         setContentView(R.layout.infodialog1);
         setCancelable(false);
-        setCanceledOnTouchOutside(false);
+        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.dimAmount = 0.3f;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -55,8 +60,7 @@ public class InfoDialog1 extends Dialog {
             public void onClick(View v) {
                 if (editBet.getText().toString().equals("")) {
                     Toast.makeText(context, "Enter some bet first", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     if (Integer.parseInt(String.valueOf(editBet.getText())) > 36 || Integer.parseInt(String.valueOf(editBet.getText())) < 0) {
                         Toast.makeText(context, "Enter no. less than 37", Toast.LENGTH_SHORT).show();
                     } else if (!arrayList.contains(String.valueOf(editBet.getText()))) {
@@ -68,7 +72,7 @@ public class InfoDialog1 extends Dialog {
                 }
 
                 if (check == 5) {
-                    next.setText("Spin");
+                    next.setText("Done");
                     next.setTextColor(Color.parseColor("#FF1B5E20"));
                 }
                 if (check <= 5) {

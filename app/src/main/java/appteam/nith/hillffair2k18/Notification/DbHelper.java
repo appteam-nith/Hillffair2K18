@@ -1,11 +1,11 @@
 package appteam.nith.hillffair2k18.Notification;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,38 +16,37 @@ import appteam.nith.hillffair2k18.model.HomePostsModel;
  * Created by jatin on 7/3/17.
  */
 
-public class DbHelper extends SQLiteOpenHelper{
+public class DbHelper extends SQLiteOpenHelper {
 
-    SQLiteDatabase mdb;
-
-    private static final int DATABASE_VERSION      = 2;
-
+    private static final int DATABASE_VERSION = 2;
     private static final String DB_NAME = "onesignalnotiication";
     // HOME POSTS TABLE
-    private static final String TABLE_HOMEPOST= "notification";
-    private static final String NOTIFICATION_ID="id";
-    private static final String NOTIFICATION_small_icon="smallicon";
-    private static final String NOTIFICATION_TITLE="title";
-    private static final String NOTIFICATION_TIMESTAMP="timestamp";
-    private static final String NOTIFICATION_LARGE_ICON="largeicon";
-    private static final String NOTIFICATION_BODY="body";
-    private static final String NOTIFICATION_BIG_PICTURE="bigpicture";
-    private static final String NOTIFICATION_LAUNCH_URL="launchurl";
+    private static final String TABLE_HOMEPOST = "notification";
+    private static final String NOTIFICATION_ID = "id";
+    private static final String NOTIFICATION_small_icon = "smallicon";
+    private static final String NOTIFICATION_TITLE = "title";
+    private static final String NOTIFICATION_TIMESTAMP = "timestamp";
+    private static final String NOTIFICATION_LARGE_ICON = "largeicon";
+    private static final String NOTIFICATION_BODY = "body";
+    private static final String NOTIFICATION_BIG_PICTURE = "bigpicture";
+    private static final String NOTIFICATION_LAUNCH_URL = "launchurl";
+    SQLiteDatabase mdb;
+
     public DbHelper(Context context) {
         super(context, DB_NAME, null, DATABASE_VERSION);
-        mdb=getWritableDatabase();
+        mdb = getWritableDatabase();
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table  " +TABLE_HOMEPOST+ "( "
-                +NOTIFICATION_ID+ " text  , "
-                +NOTIFICATION_small_icon+ " text , "
-                +NOTIFICATION_TITLE+ " text , "
-                +NOTIFICATION_BODY+" text , "
-                +NOTIFICATION_LARGE_ICON+" text , "
-                +NOTIFICATION_BIG_PICTURE+" text , "
-                +NOTIFICATION_LAUNCH_URL+" text )");
+        db.execSQL("create table  " + TABLE_HOMEPOST + "( "
+                + NOTIFICATION_ID + " text  , "
+                + NOTIFICATION_small_icon + " text , "
+                + NOTIFICATION_TITLE + " text , "
+                + NOTIFICATION_BODY + " text , "
+                + NOTIFICATION_LARGE_ICON + " text , "
+                + NOTIFICATION_BIG_PICTURE + " text , "
+                + NOTIFICATION_LAUNCH_URL + " text )");
     }
 
     @Override
@@ -69,7 +68,7 @@ public class DbHelper extends SQLiteOpenHelper{
         return false;
     }
 
-    public boolean insert_2_homeposts(String id, String smallicon, String title, String body, String bigpicture, String largeicon,String launchurl) {
+    public boolean insert_2_homeposts(String id, String smallicon, String title, String body, String bigpicture, String largeicon, String launchurl) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOTIFICATION_ID, id);
@@ -101,7 +100,7 @@ public class DbHelper extends SQLiteOpenHelper{
                         String title = cursor.getString(cursor.getColumnIndex(NOTIFICATION_TITLE));
                         String small_icon = cursor.getString(cursor.getColumnIndex(NOTIFICATION_small_icon));
 
-                        Log.d("TAG", "valuesss" +id+title+small_icon);
+                        Log.d("TAG", "valuesss" + id + title + small_icon);
                         homeposts.setNotification_id(id);
                         homeposts.setTitle(title);
                         homeposts.setSmall_icon(small_icon);
@@ -124,17 +123,17 @@ public class DbHelper extends SQLiteOpenHelper{
         return homedetails;
     }
 
-    public boolean checkidrepeated(String id){
-        String query="select id from "+TABLE_HOMEPOST+" where id = '"+id+"'";
+    public boolean checkidrepeated(String id) {
+        String query = "select id from " + TABLE_HOMEPOST + " where id = '" + id + "'";
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        if (cursor!=null)
+        if (cursor != null)
             return true;
         return false;
     }
 
     public Cursor homeposteinnerdata(String id) {
-        String query = "select * from " + TABLE_HOMEPOST + "  where  id = '" + id+"'" ;
+        String query = "select * from " + TABLE_HOMEPOST + "  where  id = '" + id + "'";
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         return cursor;
