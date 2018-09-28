@@ -38,7 +38,12 @@ public class InfoDialog1 extends Dialog {
     public void initUI() {
         setContentView(R.layout.infodialog1);
         setCancelable(false);
-        setCanceledOnTouchOutside(false);
+        findViewById(R.id.cross).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
+            }
+        });
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.dimAmount = 0.3f;
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -67,7 +72,7 @@ public class InfoDialog1 extends Dialog {
                 }
 
                 if (check == 5) {
-                    next.setText("Spin");
+                    next.setText("Done");
                     next.setTextColor(Color.parseColor("#FF1B5E20"));
                 }
                 if (check <= 5) {

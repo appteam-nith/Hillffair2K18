@@ -23,6 +23,7 @@
             android:clipToPadding="false"
             android:paddingTop="126dp"
             android:scrollbars="none" />
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton

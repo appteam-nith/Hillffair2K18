@@ -169,7 +169,7 @@ public class Profile extends AppCompatActivity {
 
             if (pass == "") {
                 Toast.makeText(Profile.this, "Please select profile picture", Toast.LENGTH_SHORT).show();
-            } else if (Name == "" || RollNumber == "" || Branch == "" || ContactNumber == "" || pass == "") {
+            } else if (Name == "" || RollNumber == "" || Branch == "" || ContactNumber == "" || pass == "" || RollNumber =="0") {
                 Toast.makeText(Profile.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             } else {
                 editor.putString("name", Name);
