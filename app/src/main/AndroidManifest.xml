@@ -16,7 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:replace="android:fullBackupContent">
+        tools:replace="android:fullBackupContent"
+        android:name=".utils.MyApplication"
+        >
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -28,6 +31,13 @@
             android:name=".activity.DashActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
+
+
         <activity
             android:name=".activity.ProfileMain"
             android:screenOrientation="portrait" />
@@ -70,9 +80,16 @@
             android:name=".activity.Map"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.AboutHillffair"
+            android:name=".Notification.Notification2"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Notification.NotificationActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"/>
+        <activity android:name=".activity.AboutHillffair"
             android:screenOrientation="portrait" />
+        
         <activity android:name=".dialog.CautionDialog"></activity>
+
     </application>
 
 </manifest>
