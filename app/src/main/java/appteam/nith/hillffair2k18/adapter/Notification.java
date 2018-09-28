@@ -19,13 +19,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.ImageViewTarget;
-;
 
 import java.util.List;
 
 import appteam.nith.hillffair2k18.Notification.Notification2;
 import appteam.nith.hillffair2k18.Notification.notifications;
 import appteam.nith.hillffair2k18.R;
+
+;
 
 
 /**
@@ -39,13 +40,13 @@ public class Notification extends RecyclerView.Adapter<Notification.viewHolder> 
     private Context context;
 
     public Notification(List<notifications> arrayList, Context context) {
-        this.arrayList=arrayList;
+        this.arrayList = arrayList;
         this.context = context;
     }
 
     @Override
     public viewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.home_model_card,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_model_card, parent, false);
         return new viewHolder(v);
     }
 
@@ -56,9 +57,9 @@ public class Notification extends RecyclerView.Adapter<Notification.viewHolder> 
 
         holder.title.setText(home_post.getTitle().getTitle());
         holder.notification_id.setText(home_post.getNotification_id());
-        String ab="R.drawable."+home_post.getSmall_icon();
-        Log.v("ab:",""+home_post.getTitle()+"small_icon"+position);
-        final Context context=holder.title.getContext();
+        String ab = "R.drawable." + home_post.getSmall_icon();
+        Log.v("ab:", "" + home_post.getTitle() + "small_icon" + position);
+        final Context context = holder.title.getContext();
         if (home_post.getSmall_icon() == null || home_post.getSmall_icon().isEmpty() || home_post.getSmall_icon().length() == 0) {
             Glide.with(context).load(R.drawable.hillffair_logo).into(holder.small_icon);
         } else {
@@ -75,14 +76,14 @@ public class Notification extends RecyclerView.Adapter<Notification.viewHolder> 
         holder.lay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context,Notification2.class);
+                Intent i = new Intent(context, Notification2.class);
                 Bundle assign = new Bundle();
-                Log.d("body",home_post.getImg());
-                assign.putString("title",home_post.getTitle().getTitle().toString());
-                assign.putString("body",home_post.getBody().getTitle().toString());
-                assign.putString("bigpicture",home_post.getImg());
-                assign.putString("launchurl",home_post.getLaunchurl());
-                i.putExtra("assign",assign);
+                Log.d("body", home_post.getImg());
+                assign.putString("title", home_post.getTitle().getTitle().toString());
+                assign.putString("body", home_post.getBody().getTitle().toString());
+                assign.putString("bigpicture", home_post.getImg());
+                assign.putString("launchurl", home_post.getLaunchurl());
+                i.putExtra("assign", assign);
                 context.startActivity(i);
             }
         });
@@ -92,22 +93,24 @@ public class Notification extends RecyclerView.Adapter<Notification.viewHolder> 
     public int getItemCount() {
         return arrayList.size();
     }
-    public  void  refresh(List<notifications> list){
-        this.arrayList=list;
+
+    public void refresh(List<notifications> list) {
+        this.arrayList = list;
         notifyDataSetChanged();
     }
 
-    public static class viewHolder extends RecyclerView.ViewHolder{
+    public static class viewHolder extends RecyclerView.ViewHolder {
         ImageView small_icon;
-        TextView title,notification_id;
+        TextView title, notification_id;
         LinearLayout lay;
+
         public viewHolder(View itemView) {
             super(itemView);
-            small_icon=(ImageView) itemView.findViewById(R.id.small_icon);
+            small_icon = (ImageView) itemView.findViewById(R.id.small_icon);
 
-            title=(TextView)itemView.findViewById(R.id.not_title);
-            lay=(LinearLayout)itemView.findViewById(R.id.not_click_lay);
-            notification_id=(TextView)itemView.findViewById(R.id.not_id);
+            title = (TextView) itemView.findViewById(R.id.not_title);
+            lay = (LinearLayout) itemView.findViewById(R.id.not_click_lay);
+            notification_id = (TextView) itemView.findViewById(R.id.not_id);
         }
     }
 }

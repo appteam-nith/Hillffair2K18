@@ -2,7 +2,6 @@ package appteam.nith.hillffair2k18.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -415,6 +414,13 @@ public class RouletteActivity extends AppCompatActivity {
         }
 
         return text;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
 }

@@ -12,9 +12,9 @@ public class Wall {
     String likes;
     String share;
     String desc;
-    int liked;
+    boolean liked;
 
-    public Wall(String name, String desc, String profile, String image, String likes, String share, int liked) {
+    public Wall(String name, String desc, String profile, String image, String likes, String share, boolean liked) {
         this.name = name;
         this.desc = desc;
         this.liked = liked;
@@ -24,11 +24,11 @@ public class Wall {
         this.share = share;
     }
 
-    public int getLiked() {
+    public boolean getLiked() {
         return liked;
     }
 
-    public void setLiked(int liked) {
+    public void setLiked(boolean liked) {
         this.liked = liked;
     }
 

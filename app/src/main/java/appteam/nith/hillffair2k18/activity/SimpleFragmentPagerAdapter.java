@@ -54,4 +54,6 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 7;
     }
+
+
 }

@@ -7,7 +7,8 @@ package appteam.nith.hillffair2k18.model;
 public class HomePostsModel {
 
     private String title;
-    private String small_icon;;
+    private String small_icon;
+    ;
     private String notification_id;
 
 
@@ -18,7 +19,6 @@ public class HomePostsModel {
     public void setTitle(String title) {
         this.title = title;
     }
-
 
 
     public String getSmall_icon() {
