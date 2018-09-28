@@ -60,9 +60,9 @@ public class Notification extends RecyclerView.Adapter<Notification.viewHolder> 
         Log.v("ab:",""+home_post.getTitle()+"small_icon"+position);
         final Context context=holder.title.getContext();
         if (home_post.getSmall_icon() == null || home_post.getSmall_icon().isEmpty() || home_post.getSmall_icon().length() == 0) {
-            Glide.with(context).load(R.drawable.hillffair2).into(holder.small_icon);
+            Glide.with(context).load(R.drawable.hillffair_logo).into(holder.small_icon);
         } else {
-            Glide.with(context).asBitmap().load(ab).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)).apply(RequestOptions.errorOf(R.drawable.hillffair2)).into(new ImageViewTarget<Bitmap>(holder.small_icon) {
+            Glide.with(context).asBitmap().load(ab).apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL)).apply(RequestOptions.errorOf(R.drawable.hillffair_logo)).into(new ImageViewTarget<Bitmap>(holder.small_icon) {
                 @Override
                 protected void setResource(Bitmap resource) {
                     RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
