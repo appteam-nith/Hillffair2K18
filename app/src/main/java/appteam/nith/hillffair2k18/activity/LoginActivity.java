@@ -120,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, DashActivity.class));
                                 finish();
                             } else {
+                                saveUserPhone(phone_no);
                                 saveLoginStatus();
                                 startActivity(new Intent(LoginActivity.this, Profile.class));
                                 finish();
@@ -136,6 +137,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void saveUserPhone (String phone) {
+        final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("Phone", phone);
+        editor.commit();
     }
 
     private void saveUserData(String phone, String imageUrl, String id, String name){

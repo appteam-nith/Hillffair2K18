@@ -12,12 +12,21 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -96,10 +105,10 @@ public class ProfileMain extends AppCompatActivity {
             if (!check3.equals("nullaaa")) {
                 mobile1.setText(check3);
             }
-            String check4 = prefs.getString("Score", "0");
-            if (!check3.equals("0")) {
-                reffaralDone.setText(check4);
-            }
+//            String check4 = prefs.getString("Score", "0");
+
+            setReferralCount(check1);
+
             String image = prefs.getString("Image", "https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png");
             if (image.equals("https://www.fluigent.com/wp-content/uploads/2018/07/default-avatar-BW.png")) {
                 Picasso.get().load(image).resize(80, 80).centerCrop().into(profilemain);
@@ -142,6 +151,35 @@ public class ProfileMain extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void setReferralCount(String rno) {
+        int count = 0;
+
+        Log.d("url", getResources().getString(R.string.baseUrl) + "getprofile/" + rno);
+        AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "getprofile/" + rno)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            String countTxt = response.getJSONObject(0).getString("score");
+                            int count = Integer.parseInt(countTxt.substring(0,1));
+                            reffaralDone.setText(String.valueOf(--count));
+                            Log.d("count", String.valueOf(count));
+                        }
+                        catch (JSONException e){
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        // Handle error
+                    }
+                });
+
+
     }
 
     @Override

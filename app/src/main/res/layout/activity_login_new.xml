@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
         android:background="@drawable/login_gradient"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:foreground="?android:attr/selectableItemBackground"
         android:onClick="onLoginBtnClick"
         android:padding="15dp"
         android:text="LOGIN"

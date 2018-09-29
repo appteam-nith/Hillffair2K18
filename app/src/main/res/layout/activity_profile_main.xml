@@ -199,6 +199,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/green_corner"
                 android:backgroundTint="#f3f3f3"
+                android:maxLines="1"
                 android:fontFamily="@font/psb"
                 android:paddingBottom="8dp"
                 android:paddingLeft="16dp"

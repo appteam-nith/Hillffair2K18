@@ -139,7 +139,8 @@ public class Profile extends AppCompatActivity {
         branch = findViewById(R.id.branch);
         contactNumber = findViewById(R.id.contactNumber);
         final SharedPreferences sharedPreferences = getSharedPreferences("number", Context.MODE_PRIVATE);
-        contactNumber.setText(sharedPreferences.getString("numberMobile", "None").replace("+91 ", ""));
+//        contactNumber.setText(sharedPreferences.getString("numberMobile", "None").replace("+91 ", ""));
+        contactNumber.setText(sharedPreferences.getString("Phone", "None"));
         contactNumber.setEnabled(false);
         save = findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {

@@ -122,7 +122,8 @@
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:paddingTop="10dp"
-                android:textColorHint="@color/dark_grey" />
+                android:textColor="@color/dark_grey"
+                android:textColorHint="#8fb1b9" />
 
             <EditText
                 android:id="@+id/rollNumber"
@@ -142,7 +143,8 @@
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:paddingTop="10dp"
-                android:textColorHint="@color/dark_grey" />
+                android:textColor="@color/dark_grey"
+                android:textColorHint="#8fb1b9" />
 
             <EditText
                 android:id="@+id/branch"
@@ -163,7 +165,8 @@
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:paddingTop="10dp"
-                android:textColorHint="@color/dark_grey" />
+                android:textColor="@color/dark_grey"
+                android:textColorHint="#8fb1b9" />
 
             <EditText
                 android:id="@+id/contactNumber"
@@ -183,7 +186,8 @@
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:paddingTop="10dp"
-                android:textColorHint="@color/dark_grey" />
+                android:textColor="@color/dark_grey"
+                android:textColorHint="#8fb1b9" />
 
             <EditText
                 android:id="@+id/referal"
@@ -197,12 +201,13 @@
                 android:background="@drawable/green_corner"
                 android:backgroundTint="#f3f3f3"
                 android:fontFamily="@font/ps"
-                android:hint="Referral"
+                android:hint="Enter friend's referral"
                 android:paddingBottom="10dp"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:paddingTop="10dp"
-                android:textColorHint="@color/dark_grey" />
+                android:textColor="@color/dark_grey"
+                android:textColorHint="#8fb1b9" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="wrap_content"
