@@ -44,8 +44,8 @@ public class Notification2 extends AppCompatActivity {
         findViewById(R.id.backBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Notification2.this, NotificationActivity.class);
-                startActivity(intent);
+
+                finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
             }
