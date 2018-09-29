@@ -135,7 +135,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.play_quiz:
 //                quizstatus();
-                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "postgamestatus" +
                         "/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -149,7 +149,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
 
                             }
                         });
-                AndroidNetworking.get("http://hillffair.tk/getquizstatus/" + user_id)
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "getquizstatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
@@ -158,7 +158,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                                 {
 
 //                            System.out.print("aaaaaaaaaaaaaaaaaaa" + user_id + "nnnnnnnnn   ");
-//                            System.out.print("http://hillffair.tk/getquizstatus/" + user_id);
+//                            System.out.print(getResources().getString(R.string.baseUrl) + "getquizstatus/" + user_id);
                                     quizs = response.getString("quizstatus");
                                     if (quizs.equals("null"))
                                         q = 1;
@@ -186,7 +186,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                             }
 
                         });
-                AndroidNetworking.get("http://hillffair.tk/postquizstatus/" + user_id)
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "postquizstatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
@@ -203,7 +203,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.play_tambola:
 //                tambolastatus();
-                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "postgamestatus" +
                         "/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -217,7 +217,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
 
                             }
                         });
-                AndroidNetworking.get("http://hillffair.tk/gettambolastatus/" + user_id)
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "gettambolastatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
@@ -250,7 +250,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                             }
 
                         });
-                AndroidNetworking.get("http://hillffair.tk/posttambolastatus/" + user_id)
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "posttambolastatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
@@ -267,7 +267,7 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
             case R.id.play_roulette:
 //                roulletestatus();
 
-                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "postgamestatus" +
                         "/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
