@@ -49,8 +49,7 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -99,7 +98,6 @@
 
         <activity
             android:name=".Notification.NotificationActivity"
-            android:exported="true"
             android:screenOrientation="portrait" />
 
         <activity
