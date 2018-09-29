@@ -5,12 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.cloudinary.android.MediaManager;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import appteam.nith.hillffair2k18.Notification.DbHelper;
 import appteam.nith.hillffair2k18.Notification.NotificationActivity;
@@ -29,7 +33,9 @@ public class MyApplication extends Application {
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.InAppAlert)
                 .setNotificationReceivedHandler(new ExampleNotificationReceivedHandler())
                 .setNotificationOpenedHandler(new ExampleNotificationOpenedHandler()).init();
-
+        Map config = new HashMap();
+        config.put("cloud_name", "appteam");
+        MediaManager.init(this, config);
         myApplication = this;
     }
 

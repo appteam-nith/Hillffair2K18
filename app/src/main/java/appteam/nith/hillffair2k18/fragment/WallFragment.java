@@ -1,5 +1,4 @@
 package appteam.nith.hillffair2k18.fragment;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import com.androidnetworking.AndroidNetworking;
@@ -27,11 +27,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import appteam.nith.hillffair2k18.R;
 import appteam.nith.hillffair2k18.adapter.WallAdapter;
 import appteam.nith.hillffair2k18.model.Wall;
-
 /**
  * Coded by ThisIsNSH on Someday.
  */
@@ -43,6 +43,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     public static ArrayList<Boolean> likedArray = new ArrayList<>();
     String user_id;
     ProgressBar loadwall;
+    int set = 0;
     SwipeRefreshLayout swiperefresh;
     private WallAdapter wallAdapter;
     private FloatingActionButton fab;
@@ -50,8 +51,6 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     private List<Wall> wallList = new ArrayList<>();
     private Activity activity;
     private int PICK_PHOTO_CODE = 1046;
-
-
     public WallFragment() {
     }
 
@@ -63,7 +62,6 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -87,9 +85,15 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                     public void onRefresh() {
                         getData();
                         swiperefresh.setRefreshing(false);
-                    }
+                        try {
+                            TimeUnit.SECONDS.sleep(0);
 
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
+
         );
         Log.e("WallFragment", "onCreateView: ");
         return view;
@@ -98,6 +102,9 @@ public class WallFragment extends Fragment implements View.OnClickListener {
     void getData() {
         loadwall.setVisibility(View.VISIBLE);
         wallList.clear();
+        imageArray.clear();
+        likedArray.clear();
+        likedArray.clear();
         SharedPreferences prefs = activity.getSharedPreferences("number", Context.MODE_PRIVATE);
         final String check = prefs.getString("roll number", "17mi524");
         AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getwall/0/" + check)
@@ -124,6 +131,7 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                                 wallList.add(new Wall(name, roll, profile, imgUrl, likes, image, inttt > 0));
                             }
                             wallAdapter.notifyDataSetChanged();
+                            set = 1;
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -134,7 +142,8 @@ public class WallFragment extends Fragment implements View.OnClickListener {
                         // handle error
                     }
                 });
-//        wallAdapter.notifyDataSetChanged();
+//        notifyDataSetChanged()
+        wallAdapter.notifyDataSetChanged();
     }
 
     @Override

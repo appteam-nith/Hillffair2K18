@@ -36,7 +36,6 @@ public class CoreTeamFragment extends Fragment {
     private TeamAdapter teamAdapter;
     private List<Team> teamList = new ArrayList<>();
     private Activity activity;
-
     public CoreTeamFragment() {
     }
 
@@ -85,7 +84,7 @@ public class CoreTeamFragment extends Fragment {
                                 String name = json.getString("name");
                                 String profile = json.getString("profile_pic");
                                 String position = json.getString("position");
-                                teamList.add(new Team(name, "https://www.hdwallpapersfreedownload.com/uploads/large/super-heroes/captain-marvel-avengers-brie-larson-super-hero-hd-wallpaper.jpg", position));
+                                teamList.add(new Team(name, profile, position));
                             }
                             teamAdapter.notifyDataSetChanged();
 

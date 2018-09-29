@@ -81,7 +81,7 @@ public class ClubsFragment extends Fragment {
                                 JSONObject json = response.getJSONObject(i);
                                 String clubname = json.getString("name");
                                 String info = json.getString("info");
-                                String id = json.getString("id");
+                                String id = json.getString("club_logo");
                                 clubList.add(new Club(clubname, id, info));
                             }
                             clubAdapter.notifyDataSetChanged();
