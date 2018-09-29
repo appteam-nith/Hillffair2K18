@@ -1,5 +1,7 @@
 package appteam.nith.hillffair2k18.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,7 +13,9 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,6 +27,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ProfileMain extends AppCompatActivity {
+    private ClipboardManager myClipboard;
+    private ClipData myClip;
+    TextView textView;
     TextView name1, rollNumber1, referral, branch1, mobile1, reffaralDone;
     CircleImageView profilemain, buttonLoadImage;
     Bitmap bmp;
@@ -42,6 +49,7 @@ public class ProfileMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_main);
+        textView=findViewById(R.id.referral);
 
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +57,18 @@ public class ProfileMain extends AppCompatActivity {
                 finish();
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
+            }
+        });
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                String text1 =textView.getText().toString();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("COPY",text1);
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(getApplicationContext(), "Referral Copied",Toast.LENGTH_SHORT).show();
             }
         });
         initUI();
