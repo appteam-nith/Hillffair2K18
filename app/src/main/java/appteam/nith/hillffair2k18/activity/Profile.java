@@ -162,7 +162,7 @@ public class Profile extends AppCompatActivity {
         Branch = String.valueOf(branch.getText());
         referal = String.valueOf(referral.getText());
         ContactNumber = contactNumber.getText().toString();
-
+        Log.d("roll",RollNumber);
         if (Name.length() == 0 || RollNumber.length() == 0 || Branch.length() == 0 || ContactNumber.length() == 0) {
             Toast.makeText(Profile.this, "Seems You Didn`t enter all the details", Toast.LENGTH_SHORT).show();
         } else {
@@ -171,9 +171,13 @@ public class Profile extends AppCompatActivity {
 
             if (pass == "") {
                 Toast.makeText(Profile.this, "Please select profile picture", Toast.LENGTH_SHORT).show();
-            } else if (Name == "" || RollNumber == "" || Branch == "" || ContactNumber == "" || pass == "" || RollNumber =="0") {
+            } else if (Name == "" || RollNumber == "" || Branch == "" || ContactNumber == "" || pass == "" ) {
                 Toast.makeText(Profile.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else if(RollNumber.equals("0")){
+                Toast.makeText(Profile.this, "Please Enter Valid Roll No", Toast.LENGTH_SHORT).show();
+            }
+            else {
                 editor.putString("name", Name);
                 editor.putString("roll number", RollNumber);
                 editor.putString("Branch", Branch);
