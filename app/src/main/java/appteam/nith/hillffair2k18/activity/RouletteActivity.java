@@ -2,6 +2,7 @@ package appteam.nith.hillffair2k18.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,8 +20,11 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,9 +42,9 @@ public class RouletteActivity extends AppCompatActivity {
     public static ArrayList<String> arrayList = new ArrayList<>();
     static ArrayList<Integer> a = new ArrayList<>();
     int spinTime = 0;
-    private CardView button;
+    private CardView button, button2;
     private ImageView wheel, back, pointer;
-    private TextView textView, textNsh, profile;
+    private TextView textView, textNsh, textNsh2, profile;
     private EditText entry;
     private int degreeold;
     private int degree;
@@ -51,6 +55,7 @@ public class RouletteActivity extends AppCompatActivity {
     private TextView syntax2;
     private int i;
     private int checkwin = 0;
+    String user_id, roullets;
 
     public void MakeToast(String string) {
 
@@ -72,6 +77,9 @@ public class RouletteActivity extends AppCompatActivity {
         final SharedPreferences sharedPreferences1 = getSharedPreferences("date", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor1 = sharedPreferences1.edit();
 
+        final SharedPreferences sharedPreferences2 = getSharedPreferences("number", Context.MODE_PRIVATE);
+        user_id = sharedPreferences2.getString("roll number","gsbs");
+
         int date = sharedPreferences1.getInt("date", 0);
         Log.e("curent date", date + "");
         Log.e("curent1 date", (currentTime.getDate()) + "");
@@ -87,6 +95,8 @@ public class RouletteActivity extends AppCompatActivity {
 
         textNsh = findViewById(R.id.textNsh);
         button = findViewById(R.id.button);
+        textNsh2 = findViewById(R.id.textNsh2);
+        button2 = findViewById(R.id.button2);
         wheel = findViewById(R.id.imageView);
         textView = findViewById(R.id.textView);
         entry = findViewById(R.id.editText);
@@ -107,107 +117,160 @@ public class RouletteActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                spinTime = sharedPreferences.getInt("spinTime", 0);
-                Log.e("aa", spinTime + " ");
-                if (spinTime > 5) {
-                    button.setEnabled(false);
-                    MakeToast("Maximum times played. Try tomorrow!");
-                } else if (spinTime <= 5) {
-                    InfoDialog1 infoDialog = new InfoDialog1(RouletteActivity.this);
-                    infoDialog.show();
-                    infoDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            if(arrayList.size()>4) {
-                                button.setVisibility(View.GONE);
-                                r = new Random();
-                                degreeold = degree % 360;
-                                degree = r.nextInt(3600) + 720;
-                                final RotateAnimation rotate = new RotateAnimation(degreeold, degree, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
-                                rotate.setDuration(3600);
-                                rotate.setFillAfter(true);
-                                rotate.setInterpolator(new DecelerateInterpolator());
-                                String empty = String.valueOf(entry.getText());
-                                System.out.println(arrayList);
-                                for (int i = 0; i < arrayList.size(); i++) {
-                                    try {
-                                        a.add(Integer.parseInt(arrayList.get(i).replace(" ", "")));
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                }
 
-                                if (empty.equals(""))
-                                    num = -1;
-                                else
-                                    num = Integer.parseInt(empty);
+                AndroidNetworking.get("http://hillffair.tk/getroulettecount/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try
+                                {
+                                    int roulettecount;
+                                    roullets = response.getString("roulettecount");
+                                    if (Integer.parseInt(roullets) <= 5)
+                                        roulettecount = 1;
+                                    else
+                                        roulettecount = 0;
 
-                                if (String.valueOf(entry.getText()).isEmpty()) {
+                                    if (roulettecount != 0) {
+
+                                        InfoDialog1 infoDialog = new InfoDialog1(RouletteActivity.this);
+                                        infoDialog.show();
+                                        infoDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialog) {
+                                                if(arrayList.size()>4) {
+                                                    button.setVisibility(View.GONE);
+                                                    r = new Random();
+                                                    degreeold = degree % 360;
+                                                    degree = r.nextInt(3600) + 720;
+                                                    final RotateAnimation rotate = new RotateAnimation(degreeold, degree, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
+                                                    rotate.setDuration(3600);
+                                                    rotate.setFillAfter(true);
+                                                    rotate.setInterpolator(new DecelerateInterpolator());
+                                                    String empty = String.valueOf(entry.getText());
+                                                    System.out.println(arrayList);
+                                                    for (int i = 0; i < arrayList.size(); i++) {
+                                                        try {
+                                                            a.add(Integer.parseInt(arrayList.get(i).replace(" ", "")));
+                                                        } catch (Exception e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+
+                                                    if (empty.equals(""))
+                                                        num = -1;
+                                                    else
+                                                        num = Integer.parseInt(empty);
+
+                                                    if (String.valueOf(entry.getText()).isEmpty()) {
 //                            MakeToast("Enter The Number");
-                                } else if (num > 37) {
+                                                    } else if (num > 37) {
 //                            MakeToast("Inappropriate Choice");
-                                } else {
-                                    button.setVisibility(View.VISIBLE);
-                                    textNsh.setText("   SPIN   ");
+                                                    } else {
+                                                        button2.setVisibility(View.VISIBLE);
+                                                        textNsh2.setText("   SPIN   ");
 
-                                    button.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
+                                                        button2.setOnClickListener(new View.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(View v) {
+
+                                                                button2.setVisibility(View.GONE);
+                                                                textNsh2.setVisibility(View.GONE);
+
+                                                                AndroidNetworking.get("http://hillffair.tk/postroulettecount/" + user_id)
+                                                                        .build()
+                                                                        .getAsJSONObject(new JSONObjectRequestListener() {
+                                                                            @Override
+                                                                            public void onResponse(JSONObject response) {
+
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onError(ANError anError) {
+
+                                                                            }
+                                                                        });
 
 
-                                            editor.putInt("spinTime", spinTime + 1);
-                                            editor.commit();
+//                                            editor.putInt("spinTime", spinTime + 1);
+//                                            editor.commit();
 
-                                            rotate.setAnimationListener(new Animation.AnimationListener() {
-                                                @Override
-                                                public void onAnimationStart(Animation animation) {
-                                                    textView.setText("");
-                                                }
-
-                                                @Override
-                                                public void onAnimationEnd(Animation animation) {
-                                                    textView.setText(currentNumber(360 - (degree % 360)));
-                                                    if (currentNumber(360 - (degree % 360)).equals("Congratulations you have won 25 points")) {
-                                                        SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
-                                                        String roll = prefs.getString("roll number", "gsbs");
-                                                        AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + "25")
-                                                                .build()
-                                                                .getAsJSONArray(new JSONArrayRequestListener() {
+                                                                rotate.setAnimationListener(new Animation.AnimationListener() {
                                                                     @Override
-                                                                    public void onResponse(JSONArray response) {
-                                                                        // do anything with response
+                                                                    public void onAnimationStart(Animation animation) {
+                                                                        textView.setText("");
                                                                     }
 
                                                                     @Override
-                                                                    public void onError(ANError error) {
-                                                                        // handle error
+                                                                    public void onAnimationEnd(Animation animation) {
+                                                                        textView.setText(currentNumber(360 - (degree % 360)));
+                                                                        if (currentNumber(360 - (degree % 360)).equals("Congratulations you have won 25 points")) {
+                                                                            SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
+                                                                            String roll = prefs.getString("roll number", "gsbs");
+                                                                            AndroidNetworking.get(getString(R.string.baseUrl) + "postpoint/" + roll + "/" + "25")
+                                                                                    .build()
+                                                                                    .getAsJSONArray(new JSONArrayRequestListener() {
+                                                                                        @Override
+                                                                                        public void onResponse(JSONArray response) {
+                                                                                            // do anything with response
+                                                                                        }
+
+                                                                                        @Override
+                                                                                        public void onError(ANError error) {
+                                                                                            // handle error
+                                                                                        }
+                                                                                    });
+                                                                        }
+                                                                        button.setVisibility(View.VISIBLE);
+                                                                        textNsh.setText("   RE-BET   ");
+                                                                        arrayList.clear();
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onAnimationRepeat(Animation animation) {
                                                                     }
                                                                 });
+                                                                wheel.startAnimation(rotate);
+
+
+                                                                button.setVisibility(View.GONE);
+                                                                syntax1.setVisibility(View.GONE);
+                                                                syntax2.setVisibility(View.GONE);
+                                                            }
+                                                        });
+
                                                     }
-                                                    button.setVisibility(View.VISIBLE);
-                                                    textNsh.setText("   RE-BET   ");
-                                                    arrayList.clear();
                                                 }
-
-                                                @Override
-                                                public void onAnimationRepeat(Animation animation) {
-                                                }
-                                            });
-                                            wheel.startAnimation(rotate);
-
-
-                                            button.setVisibility(View.GONE);
-                                            syntax1.setVisibility(View.GONE);
-                                            syntax2.setVisibility(View.GONE);
-                                        }
-                                    });
-
+                                            }
+                                        });
+                                    }
+                                    else
+                                    {
+                                        MakeToast("Maximum times played. Try tomorrow!");
+                                    }
+                                } catch (JSONException e1) {
+                                    e1.printStackTrace();
                                 }
                             }
-                        }
-                    });
 
-                }
+                            @Override
+                            public void onError(ANError anError) {
+
+
+                            }
+
+                        });
+//                spinTime = sharedPreferences.getInt("spinTime", 0);
+//                Log.e("aa", spinTime + " ");
+//                if (spinTime > 5) {
+//                    button.setEnabled(false);
+//                    MakeToast("Maximum times played. Try tomorrow!");
+//                } else if (spinTime <= 5)
+//                {
+//
+//
+//                }
             }
         });
 

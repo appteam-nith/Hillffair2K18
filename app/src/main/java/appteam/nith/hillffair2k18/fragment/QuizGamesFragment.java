@@ -239,51 +239,10 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
             case R.id.play_roulette:
 //                roulletestatus();
 
-                AndroidNetworking.get("http://hillffair.tk/getroulettecount/" + user_id)
-                        .build()
-                        .getAsJSONObject(new JSONObjectRequestListener() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try
-                                {
-                                    roullets = response.getString("roulettecount");
-                                    if (Integer.parseInt(roullets) <= 5)
-                                        r = 1;
-                                    else
-                                        r = 0;
-                                    if (r != 0) {
-                                        startActivity(new Intent(activity, RouletteActivity.class));
-                                        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(activity, "You have finished all chances\nPlay tomorrow", Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (JSONException e1) {
-                                    e1.printStackTrace();
-                                }
-                            }
-
-                            @Override
-                            public void onError(ANError anError) {
+                startActivity(new Intent(activity, RouletteActivity.class));
+                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 
 
-                            }
-
-                        });
-                AndroidNetworking.get("http://hillffair.tk/postroulettecount/" + user_id)
-                        .build()
-                        .getAsJSONObject(new JSONObjectRequestListener() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-
-                            }
-
-                            @Override
-                            public void onError(ANError anError) {
-
-                            }
-                        });
                 break;
         }
     }
