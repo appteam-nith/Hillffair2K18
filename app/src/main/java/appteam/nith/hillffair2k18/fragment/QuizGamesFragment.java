@@ -239,6 +239,20 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
             case R.id.play_roulette:
 //                roulletestatus();
 
+                AndroidNetworking.get("http://hillffair.tk/postgamestatus/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
+
                 startActivity(new Intent(activity, RouletteActivity.class));
                 activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
 

@@ -125,14 +125,14 @@ public class RouletteActivity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 try
                                 {
-                                    int roulettecount;
+                                    int roulettestatus;
                                     roullets = response.getString("roulettecount");
-                                    if (Integer.parseInt(roullets) <= 5)
-                                        roulettecount = 1;
+                                    if (Integer.parseInt(roullets) < 5)
+                                        roulettestatus = 1;
                                     else
-                                        roulettecount = 0;
+                                        roulettestatus = 0;
 
-                                    if (roulettecount != 0) {
+                                    if (roulettestatus != 0) {
 
                                         InfoDialog1 infoDialog = new InfoDialog1(RouletteActivity.this);
                                         infoDialog.show();
@@ -164,11 +164,12 @@ public class RouletteActivity extends AppCompatActivity {
                                                         num = Integer.parseInt(empty);
 
                                                     if (String.valueOf(entry.getText()).isEmpty()) {
-//                            MakeToast("Enter The Number");
+//                                                      MakeToast("Enter The Number");
                                                     } else if (num > 37) {
-//                            MakeToast("Inappropriate Choice");
+//                                                      MakeToast("Inappropriate Choice");
                                                     } else {
                                                         button2.setVisibility(View.VISIBLE);
+                                                        textNsh.setVisibility(View.VISIBLE);
                                                         textNsh2.setText("   SPIN   ");
 
                                                         button2.setOnClickListener(new View.OnClickListener() {
