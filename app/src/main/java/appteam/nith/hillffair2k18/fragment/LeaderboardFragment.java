@@ -79,7 +79,7 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
 
         clubList.clear();
         loadwall.setVisibility(View.VISIBLE);
-        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getleaderboard/0")
+        AndroidNetworking.get(activity.getString(R.string.baseUrl) + "getleaderboard")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
