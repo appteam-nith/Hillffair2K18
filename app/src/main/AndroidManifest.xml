@@ -34,11 +34,7 @@
         <activity
             android:name=".activity.DashActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-
-            >
-
-        </activity>
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".activity.ProfileMain"
