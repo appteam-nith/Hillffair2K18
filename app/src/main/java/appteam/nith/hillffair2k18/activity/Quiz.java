@@ -6,12 +6,15 @@ package appteam.nith.hillffair2k18.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
@@ -29,12 +32,16 @@ import java.util.ArrayList;
 
 import appteam.nith.hillffair2k18.R;
 
+import static appteam.nith.hillffair2k18.R.style.MyDialogTheme;
+
 public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
     public int count = 0, l;
     TextView textTimer, q1, point;
     Button o1, o2, o3, o4;
     String option1, option2, check, option3, option4, ans, ques1;
+    CardView c;
+    ImageView back;
     int time, points = 0;
     ArrayList<String> optionA = new ArrayList<String>();
     ArrayList<String> optionB = new ArrayList<String>();
@@ -62,8 +69,22 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Quiz.this, R.style.MyDialogTheme);
+                builder.setTitle("EXIT");
+                builder.setMessage("You won't get another chance today");
+                builder.setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                        Intent i = new Intent(Quiz.this, DashActivity.class);
+                        startActivity(i);
+                    }
+                });
+                builder.setNegativeButton("DISAGREE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                builder.show();
+      //
             }
         });
         AndroidNetworking.initialize(getApplicationContext());
@@ -119,11 +140,11 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         o2 = findViewById(R.id.optionb);
         o3 = findViewById(R.id.optionc);
         o4 = findViewById(R.id.optiond);
-
+        c=findViewById(R.id.next_button);
         main1 = findViewById(R.id.main1);
         main2 = findViewById(R.id.main2);
         point = findViewById(R.id.points);
-
+        back=findViewById(R.id.back);
         color = o2.getSolidColor();
         o1.setOnClickListener(this);
         o2.setOnClickListener(this);
@@ -131,7 +152,6 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
         o4.setOnClickListener(this);
         start();
     }
-
     public void start() {
         textTimer = findViewById(R.id.timer);
         new CountDownTimer(15000, 1000) {
@@ -148,7 +168,13 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 o3.setText(optionC.get(i));
                 o4.setText(optionD.get(i));
                 time--;
-
+                findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        cancel();
+                     onFinish();
+                    }
+                });
             }
 
             public void onFinish() {
@@ -184,9 +210,18 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
                 if (i < 10)
                     start();
                 else {
+                    findViewById(R.id.finish).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(Quiz.this, DashActivity.class);
+                            startActivity(i);
+                        }
+                    });
                     textTimer.setText("FINISHED");
                     main1.setVisibility(View.GONE);
                     main2.setVisibility(View.VISIBLE);
+                    c.setVisibility(View.GONE);
+                    back.setVisibility(View.GONE);
                     point.setText("Correct: " + points + "/10");
                     SharedPreferences prefs = getSharedPreferences("number", Context.MODE_PRIVATE);
                     String roll = prefs.getString("roll number", "gsbs");
@@ -255,12 +290,15 @@ public class Quiz extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, MyDialogTheme);
         builder.setTitle("EXIT");
         builder.setMessage("You won't get another chance today");
         builder.setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                Quiz.super.onBackPressed();
+         //       Quiz.super.onBackPressed();
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                Intent i = new Intent(Quiz.this, DashActivity.class);
+                startActivity(i);
             }
         });
         builder.setNegativeButton("DISAGREE", new DialogInterface.OnClickListener() {
