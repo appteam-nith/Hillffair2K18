@@ -65,10 +65,6 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         AndroidNetworking.initialize(getApplicationContext());
         progress = findViewById(R.id.loadwall);
-        Map config = new HashMap();
-        config.put("cloud_name", "appteam");
-        MediaManager.init(this, config);
-
         buttonLoadImage = findViewById(R.id.galleryView);
         buttonLoadImage.setOnClickListener(new View.OnClickListener() {
 

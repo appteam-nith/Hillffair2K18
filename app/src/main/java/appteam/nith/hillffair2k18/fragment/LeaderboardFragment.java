@@ -74,7 +74,6 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
         Log.e("LeaderFragment", "onCreateView: ");
         return view;
     }
-
     public void getData() {
 
         clubList.clear();
