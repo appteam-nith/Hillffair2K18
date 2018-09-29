@@ -102,6 +102,8 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
                 Cnumber += 1;
                 if (Cnumber < 40)
                     getdata();
+                else
+                    Toast.makeText(Housie.this, "Game ended Please exit", Toast.LENGTH_LONG).show();
             }
         }, 7000);
 
