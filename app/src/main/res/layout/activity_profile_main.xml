@@ -157,7 +157,7 @@
                 android:layout_marginLeft="64dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/ps"
-                android:text="Moblie"
+                android:text="Mobile Number"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
@@ -206,6 +206,14 @@
                 android:paddingTop="8dp"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*click the code above to copy referral"
+                android:textSize="13sp"
+                android:textColor="#ff0000"
+                android:fontFamily="@font/psb"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -135,6 +135,20 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.play_quiz:
 //                quizstatus();
+                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                        "/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
                 AndroidNetworking.get("http://hillffair.tk/getquizstatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -189,6 +203,20 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.play_tambola:
 //                tambolastatus();
+                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                        "/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
                 AndroidNetworking.get("http://hillffair.tk/gettambolastatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -239,39 +267,8 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
             case R.id.play_roulette:
 //                roulletestatus();
 
-                AndroidNetworking.get("http://hillffair.tk/getroulettecount/" + user_id)
-                        .build()
-                        .getAsJSONObject(new JSONObjectRequestListener() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try
-                                {
-                                    roullets = response.getString("roulettecount");
-                                    if (Integer.parseInt(roullets) <= 5)
-                                        r = 1;
-                                    else
-                                        r = 0;
-                                    if (r != 0) {
-                                        startActivity(new Intent(activity, RouletteActivity.class));
-                                        activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                                    }
-                                    else
-                                    {
-                                        Toast.makeText(activity, "You have finished all chances\nPlay tomorrow", Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (JSONException e1) {
-                                    e1.printStackTrace();
-                                }
-                            }
-
-                            @Override
-                            public void onError(ANError anError) {
-
-
-                            }
-
-                        });
-                AndroidNetworking.get("http://hillffair.tk/postroulettecount/" + user_id)
+                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                        "/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
@@ -284,6 +281,11 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
 
                             }
                         });
+
+                startActivity(new Intent(activity, RouletteActivity.class));
+                activity.overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+
+
                 break;
         }
     }
