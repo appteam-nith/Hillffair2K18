@@ -1,7 +1,9 @@
 package appteam.nith.hillffair2k18.activity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.os.Build;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +37,7 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
     int[] checked = new int[15];
     TextView number_1, number_2, number_3, number, number_4, number_5, number_6, number_7, number_8, number_9, number_10, number_11, number_12, number_13, number_14, number_15;
     String currentNumber;
-
+    private CardView button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +48,45 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Housie.this, R.style.MyDialogTheme);
+                builder.create();
+                builder.setTitle("EXIT");
+                builder.setMessage("You won't get another chance today");
+                builder.setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    }
+                });
+                builder.setNegativeButton("DISAGREE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        button = findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Housie.this, R.style.MyDialogTheme);
+                builder.create();
+                builder.setTitle("EXIT");
+                builder.setMessage("You won't get another chance today");
+                builder.setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    }
+                });
+                builder.setNegativeButton("DISAGREE", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                builder.show();
             }
         });
 
@@ -467,8 +507,18 @@ public class Housie extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
-        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        builder.setTitle("EXIT");
+        builder.setMessage("You won't get another chance today");
+        builder.setPositiveButton("AGREE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Housie.super.onBackPressed();
+            }
+        });
+        builder.setNegativeButton("DISAGREE", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+        builder.show();
     }
 }
