@@ -1,5 +1,4 @@
 package appteam.nith.hillffair2k18.activity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,9 +58,7 @@ public class Upload extends AppCompatActivity {
         setContentView(R.layout.upload);
         setupdata();
 
-        Map config = new HashMap();
-        config.put("cloud_name", "appteam");
-//        MediaManager.init(this, config);
+
         Bundle bundle = getIntent().getExtras();
         byteArray = bundle.getByteArray("imageUpload");
         image = findViewById(R.id.image);
@@ -103,6 +100,7 @@ public class Upload extends AppCompatActivity {
                                 try {
                                     byte[] data1 = asd.getBytes("UTF-8");
                                     base64b = Base64.encodeToString(data1, Base64.DEFAULT);
+                                    System.out.print("jjjjjjjjjjjjj");
                                 } catch (UnsupportedEncodingException e) {
                                     e.printStackTrace();
                                 }
@@ -113,6 +111,7 @@ public class Upload extends AppCompatActivity {
 
                                             @Override
                                             public void onResponse(org.json.JSONObject response) {
+                                               startActivity(new Intent(Upload.this,DashActivity.class));
                                                 finish();
                                                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                             }
@@ -159,7 +158,7 @@ public class Upload extends AppCompatActivity {
             height = maxSize;
             width = (int) (height * bitmapRatio);
         }
-        return Bitmap.createScaledBitmap(image, width, height, true);
+        return Bitmap.createScaledBitmap(image, maxSize, maxSize, true);
     }
 
     @Override

@@ -121,8 +121,9 @@ public class ScheduleFragment extends Fragment {
                                 String clubname = json.getString("club_name");
                                 String event_name = json.getString("event_name");
                                 Long event_Time = json.getLong("event_time");
+                                String club_logo = json.getString("club_logo");
                                 String event_time = getDate(event_Time);
-                                scheduleList1.add(new Schedule(clubname, event_name, "1", event_time));
+                                scheduleList1.add(new Schedule(clubname, event_name, club_logo, event_time));
                             }
                             scheduleAdapter1.notifyDataSetChanged();
                         } catch (JSONException e) {

@@ -88,7 +88,8 @@ public class Infodialog2 extends Dialog {
                                 String sponsorName = json.getString("name");
                                 String info = json.getString("info");
 //                                String  = json.getString("event_time");
-                                teamList.add(new Team(sponsorName, "", info));
+                                String sponsor_logo = json.getString("sponsor_logo");
+                                teamList.add(new Team(sponsorName, sponsor_logo, info));
                             }
                             teamAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
