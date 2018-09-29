@@ -135,6 +135,20 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.play_quiz:
 //                quizstatus();
+                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                        "/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
                 AndroidNetworking.get("http://hillffair.tk/getquizstatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -189,6 +203,20 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
                 break;
             case R.id.play_tambola:
 //                tambolastatus();
+                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                        "/" + user_id)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
                 AndroidNetworking.get("http://hillffair.tk/gettambolastatus/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
@@ -239,7 +267,8 @@ public class QuizGamesFragment extends Fragment implements View.OnClickListener 
             case R.id.play_roulette:
 //                roulletestatus();
 
-                AndroidNetworking.get("http://hillffair.tk/postgamestatus/" + user_id)
+                AndroidNetworking.get("http://hillffair.tk/postgamestatus" +
+                        "/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
