@@ -44,6 +44,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/psb"
                 android:text="Core Team"
+                android:gravity="center"
                 android:textColor="@color/dark_grey"
                 android:textSize="18sp" />
 
@@ -52,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:fontFamily="@font/ps"
                 android:text="Designation"
                 android:textColor="@color/dark_grey"
