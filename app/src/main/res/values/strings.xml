@@ -21,6 +21,10 @@
         <li>25 points will be awarded for the correct match</li>
     </string>
     <string name="baseUrl">http://hillffair.tk/</string>
+    <string name="caution_text">
+        You are required to fill all the details correctly specially the Roll No as your account will be linked through it.\n
+        Roll number would be verified at prize distribution. Incorrect roll number will lead to disqualification.
+    </string>>
 
     <string name="google_maps_key">AIzaSyByIUspPrtzSN1TGWXi2zXn7zaeTGr6850</string>
 

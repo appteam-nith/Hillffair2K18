@@ -46,7 +46,7 @@
             android:layout_marginLeft="16dp"
             android:layout_centerInParent="true"
             android:fontFamily="@font/ps"
-            android:text="You are required to fill all the details correctly specially the Roll No as your account will be linked through it."
+            android:text="@string/caution_text"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
