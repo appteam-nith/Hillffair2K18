@@ -38,6 +38,34 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/back_icon" />
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="#fff"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:fontFamily="@font/psb"
+            android:padding="4dp"
+            android:text="   NEXT   "
+            android:textColor="#000"
+            android:textSize="12sp" />
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 
     <LinearLayout
@@ -254,5 +282,26 @@
             android:text="1/10"
             android:textColor="@color/black"
             android:textSize="15sp" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#fff"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:fontFamily="@font/psb"
+                android:padding="4dp"
+                android:text="   FINISH   "
+                android:textColor="#000"
+                android:textSize="24sp" />
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 </LinearLayout>
