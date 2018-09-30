@@ -118,7 +118,7 @@ public class RouletteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AndroidNetworking.get("http://hillffair.tk/getroulettecount/" + user_id)
+                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "getroulettecount/" + user_id)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
@@ -179,7 +179,7 @@ public class RouletteActivity extends AppCompatActivity {
                                                                 button2.setVisibility(View.GONE);
                                                                 textNsh2.setVisibility(View.GONE);
 
-                                                                AndroidNetworking.get("http://hillffair.tk/postroulettecount/" + user_id)
+                                                                AndroidNetworking.get(getResources().getString(R.string.baseUrl) + "postroulettecount/" + user_id)
                                                                         .build()
                                                                         .getAsJSONObject(new JSONObjectRequestListener() {
                                                                             @Override
